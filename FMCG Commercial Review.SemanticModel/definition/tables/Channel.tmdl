@@ -1,0 +1,21 @@
+/// Conformed commercial channel dimension shared by Customer and Targets.
+table Channel
+	lineageTag: 4fb62621-2cf2-47d3-8326-5d9bf2bff6c0
+
+	column Channel
+		dataType: string
+		isKey
+		lineageTag: 6ff5ee7e-ae41-48ab-ae37-9812f12ef5b5
+		sourceColumn: Channel
+
+	partition Channel = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\dim_customer.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Selected = Table.SelectColumns(Promoted, {"Channel"}),
+				    DistinctChannels = Table.Distinct(Selected)
+				in
+				    DistinctChannels
+

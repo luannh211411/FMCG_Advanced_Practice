@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "f1aadaa99c682f18159e",
+  "position": {
+    "x": 1588,
+    "y": 580,
+    "z": 1000,
+    "width": 300,
+    "height": 105,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customer Intelligence"
+                    }
+                  },
+                  "Property": "High Decline Risk Trailing Sales"
+                }
+              },
+              "queryRef": "Customer Intelligence.High Decline Risk Trailing Sales",
+              "nativeQueryRef": "High Decline Risk Trailing Sales"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'High Decline Risk Trailing Sales'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

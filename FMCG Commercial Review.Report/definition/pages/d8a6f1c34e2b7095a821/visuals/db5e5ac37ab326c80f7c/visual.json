@@ -1,0 +1,239 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "db5e5ac37ab326c80f7c",
+  "position": {
+    "x": 32,
+    "y": 1326,
+    "width": 1856,
+    "height": 330,
+    "z": 1000,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Distributor"
+                    }
+                  },
+                  "Property": "Distributor ID"
+                }
+              },
+              "queryRef": "Distributor.Distributor ID",
+              "nativeQueryRef": "Distributor ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Product"
+                    }
+                  },
+                  "Property": "SKU"
+                }
+              },
+              "queryRef": "Product.SKU",
+              "nativeQueryRef": "SKU"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "Coverage Pressure Level"
+                }
+              },
+              "queryRef": "Inventory Intelligence.Coverage Pressure Level",
+              "nativeQueryRef": "Coverage Pressure Level"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "On-Hand Coverage Days"
+                }
+              },
+              "queryRef": "Inventory Intelligence.On-Hand Coverage Days",
+              "nativeQueryRef": "On-Hand Coverage Days"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "Available Coverage Days"
+                }
+              },
+              "queryRef": "Inventory Intelligence.Available Coverage Days",
+              "nativeQueryRef": "Available Coverage Days"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "On Hand Quantity"
+                }
+              },
+              "queryRef": "Inventory Intelligence.On Hand Quantity",
+              "nativeQueryRef": "On Hand Quantity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "In Transit Quantity"
+                }
+              },
+              "queryRef": "Inventory Intelligence.In Transit Quantity",
+              "nativeQueryRef": "In Transit Quantity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "Reorder Exception Flag"
+                }
+              },
+              "queryRef": "Inventory Intelligence.Reorder Exception Flag",
+              "nativeQueryRef": "Reorder Exception Flag"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "Expired Inventory Flag"
+                }
+              },
+              "queryRef": "Inventory Intelligence.Expired Inventory Flag",
+              "nativeQueryRef": "Expired Inventory Flag"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "Excess / Slow-Moving Level"
+                }
+              },
+              "queryRef": "Inventory Intelligence.Excess / Slow-Moving Level",
+              "nativeQueryRef": "Excess / Slow-Moving Level"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "Primary Inventory Risk Driver"
+                }
+              },
+              "queryRef": "Inventory Intelligence.Primary Inventory Risk Driver",
+              "nativeQueryRef": "Primary Inventory Risk Driver"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Inventory Intelligence"
+                  }
+                },
+                "Property": "On-Hand Coverage Days"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Inventory Position Investigation | Latest Snapshot: 30 Sep 2026'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

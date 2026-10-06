@@ -1,0 +1,238 @@
+/// As-of customer segmentation and separate decline and provisional inactivity signals at Customer × As Of Month × Model/Rule Version grain. Each row uses information available on or before its As Of Month. Inactivity tiers are provisional, not validated predictive risk.
+table 'Customer Intelligence'
+	lineageTag: 11f8b485-03e1-4c75-a747-613f57ed2843
+
+	/// Distinct customers in the Potential segment at the latest As Of Month in the current selection.
+	measure 'Potential Outlets' = VAR _LatestAsOfMonth = MAX('Customer Intelligence'[As Of Month]) RETURN CALCULATE(DISTINCTCOUNT('Customer Intelligence'[Customer ID]), KEEPFILTERS('Customer Intelligence'[As Of Month] = _LatestAsOfMonth), KEEPFILTERS('Customer Intelligence'[Commercial Segment] = "POTENTIAL"))
+		formatString: #,##0
+		displayFolder: Predictive Customer
+		lineageTag: 0db193df-4f6f-4247-8163-9d6dba928ca3
+
+	/// Distinct customers in the Core / Maintain segment at the latest As Of Month in the current selection.
+	measure 'Core / Maintain Outlets' = VAR _LatestAsOfMonth = MAX('Customer Intelligence'[As Of Month]) RETURN CALCULATE(DISTINCTCOUNT('Customer Intelligence'[Customer ID]), KEEPFILTERS('Customer Intelligence'[As Of Month] = _LatestAsOfMonth), KEEPFILTERS('Customer Intelligence'[Commercial Segment] = "CORE / MAINTAIN"))
+		formatString: #,##0
+		displayFolder: Predictive Customer
+		lineageTag: 443a32a2-5618-493a-9d3e-3b8450155471
+
+	/// Distinct customers in the Risk / Declining commercial segment at the latest As Of Month; distinct from the score-based decline tier.
+	measure 'Risk / Declining Outlets' = VAR _LatestAsOfMonth = MAX('Customer Intelligence'[As Of Month]) RETURN CALCULATE(DISTINCTCOUNT('Customer Intelligence'[Customer ID]), KEEPFILTERS('Customer Intelligence'[As Of Month] = _LatestAsOfMonth), KEEPFILTERS('Customer Intelligence'[Commercial Segment] = "RISK / DECLINING"))
+		formatString: #,##0
+		displayFolder: Predictive Customer
+		lineageTag: 4d69c1ad-6bf2-424c-ac40-7c3b175deb70
+
+	/// Distinct customers in the Low Priority / Dormant commercial segment at the latest As Of Month.
+	measure 'Low Priority / Dormant Outlets' = VAR _LatestAsOfMonth = MAX('Customer Intelligence'[As Of Month]) RETURN CALCULATE(DISTINCTCOUNT('Customer Intelligence'[Customer ID]), KEEPFILTERS('Customer Intelligence'[As Of Month] = _LatestAsOfMonth), KEEPFILTERS('Customer Intelligence'[Commercial Segment] = "LOW PRIORITY / DORMANT"))
+		formatString: #,##0
+		displayFolder: Predictive Customer
+		lineageTag: 00b79e27-e5c0-4db6-a085-087518b0fcc6
+
+	/// Distinct customers in the validated High decline-risk tier at the latest As Of Month; not combined with the provisional inactivity signal.
+	measure 'High Decline Risk Customers' = VAR _LatestAsOfMonth = MAX('Customer Intelligence'[As Of Month]) RETURN CALCULATE(DISTINCTCOUNT('Customer Intelligence'[Customer ID]), KEEPFILTERS('Customer Intelligence'[As Of Month] = _LatestAsOfMonth), KEEPFILTERS('Customer Intelligence'[Decline Risk Level] = "High"))
+		formatString: #,##0
+		displayFolder: Predictive Customer
+		lineageTag: cb4d2379-ba25-4756-a6da-8c659b4604de
+
+	/// Distinct Core / Maintain customers in the validated High decline-risk tier at the latest As Of Month.
+	measure 'Core High Decline Risk Customers' = VAR _LatestAsOfMonth = MAX('Customer Intelligence'[As Of Month]) RETURN CALCULATE(DISTINCTCOUNT('Customer Intelligence'[Customer ID]), KEEPFILTERS('Customer Intelligence'[As Of Month] = _LatestAsOfMonth), KEEPFILTERS('Customer Intelligence'[Commercial Segment] = "CORE / MAINTAIN"), KEEPFILTERS('Customer Intelligence'[Decline Risk Level] = "High"))
+		formatString: #,##0
+		displayFolder: Predictive Customer
+		lineageTag: a051d9b5-79df-4d47-858e-92880a48e042
+
+	/// Distinct Potential customers in the validated High decline-risk tier at the latest As Of Month.
+	measure 'Potential High Decline Risk Customers' = VAR _LatestAsOfMonth = MAX('Customer Intelligence'[As Of Month]) RETURN CALCULATE(DISTINCTCOUNT('Customer Intelligence'[Customer ID]), KEEPFILTERS('Customer Intelligence'[As Of Month] = _LatestAsOfMonth), KEEPFILTERS('Customer Intelligence'[Commercial Segment] = "POTENTIAL"), KEEPFILTERS('Customer Intelligence'[Decline Risk Level] = "High"))
+		formatString: #,##0
+		displayFolder: Predictive Customer
+		lineageTag: 98931ee5-8e9e-4a39-baaa-ace58eddd56f
+
+	/// As-of trailing-12-month sales for customers in the validated High decline-risk tier at the latest As Of Month.
+	measure 'High Decline Risk Trailing Sales' = VAR _LatestAsOfMonth = MAX('Customer Intelligence'[As Of Month]) RETURN CALCULATE(SUM('Customer Intelligence'[Trailing 12-Month Sales Value]), KEEPFILTERS('Customer Intelligence'[As Of Month] = _LatestAsOfMonth), KEEPFILTERS('Customer Intelligence'[Decline Risk Level] = "High"))
+		formatString: $#,##0.00
+		displayFolder: Predictive Customer
+		lineageTag: 2830c029-f171-4a5f-8527-a416e5de3875
+
+	/// Distinct eligible customers in the provisional High inactivity signal tier at the latest As Of Month. This is not validated predictive risk and remains separate from decline risk.
+	measure 'Provisional Inactivity Signal Customers' = VAR _LatestAsOfMonth = MAX('Customer Intelligence'[As Of Month]) RETURN CALCULATE(DISTINCTCOUNT('Customer Intelligence'[Customer ID]), KEEPFILTERS('Customer Intelligence'[As Of Month] = _LatestAsOfMonth), KEEPFILTERS('Customer Intelligence'[Provisional Inactivity Signal] = "High"), KEEPFILTERS('Customer Intelligence'[Provisional Inactivity Signal Eligible] = TRUE()))
+		formatString: #,##0
+		displayFolder: Predictive Customer
+		lineageTag: 0a75db8e-7c4c-49ec-b05e-72d0e421539d
+
+	/// Customer foreign key; use the shared Customer dimension.
+	column 'Customer ID'
+		dataType: string
+		isHidden
+		lineageTag: 1adf250c-c036-4d7a-8f37-d53dd3f9d47f
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+	/// Snapshot month at which all row features are cut off; no later purchasing data is used.
+	column 'As Of Month'
+		dataType: dateTime
+		isHidden
+		formatString: mmm yyyy
+		lineageTag: 3588c766-8c47-4dc5-8822-1f67567ea9ed
+		summarizeBy: none
+		sourceColumn: AsOfMonth
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Rule-based commercial segment as of this month, independent of the decline-risk tier.
+	column 'Commercial Segment'
+		dataType: string
+		lineageTag: da7ad3b5-f434-42e2-aee2-e8e0d0cf40b6
+		summarizeBy: none
+		sourceColumn: CommercialSegment
+
+	/// Relative value score for customer prioritization; not a sales amount.
+	column 'Value Score'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 89f33712-dbde-42f8-8d07-4ba166e38880
+		summarizeBy: sum
+		sourceColumn: ValueScore
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Relative recent commercial momentum score; not a predicted sales change.
+	column 'Momentum Score'
+		dataType: double
+		formatString: 0.00
+		lineageTag: d1f6bc80-1a6c-482e-bf93-edfd309a9177
+		summarizeBy: sum
+		sourceColumn: MomentumScore
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Historical purchase-engagement score derived from sales; no CRM calls or visits are represented.
+	column 'Engagement Score'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 63517274-fa8a-48a0-b37a-80fedbaaf80c
+		summarizeBy: sum
+		sourceColumn: EngagementScore
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Relative commercial-quality score using available margin, discount and return context.
+	column 'Commercial Quality Score'
+		dataType: double
+		formatString: 0.00
+		lineageTag: b9a790fa-53a2-477e-baf3-f19be0ee67b2
+		summarizeBy: sum
+		sourceColumn: CommercialQualityScore
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Validated relative decline-risk score from the as-of customer-history process; it is not a probability.
+	column 'Decline Risk Score'
+		dataType: double
+		formatString: 0.00
+		lineageTag: a252d992-ed39-47c7-9f51-ef5d37a4192a
+		summarizeBy: sum
+		sourceColumn: DeclineRiskScore
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Validated decline-risk tier; interpret separately from the provisional inactivity signal.
+	column 'Decline Risk Level'
+		dataType: string
+		lineageTag: e84f5e3f-5fa7-4cbd-983d-b7264c36acf8
+		summarizeBy: none
+		sourceColumn: DeclineRiskLevel
+
+	/// Provisional relative inactivity score. Build 3 had zero positive inactivity outcomes; do not interpret as validated predictive risk.
+	column 'Provisional Inactivity Signal Score'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 6f1b8755-a835-4661-acae-8979ef8c0c81
+		summarizeBy: sum
+		sourceColumn: InactivityRiskScore
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Provisional inactivity tier only; no positive outcomes were observed in validation, so this is not validated predictive risk.
+	column 'Provisional Inactivity Signal'
+		dataType: string
+		lineageTag: 58ad4825-2eae-4b19-ad1f-64270dde9261
+		summarizeBy: none
+		sourceColumn: InactivityRiskLevel
+
+	/// Indicates whether the row meets the source rule's inactivity-signal eligibility condition.
+	column 'Provisional Inactivity Signal Eligible'
+		dataType: boolean
+		lineageTag: 24af25e2-a5f4-4737-8884-56534e1487fb
+		summarizeBy: none
+		sourceColumn: InactivityRiskEligible
+
+	/// Source-selected highest-ranked customer signal driver. Interpret beside the separate decline and provisional inactivity fields; it is not a combined risk outcome.
+	column 'Primary Customer Risk Driver'
+		dataType: string
+		lineageTag: 52d66b84-a4c9-403a-b264-e21d7fdbaed2
+		summarizeBy: none
+		sourceColumn: PrimaryRiskDriver
+
+	/// As-of trailing-12-month sales amount used by the High Decline Risk Trailing Sales measure.
+	column 'Trailing 12-Month Sales Value'
+		dataType: double
+		isHidden
+		formatString: $#,##0.00
+		lineageTag: afe9b09c-53d8-4526-8b7d-0344483d2326
+		summarizeBy: sum
+		sourceColumn: Trailing12MonthSales
+
+	/// As-of trailing-12-month gross margin amount.
+	column 'Trailing 12-Month Gross Margin Value'
+		dataType: double
+		isHidden
+		formatString: $#,##0.00
+		lineageTag: 2e4e641a-3471-48ea-be2b-ffc7687776a0
+		summarizeBy: sum
+		sourceColumn: Trailing12MonthGrossMargin
+
+	/// Latest source date available for this customer snapshot.
+	column 'As Of Date'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: 81f2f259-b2ab-46d0-a026-39691f1d9a54
+		summarizeBy: none
+		sourceColumn: AsOfDate
+
+		variation Variation
+			isDefault
+			relationship: 002fa309-6f09-4ebf-be4b-e0bc4b197f1b
+			defaultHierarchy: LocalDateTable_b01f224b-8d24-4935-9687-4fd8c866fafc.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Version identifier for the scoring and segmentation rules.
+	column 'Model Or Rule Version'
+		dataType: string
+		lineageTag: e323a56a-e088-4964-b00f-a527c7c19bf2
+		summarizeBy: none
+		sourceColumn: ModelOrRuleVersion
+
+	/// Date this customer intelligence output was generated.
+	column 'Run Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 74e8b0fe-4573-411b-b374-7a8107a16676
+		summarizeBy: none
+		sourceColumn: RunDate
+
+		variation Variation
+			isDefault
+			relationship: 6036d1b6-26a9-49ee-8b49-ddb4c6788402
+			defaultHierarchy: LocalDateTable_4f7028bb-73ae-421a-96ac-97de44458c21.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'Customer Intelligence' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\predictive\fact_customer_segment_risk.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Selected = Table.SelectColumns(Promoted, {"CustomerID", "AsOfMonth", "CommercialSegment", "ValueScore", "MomentumScore", "EngagementScore", "CommercialQualityScore", "DeclineRiskScore", "DeclineRiskLevel", "InactivityRiskScore", "InactivityRiskLevel", "InactivityRiskEligible", "PrimaryRiskDriver", "Trailing12MonthSales", "Trailing12MonthGrossMargin", "AsOfDate", "ModelOrRuleVersion", "RunDate"})
+				in
+				    Table.TransformColumnTypes(Selected, {{"CustomerID", type text}, {"AsOfMonth", type date}, {"CommercialSegment", type text}, {"ValueScore", type number}, {"MomentumScore", type number}, {"EngagementScore", type number}, {"CommercialQualityScore", type number}, {"DeclineRiskScore", type number}, {"DeclineRiskLevel", type text}, {"InactivityRiskScore", type number}, {"InactivityRiskLevel", type text}, {"InactivityRiskEligible", type logical}, {"PrimaryRiskDriver", type text}, {"Trailing12MonthSales", type number}, {"Trailing12MonthGrossMargin", type number}, {"AsOfDate", type date}, {"ModelOrRuleVersion", type text}, {"RunDate", type date}}, "en-US")
+

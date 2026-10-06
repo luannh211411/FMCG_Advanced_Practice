@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "773ac529a45f0bef8862",
+  "position": {
+    "x": 48,
+    "y": 812,
+    "z": 1000,
+    "height": 165,
+    "width": 1824,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "MoM Quantity Growth %"
+                }
+              },
+              "queryRef": "Sales.MoM Quantity Growth %",
+              "nativeQueryRef": "MoM Quantity Growth %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "MoM Active Customer Growth %"
+                }
+              },
+              "queryRef": "Sales.MoM Active Customer Growth %",
+              "nativeQueryRef": "MoM Active Customer Growth %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "MoM Average Selling Price Growth %"
+                }
+              },
+              "queryRef": "Sales.MoM Average Selling Price Growth %",
+              "nativeQueryRef": "MoM Average Selling Price Growth %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Weighted Discount %"
+                }
+              },
+              "queryRef": "Sales.Weighted Discount %",
+              "nativeQueryRef": "Weighted Discount %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Gross Margin %"
+                }
+              },
+              "queryRef": "Sales.Gross Margin %",
+              "nativeQueryRef": "Gross Margin %"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "3a0cb4a0917265dd8e31",
+  "position": {
+    "x": 450,
+    "y": 768,
+    "z": 1000,
+    "height": 135,
+    "width": 600,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promotion Attribution"
+                    }
+                  },
+                  "Property": "Promotion Type"
+                }
+              },
+              "queryRef": "Promotion Attribution.Promotion Type",
+              "nativeQueryRef": "Promotion Type",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promotion Attribution"
+                    }
+                  },
+                  "Property": "Promotion-Attributed Sales"
+                }
+              },
+              "queryRef": "Promotion Attribution.Promotion-Attributed Sales",
+              "nativeQueryRef": "Promotion-Attributed Sales"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Promotion Attribution"
+                  }
+                },
+                "Property": "Promotion-Attributed Sales"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    }
+  }
+}

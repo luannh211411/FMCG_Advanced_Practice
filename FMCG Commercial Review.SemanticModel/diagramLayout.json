@@ -1,0 +1,269 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1489.6295307032217,
+            "y": 1420.6725546679977
+          },
+          "nodeIndex": "Category",
+          "nodeLineageTag": "00e13ecf-9e3e-4d3e-9769-e56f7084532b",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1533.7160127573127,
+            "y": 603.24584359037931
+          },
+          "nodeIndex": "Channel",
+          "nodeLineageTag": "4fb62621-2cf2-47d3-8326-5d9bf2bff6c0",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1245.5128802120576,
+            "y": 240.2070158591473
+          },
+          "nodeIndex": "Customer",
+          "nodeLineageTag": "8c79d950-0aea-4905-919b-7a9442289614",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 634.06104324084,
+            "y": 722.73208737038442
+          },
+          "nodeIndex": "Date",
+          "nodeLineageTag": "68a6c4eb-8290-4068-ba03-282fc89ca981",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 957.33350257143957,
+            "y": 73.175383235297431
+          },
+          "nodeIndex": "Distributor",
+          "nodeLineageTag": "27996795-0c74-45ce-a6c7-3b11409019b9",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 662.05789322859164,
+            "y": 175.47401789143078
+          },
+          "nodeIndex": "Inventory Snapshot",
+          "nodeLineageTag": "08db2a0d-bea5-43a0-9815-fd3869215b02",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1191.0101887943,
+            "y": 1316.4995033068381
+          },
+          "nodeIndex": "Month",
+          "nodeLineageTag": "96594977-1a6b-4abf-9307-d174e1db1e50",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 904.49602600321145,
+            "y": 1029.0440055069455
+          },
+          "nodeIndex": "Product",
+          "nodeLineageTag": "40357480-1ab8-431f-93b8-3ae6f27c2a47",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 338.57831807598245,
+            "y": 801.46411897395183
+          },
+          "nodeIndex": "Promotion",
+          "nodeLineageTag": "1162c18a-7e64-467b-8f8e-0cd50a590058",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 784.5593624076655
+          },
+          "nodeIndex": "Promotion Attribution",
+          "nodeLineageTag": "0995ec22-efa3-4dcd-9cb1-689618f7c031",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1546.1665329695102,
+            "y": 441.63351284326859
+          },
+          "nodeIndex": "Region",
+          "nodeLineageTag": "319bf369-568b-4b43-9e0b-261821458489",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1061.4202031155053,
+            "y": 661.13911802573159
+          },
+          "nodeIndex": "Returns",
+          "nodeLineageTag": "012e36b6-1c86-4cca-bd20-6ab08233da45",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 364.80321521894689,
+            "y": 366.74856881100277
+          },
+          "nodeIndex": "Sales",
+          "nodeLineageTag": "3fbbb778-4cbe-421e-98b5-a5dca36553ca",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1406.038586466078,
+            "y": -50
+          },
+          "nodeIndex": "Sales Force",
+          "nodeLineageTag": "51d7c2b6-6d79-4d34-a75a-322460c5a745",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1489.7767515316689,
+            "y": 998.01315929429268
+          },
+          "nodeIndex": "Targets",
+          "nodeLineageTag": "51a8cdd7-a71f-4635-b7b7-a704afff5b65",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1780.1665329695102,
+            "y": 637.33627733399885
+          },
+          "nodeIndex": "Customer Intelligence",
+          "nodeLineageTag": "11f8b485-03e1-4c75-a747-613f57ed2843",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2064.16653296951,
+            "y": 637.33627733399885
+          },
+          "nodeIndex": "Forecast Backtest Summary",
+          "nodeLineageTag": "8fcf8d52-a0a9-4a1f-b6e5-eb6b2ac89875",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2348.16653296951,
+            "y": 637.33627733399885
+          },
+          "nodeIndex": "Inventory Intelligence",
+          "nodeLineageTag": "fefa801d-72d4-486e-93ab-f05597e28b13",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2632.16653296951,
+            "y": 637.33627733399885
+          },
+          "nodeIndex": "Sales Forecast",
+          "nodeLineageTag": "bad86511-a6ad-4cc7-941f-fe5f123e54d2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

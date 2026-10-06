@@ -1,0 +1,185 @@
+relationship 'Date to Sales Date'
+	fromColumn: Sales.Date
+	toColumn: Date.Date
+
+relationship 'Date to Returns Date'
+	fromColumn: Returns.'Return Date'
+	toColumn: Date.Date
+
+relationship 'Date to Inventory Snapshot Date'
+	fromColumn: 'Inventory Snapshot'.'Snapshot Date'
+	toColumn: Date.Date
+
+relationship 'Month to Date'
+	fromColumn: Date.'Month Start'
+	toColumn: Month.'Month Start'
+
+relationship 'Month to Targets'
+	fromColumn: Targets.Month
+	toColumn: Month.'Month Start'
+
+relationship 'Region to Customer'
+	fromColumn: Customer.Region
+	toColumn: Region.Region
+
+relationship 'Region to Targets'
+	fromColumn: Targets.Region
+	toColumn: Region.Region
+
+relationship 'Channel to Customer'
+	fromColumn: Customer.Channel
+	toColumn: Channel.Channel
+
+relationship 'Channel to Targets'
+	fromColumn: Targets.Channel
+	toColumn: Channel.Channel
+
+relationship 'Category to Product'
+	fromColumn: Product.Category
+	toColumn: Category.Category
+
+relationship 'Category to Targets'
+	fromColumn: Targets.Category
+	toColumn: Category.Category
+
+relationship 'Customer to Sales'
+	fromColumn: Sales.'Customer ID'
+	toColumn: Customer.'Customer ID'
+
+relationship 'Customer to Returns'
+	fromColumn: Returns.'Customer ID'
+	toColumn: Customer.'Customer ID'
+
+relationship 'Product to Sales'
+	fromColumn: Sales.'Product ID'
+	toColumn: Product.'Product ID'
+
+relationship 'Product to Returns'
+	fromColumn: Returns.'Product ID'
+	toColumn: Product.'Product ID'
+
+relationship 'Product to Inventory'
+	fromColumn: 'Inventory Snapshot'.'Product ID'
+	toColumn: Product.'Product ID'
+
+relationship 'Sales Force to Customer'
+	fromColumn: Customer.'Sales Rep ID'
+	toColumn: 'Sales Force'.'Sales Rep ID'
+
+relationship 'Distributor to Customer'
+	fromColumn: Customer.'Distributor ID'
+	toColumn: Distributor.'Distributor ID'
+
+relationship 'Distributor to Inventory'
+	fromColumn: 'Inventory Snapshot'.'Distributor ID'
+	toColumn: Distributor.'Distributor ID'
+
+relationship 'Sales to Promotion Attribution'
+	fromColumn: 'Promotion Attribution'.'Transaction ID'
+	toColumn: Sales.'Transaction ID'
+
+relationship 'Promotion to Attribution'
+	fromColumn: 'Promotion Attribution'.'Promotion ID'
+	toColumn: Promotion.'Promotion ID'
+
+relationship e7552dfd-b2eb-4033-b3ec-7978ac3499be
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Month.'Month Start'
+	toColumn: LocalDateTable_34812ca0-2d22-4f65-b030-e280059c6b0b.Date
+
+relationship 349ed49d-770f-4915-8ecd-fbd4972eb83e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customer.'Join Date'
+	toColumn: LocalDateTable_25d4ff52-69a5-4190-9cc3-ffa4989e3c07.Date
+
+relationship bb94da3d-6655-4e20-9a19-9a160df3ec88
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Promotion.'Start Date'
+	toColumn: LocalDateTable_9c717c2c-610a-42a0-85bb-9843a29e61c7.Date
+
+relationship 4162b40a-c44c-42d9-8cfe-7db8b7ef3250
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Promotion.'End Date'
+	toColumn: LocalDateTable_e58a7375-aa0b-459e-90ac-7887f61435b1.Date
+
+relationship cf1feb83-8fa5-41fe-99b6-c99a41708fe7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Promotion Attribution'.'Promotion Start Date'
+	toColumn: LocalDateTable_7ceece10-7627-480a-816a-2e3307cd18c4.Date
+
+relationship f5bd32f8-7e8a-4c80-8b23-7a314caa31ab
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Promotion Attribution'.'Promotion End Date'
+	toColumn: LocalDateTable_a2967ada-95df-4ebf-8363-6d02e801e2ca.Date
+
+relationship AutoDetected_ed76768f-9505-4691-b864-9f40ee30a230
+	isActive: false
+	fromColumn: Sales.YearMonth
+	toColumn: Month.'Year Month'
+
+relationship 'Month to Sales Forecast'
+	fromColumn: 'Sales Forecast'.'Forecast Month'
+	toColumn: Month.'Month Start'
+
+relationship 'Region to Sales Forecast'
+	fromColumn: 'Sales Forecast'.Region
+	toColumn: Region.Region
+
+relationship 'Channel to Sales Forecast'
+	fromColumn: 'Sales Forecast'.Channel
+	toColumn: Channel.Channel
+
+relationship 'Category to Sales Forecast'
+	fromColumn: 'Sales Forecast'.Category
+	toColumn: Category.Category
+
+relationship 'Customer to Customer Intelligence'
+	fromColumn: 'Customer Intelligence'.'Customer ID'
+	toColumn: Customer.'Customer ID'
+
+relationship 'Month to Customer Intelligence'
+	fromColumn: 'Customer Intelligence'.'As Of Month'
+	toColumn: Month.'Month Start'
+
+relationship 'Date to Inventory Intelligence'
+	fromColumn: 'Inventory Intelligence'.'Snapshot Date'
+	toColumn: Date.Date
+
+relationship 'Product to Inventory Intelligence'
+	fromColumn: 'Inventory Intelligence'.'Product ID'
+	toColumn: Product.'Product ID'
+
+relationship 'Distributor to Inventory Intelligence'
+	fromColumn: 'Inventory Intelligence'.'Distributor ID'
+	toColumn: Distributor.'Distributor ID'
+
+relationship ff7427c5-e068-448a-a3f1-3bbe7b2dbc5d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Sales Forecast'.'As Of Date'
+	toColumn: LocalDateTable_298d191b-3e3c-4ab1-8c71-1a23273bfa11.Date
+
+relationship bff2dc83-030b-4760-a5af-feef8f0fb099
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Sales Forecast'.'Run Date'
+	toColumn: LocalDateTable_8b629664-a65d-4e42-b48e-afc79d2d33f1.Date
+
+relationship 002fa309-6f09-4ebf-be4b-e0bc4b197f1b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Customer Intelligence'.'As Of Date'
+	toColumn: LocalDateTable_b01f224b-8d24-4935-9687-4fd8c866fafc.Date
+
+relationship 6036d1b6-26a9-49ee-8b49-ddb4c6788402
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Customer Intelligence'.'Run Date'
+	toColumn: LocalDateTable_4f7028bb-73ae-421a-96ac-97de44458c21.Date
+
+relationship 5ecde924-c635-4c8f-83c0-4fdd6c00c904
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Inventory Intelligence'.'As Of Date'
+	toColumn: LocalDateTable_06803696-a2d4-4186-8ce5-469ba3660458.Date
+
+relationship cc24fcde-10cf-4986-bd91-bd73d9983bd8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Inventory Intelligence'.'Run Date'
+	toColumn: LocalDateTable_ff88d653-d72b-4f55-b8a2-5ea29169f5b8.Date
+

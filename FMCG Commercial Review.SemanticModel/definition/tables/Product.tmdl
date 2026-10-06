@@ -1,0 +1,77 @@
+/// Product and SKU dimension.
+table Product
+	lineageTag: 40357480-1ab8-431f-93b8-3ae6f27c2a47
+
+	column 'Product ID'
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: 1a45820c-fc20-473f-8c4b-ca798cdd2f78
+		sourceColumn: ProductID
+
+	column Category
+		dataType: string
+		lineageTag: 5beb234e-093e-411d-b8a0-a6b281cd60e9
+		sourceColumn: Category
+
+	column Brand
+		dataType: string
+		lineageTag: 872f104f-aacc-4aec-910e-220f019a602d
+		sourceColumn: Brand
+
+	column SKU
+		dataType: string
+		lineageTag: 4f8632b1-2a2f-4d63-afaf-440696a166e6
+		sourceColumn: SKU
+
+	column 'Pack Size'
+		dataType: string
+		lineageTag: fb4be6ea-1f02-4b0d-9c2b-364f921818be
+		sourceColumn: PackSize
+
+	column 'Price Tier'
+		dataType: string
+		lineageTag: 8d708d11-6534-4817-b09a-9b5b03ee39d3
+		sourceColumn: PriceTier
+
+	column 'List Price'
+		dataType: double
+		lineageTag: 1a09bb7d-457f-436b-8aed-0b51559468ba
+		summarizeBy: sum
+		sourceColumn: ListPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Standard Cost'
+		dataType: double
+		lineageTag: c60c3430-257d-43d6-8b5d-acc60d036325
+		summarizeBy: sum
+		sourceColumn: StandardCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Product Status'
+		dataType: string
+		lineageTag: a15b7ade-5230-48b4-abac-ba11b8161783
+		sourceColumn: ProductStatus
+
+	partition Product = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\dim_product.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    Table.TransformColumnTypes(
+				        Promoted,
+				        {
+				        {"ListPrice", type number},
+				        {"StandardCost", type number}
+				        },
+				        "en-US"
+				    )
+

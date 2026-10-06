@@ -1,0 +1,105 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "4cf0e216b33ded75dc82",
+  "position": {
+    "x": 872,
+    "y": 580,
+    "width": 700,
+    "height": 105,
+    "z": 1000,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customer Intelligence"
+                    }
+                  },
+                  "Property": "High Decline Risk Customers"
+                }
+              },
+              "queryRef": "Customer Intelligence.High Decline Risk Customers",
+              "nativeQueryRef": "High Decline Risk Customers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customer Intelligence"
+                    }
+                  },
+                  "Property": "Core High Decline Risk Customers"
+                }
+              },
+              "queryRef": "Customer Intelligence.Core High Decline Risk Customers",
+              "nativeQueryRef": "Core High Decline Risk Customers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customer Intelligence"
+                    }
+                  },
+                  "Property": "Potential High Decline Risk Customers"
+                }
+              },
+              "queryRef": "Customer Intelligence.Potential High Decline Risk Customers",
+              "nativeQueryRef": "Potential High Decline Risk Customers"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Validated Decline-Risk Customers'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "'0'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    }
+  }
+}

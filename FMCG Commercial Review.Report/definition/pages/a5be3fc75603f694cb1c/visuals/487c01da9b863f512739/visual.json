@@ -1,0 +1,51 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "487c01da9b863f512739",
+  "position": {
+    "x": 48,
+    "y": 690,
+    "z": 1000,
+    "height": 70,
+    "width": 380,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promotion Attribution"
+                    }
+                  },
+                  "Property": "Promotion-Attributed Sales"
+                }
+              },
+              "queryRef": "Promotion Attribution.Promotion-Attributed Sales",
+              "nativeQueryRef": "Promotion-Attributed Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promotion Attribution"
+                    }
+                  },
+                  "Property": "Promotion Overlap Sales Count"
+                }
+              },
+              "queryRef": "Promotion Attribution.Promotion Overlap Sales Count",
+              "nativeQueryRef": "Promotion Overlap Sales Count"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

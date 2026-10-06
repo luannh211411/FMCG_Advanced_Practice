@@ -1,0 +1,148 @@
+/// Selected validated monthly sales forecast at Forecast Month × Region × Channel × Category × Model Version × Run Date grain. The current dataset is a single model/run at the native target grain. The comparison of forecasts to targets uses conformed dimensions, never a direct fact-to-fact relationship.
+table 'Sales Forecast'
+	lineageTag: bad86511-a6ad-4cc7-941f-fe5f123e54d2
+
+	/// Selected forecast sales amount at Forecast Month × Region × Channel × Category. Use shared dimensions; the measure does not link forecasts directly to targets.
+	measure 'Forecast Sales' = SUM('Sales Forecast'[Forecast Sales Value])
+		formatString: $#,##0.00
+		displayFolder: Predictive Forecast
+		lineageTag: 32905969-c086-4714-bf2e-2420e1d0e830
+
+	/// Forecast Sales less the existing Sales Target measure at the shared Month, Region, Channel and Category grain. Positive values are projected above target.
+	measure 'Forecast Target Gap' = [Forecast Sales] - [Sales Target]
+		formatString: $#,##0.00;-$#,##0.00
+		displayFolder: Predictive Forecast
+		lineageTag: 1e9f5a0e-07d4-4e35-a995-53c73b9b39cd
+
+	/// Forecast target gap divided by Sales Target; blank when the aligned target is zero or unavailable.
+	measure 'Forecast Target Gap %' = DIVIDE([Forecast Target Gap], [Sales Target])
+		formatString: 0.00%;-0.00%;-
+		displayFolder: Predictive Forecast
+		lineageTag: ebb14754-5de1-4cf2-b78c-74249b9030c5
+
+	/// Projected forecast sales divided by the aligned native-grain Sales Target; blank when the target is zero or unavailable.
+	measure 'Projected Target Achievement %' = DIVIDE([Forecast Sales], [Sales Target])
+		formatString: 0.00%
+		displayFolder: Predictive Forecast
+		lineageTag: c2d94f33-581f-47c2-b19a-c2b84820a0d5
+
+	/// Pooled historical WAPE for the selected trailing 3-month-average method across seven rolling-origin cutoffs and horizons 1–3. This is backtest performance, not accuracy against future forecast months.
+	measure 'Forecast Backtest WAPE' = CALCULATE(MAX('Forecast Backtest Summary'[WAPE]), 'Forecast Backtest Summary'[Forecast Method Key] = "moving_average_3", 'Forecast Backtest Summary'[Backtest Horizon] = 0)
+		formatString: 0.00%
+		displayFolder: Predictive Forecast
+		lineageTag: 88e8f17f-b53b-41e8-b542-90228f7f957e
+
+	/// Pooled historical relative bias for the selected trailing 3-month-average method across seven rolling-origin cutoffs and horizons 1–3; positive indicates over-forecasting.
+	measure 'Forecast Backtest Bias' = CALCULATE(MAX('Forecast Backtest Summary'[Bias]), 'Forecast Backtest Summary'[Forecast Method Key] = "moving_average_3", 'Forecast Backtest Summary'[Backtest Horizon] = 0)
+		formatString: 0.00%;-0.00%;-
+		displayFolder: Predictive Forecast
+		lineageTag: 6d6342d9-e13c-449a-b901-2ca68f80cd66
+
+	/// Month being forecast. Relates to the shared Month dimension at its month-start key.
+	column 'Forecast Month'
+		dataType: dateTime
+		isHidden
+		formatString: mmm yyyy
+		lineageTag: 9d8ed730-b0de-4bdd-b701-e995a5e7ed31
+		summarizeBy: none
+		sourceColumn: ForecastMonth
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Region foreign key; use the shared Region dimension for filtering.
+	column Region
+		dataType: string
+		isHidden
+		lineageTag: 66bcee8e-14ae-414e-82ae-7dec3e3fca23
+		summarizeBy: none
+		sourceColumn: Region
+
+	/// Channel foreign key; use the shared Channel dimension for filtering.
+	column Channel
+		dataType: string
+		isHidden
+		lineageTag: 239226f5-35a6-4d13-b18a-d4ff2439762e
+		summarizeBy: none
+		sourceColumn: Channel
+
+	/// Category foreign key; use the shared Category dimension for filtering.
+	column Category
+		dataType: string
+		isHidden
+		lineageTag: 0d82af01-9012-4adc-9072-06910bd14d63
+		summarizeBy: none
+		sourceColumn: Category
+
+	/// Validated forecast sales amount; use the Forecast Sales measure.
+	column 'Forecast Sales Value'
+		dataType: double
+		isHidden
+		formatString: $#,##0.00
+		lineageTag: 4c553a88-9471-4d86-af73-ab66c53d1e7e
+		summarizeBy: sum
+		sourceColumn: ForecastSales
+
+	/// Number of months ahead of the 2026-09-30 as-of cutoff.
+	column 'Forecast Horizon'
+		dataType: int64
+		formatString: 0
+		lineageTag: e68cd5ce-f5e4-4389-8822-970eb9fc9fc0
+		summarizeBy: sum
+		sourceColumn: ForecastHorizon
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Selected explainable baseline method, stored as a stable method identifier.
+	column 'Forecast Method'
+		dataType: string
+		lineageTag: 870f3cea-e0d6-4bd5-8bf5-260db9f0b840
+		summarizeBy: none
+		sourceColumn: ForecastMethod
+
+	/// Latest information date available to the forecast; later actual sales were not used.
+	column 'As Of Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: b2656bdd-3185-48a5-815a-cbb122dfe46d
+		summarizeBy: none
+		sourceColumn: AsOfDate
+
+		variation Variation
+			isDefault
+			relationship: ff7427c5-e068-448a-a3f1-3bbe7b2dbc5d
+			defaultHierarchy: LocalDateTable_298d191b-3e3c-4ab1-8c71-1a23273bfa11.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Date this forecast output was generated.
+	column 'Run Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 218dcc06-e5af-450c-9e06-7f8917753eb8
+		summarizeBy: none
+		sourceColumn: RunDate
+
+		variation Variation
+			isDefault
+			relationship: bff2dc83-030b-4760-a5af-feef8f0fb099
+			defaultHierarchy: LocalDateTable_8b629664-a65d-4e42-b48e-afc79d2d33f1.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Version identifier for the validated forecast build.
+	column 'Model Version'
+		dataType: string
+		lineageTag: c8e3c770-1f35-41ce-938b-262fd1864d9a
+		summarizeBy: none
+		sourceColumn: ModelVersion
+
+	partition 'Sales Forecast' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\predictive\fact_sales_forecast.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Selected = Table.SelectColumns(Promoted, {"ForecastMonth", "Region", "Channel", "Category", "ForecastSales", "ForecastHorizon", "ForecastMethod", "AsOfDate", "RunDate", "ModelVersion"})
+				in
+				    Table.TransformColumnTypes(Selected, {{"ForecastMonth", type date}, {"Region", type text}, {"Channel", type text}, {"Category", type text}, {"ForecastSales", type number}, {"ForecastHorizon", Int64.Type}, {"ForecastMethod", type text}, {"AsOfDate", type date}, {"RunDate", type date}, {"ModelVersion", type text}}, "en-US")
+

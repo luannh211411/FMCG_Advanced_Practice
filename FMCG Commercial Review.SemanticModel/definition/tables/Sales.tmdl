@@ -1,0 +1,385 @@
+/// One row per sales transaction. TransactionID is unique at the fact grain.
+table Sales
+	lineageTag: 3fbbb778-4cbe-421e-98b5-a5dca36553ca
+
+	/// Net sales after discounts. Use as the primary sales value measure.
+	measure 'Total Net Sales' = SUM('Sales'[Net Sales])
+		formatString: $#,##0.00
+		displayFolder: Sales
+		lineageTag: 3eb9b17a-15b6-49ac-9f5b-c62ff74c4da3
+
+	/// Sales before discounts.
+	measure 'Total Gross Sales' = SUM('Sales'[Gross Sales])
+		formatString: $#,##0.00
+		displayFolder: Sales
+		lineageTag: 59494ec3-f4f7-4c3d-a4e2-143061ff7425
+
+	/// Total discount amount recorded on sales transactions.
+	measure 'Total Discount Amount' = SUM('Sales'[Discount Amount])
+		formatString: $#,##0.00
+		displayFolder: Sales
+		lineageTag: 59ef3e45-6e08-4c72-9739-fd4aa5646b1f
+
+	/// Cost of goods sold.
+	measure 'Total COGS' = SUM('Sales'[COGS])
+		formatString: $#,##0.00
+		displayFolder: Profitability
+		lineageTag: 79906fcf-c0be-43f4-88f0-0b00d3300292
+
+	/// Net sales less COGS.
+	measure 'Total Gross Margin' = SUM('Sales'[Gross Margin])
+		formatString: $#,##0.00
+		displayFolder: Profitability
+		lineageTag: 89f73bdd-bf1c-4cb4-b525-769098485ae0
+
+	/// Gross margin divided by net sales.
+	measure 'Gross Margin %' = DIVIDE([Total Gross Margin], [Total Net Sales])
+		formatString: 0.00%
+		displayFolder: Profitability
+		lineageTag: 9a81b610-9196-4cff-b435-a4a5cd161d5d
+
+	/// Units sold.
+	measure 'Total Quantity' = SUM('Sales'[Quantity])
+		formatString: #,##0
+		displayFolder: Sales
+		lineageTag: 3a13e37e-38e9-478f-b96e-0d0cb529173d
+
+	/// Distinct sales transactions at the transaction grain.
+	measure 'Transaction Count' = DISTINCTCOUNT('Sales'[Transaction ID])
+		formatString: #,##0
+		displayFolder: Sales
+		lineageTag: ca074079-22e4-4f76-a46b-541e95e61691
+
+	/// Distinct customers with sales in the current filter context.
+	measure 'Active Customers' = DISTINCTCOUNT('Sales'[Customer ID])
+		formatString: #,##0
+		displayFolder: Customers
+		lineageTag: d837080d-572b-4142-8fae-b8a0e20d6d50
+
+	/// Average net sales per active customer in the current filter context.
+	measure 'Average Sales per Active Customer' = DIVIDE([Total Net Sales], [Active Customers])
+		formatString: $#,##0.00
+		displayFolder: Customers
+		lineageTag: 34bc407b-39ce-4745-b0a4-a14937a47401
+
+	/// Net sales for the immediately preceding calendar month.
+	measure 'Previous Month Sales' = CALCULATE([Total Net Sales], DATEADD('Date'[Date], -1, MONTH))
+		formatString: $#,##0.00
+		displayFolder: Growth
+		lineageTag: 7a9e713e-9c42-4b03-b16c-047e6540f8e4
+
+	/// Current net sales less the immediately preceding calendar month.
+	measure 'MoM Variance' = [Total Net Sales] - [Previous Month Sales]
+		formatString: $#,##0.00;-$#,##0.00
+		displayFolder: Growth
+		lineageTag: f7f7cc19-272e-4cc9-b0b5-4c8819c06873
+
+	/// Month-over-month net sales growth; blank when no comparable prior month exists.
+	measure 'MoM Growth %' = DIVIDE([MoM Variance], [Previous Month Sales])
+		formatString: 0.00%;-0.00%;-
+		displayFolder: Growth
+		lineageTag: 58fd8302-d146-4c10-90de-6852573c7555
+
+	/// Net sales for the equivalent period one calendar year earlier.
+	measure 'Previous Year Sales' = CALCULATE([Total Net Sales], DATEADD('Date'[Date], -1, YEAR))
+		formatString: $#,##0.00
+		displayFolder: Growth
+		lineageTag: e87f92a0-04eb-4834-a017-4683409be04a
+
+	/// Current net sales less the equivalent period one calendar year earlier.
+	measure 'YoY Variance' = [Total Net Sales] - [Previous Year Sales]
+		formatString: $#,##0.00;-$#,##0.00
+		displayFolder: Growth
+		lineageTag: 993fc0ba-d5df-4dbb-b0cd-ed4d10d82783
+
+	/// Year-over-year net sales growth; blank when no comparable prior year exists.
+	measure 'YoY Growth %' = DIVIDE([YoY Variance], [Previous Year Sales])
+		formatString: 0.00%;-0.00%;-
+		displayFolder: Growth
+		lineageTag: 3e257e87-6509-4df9-b5c8-4448275b2b3d
+
+	/// Discount amount weighted by gross sales, rather than an unweighted average of transaction discount percentages.
+	measure 'Weighted Discount %' = DIVIDE([Total Discount Amount], [Total Gross Sales])
+		formatString: 0.00%
+		displayFolder: Sales
+		lineageTag: e5a6d14b-97d6-4550-91f1-58d46bf51b3e
+
+	/// Net sales divided by the target aligned to Month, Region, Channel and Category.
+	measure 'Target Achievement %' = DIVIDE([Total Net Sales], [Sales Target])
+		formatString: 0.00%
+		displayFolder: Targets
+		lineageTag: dace8773-9bbe-4a21-a196-0220385e0004
+
+	/// Absolute net sales variance versus target. Positive is above target.
+	measure 'Target Variance' = [Total Net Sales] - [Sales Target]
+		formatString: $#,##0.00;-$#,##0.00
+		displayFolder: Targets
+		lineageTag: 7a58f2be-c61f-4b3b-9c77-e814552a1bdd
+
+	/// Net sales per active sales representative in the current filter context.
+	measure 'Sales Rep Productivity' = DIVIDE([Total Net Sales], DISTINCTCOUNT('Customer'[Sales Rep ID]))
+		formatString: $#,##0.00
+		displayFolder: Sales Force
+		lineageTag: d7af7a2d-40fe-4ee8-b827-369c3afd95ed
+
+	/// Units sold in the immediately preceding calendar month.
+	measure 'Previous Month Quantity' = CALCULATE([Total Quantity], DATEADD('Date'[Date], -1, MONTH))
+		formatString: #,##0
+		displayFolder: Growth
+		lineageTag: a63690d8-ad9d-472a-82dc-10bf8af2105d
+
+	/// Current units sold less units sold in the immediately preceding calendar month.
+	measure 'MoM Quantity Variance' = [Total Quantity] - [Previous Month Quantity]
+		formatString: #,##0;-#,##0
+		displayFolder: Growth
+		lineageTag: 30091dd8-f898-43ad-a46b-76751ea86036
+
+	/// Month-over-month quantity growth; blank when no comparable prior month exists.
+	measure 'MoM Quantity Growth %' = DIVIDE([MoM Quantity Variance], [Previous Month Quantity])
+		formatString: 0.00%;-0.00%;-
+		displayFolder: Growth
+		lineageTag: 59d0eb90-d20b-404b-9c45-9e110973d1a4
+
+	/// Active customers in the immediately preceding calendar month.
+	measure 'Previous Month Active Customers' = CALCULATE([Active Customers], DATEADD('Date'[Date], -1, MONTH))
+		formatString: #,##0
+		displayFolder: Customers
+		lineageTag: 0a855a16-8767-4b0b-9506-a6497d9a9e73
+
+	/// Current active customers less active customers in the immediately preceding calendar month.
+	measure 'MoM Active Customer Variance' = [Active Customers] - [Previous Month Active Customers]
+		formatString: #,##0;-#,##0
+		displayFolder: Customers
+		lineageTag: 05167d33-a56f-42b5-be9a-d02bab39c795
+
+	/// Month-over-month active customer growth; blank when no comparable prior month exists.
+	measure 'MoM Active Customer Growth %' = DIVIDE([MoM Active Customer Variance], [Previous Month Active Customers])
+		formatString: 0.00%;-0.00%;-
+		displayFolder: Customers
+		lineageTag: 85df711c-7006-41a7-b30a-a96c5c3ce7f4
+
+	/// Net sales divided by units sold in the current filter context.
+	measure 'Average Selling Price' = DIVIDE([Total Net Sales], [Total Quantity])
+		formatString: $#,##0.00
+		displayFolder: Growth
+		lineageTag: a8055278-20c0-4957-b5b7-a04f88181cdb
+
+	/// Average selling price in the immediately preceding calendar month.
+	measure 'Previous Month Average Selling Price' = CALCULATE([Average Selling Price], DATEADD('Date'[Date], -1, MONTH))
+		formatString: $#,##0.00
+		displayFolder: Growth
+		lineageTag: e61ea1c8-83cc-4452-b4cb-f8a4b7b0bcc1
+
+	/// Current average selling price less the immediately preceding calendar month.
+	measure 'MoM Average Selling Price Variance' = [Average Selling Price] - [Previous Month Average Selling Price]
+		formatString: $#,##0.00;-$#,##0.00
+		displayFolder: Growth
+		lineageTag: 0a7edbd0-c690-46d4-b894-db636374529d
+
+	/// Month-over-month average selling price growth; blank when no comparable prior month exists.
+	measure 'MoM Average Selling Price Growth %' = DIVIDE([MoM Average Selling Price Variance], [Previous Month Average Selling Price])
+		formatString: 0.00%;-0.00%;-
+		displayFolder: Growth
+		lineageTag: 7c3fe122-3da0-40d1-8045-be5834a2e219
+
+	/// Rank customers by the absolute month-over-month sales variance in the current selected customer context.
+	measure 'Customer MoM Variance Rank' = RANKX(ALLSELECTED('Customer'[Customer ID]), ABS([MoM Variance]), , DESC, DENSE)
+		formatString: #,##0
+		displayFolder: Customers
+		lineageTag: 68e4b71a-c5a8-4383-b814-d92361f5ad11
+
+	column 'Transaction ID'
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: 4cfd76e7-c9de-455e-9ad6-d0a55e9013aa
+		summarizeBy: none
+		sourceColumn: TransactionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 23b70778-1e2e-45e5-b67e-061eb527f91d
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer ID'
+		dataType: string
+		isHidden
+		lineageTag: 30a001b7-dd19-4fb3-bbee-652814d10a6c
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product ID'
+		dataType: string
+		isHidden
+		lineageTag: 2a4a5899-6eb8-475b-8a78-de8440cad2df
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		lineageTag: 037e0ba9-97e4-4797-8381-122337eea521
+		summarizeBy: sum
+		sourceColumn: Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unit List Price'
+		dataType: double
+		isHidden
+		lineageTag: 3d70aa69-47cc-4e81-9694-e83920dc61fe
+		summarizeBy: sum
+		sourceColumn: UnitListPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gross Sales'
+		dataType: double
+		isHidden
+		lineageTag: 3b98ad03-2dfa-44ec-8152-68da0a0bd7d6
+		summarizeBy: sum
+		sourceColumn: GrossSales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Discount %'
+		dataType: double
+		lineageTag: 3729d35a-b6a3-4ab6-b5b5-2b4dc0453fbf
+		summarizeBy: sum
+		sourceColumn: DiscountPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Discount Amount'
+		dataType: double
+		isHidden
+		lineageTag: 37558260-914b-40a3-b87c-7447a6c117bc
+		summarizeBy: sum
+		sourceColumn: DiscountAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Net Sales'
+		dataType: double
+		isHidden
+		lineageTag: 27134c6e-4888-430b-990f-d4aa0be01b5a
+		summarizeBy: sum
+		sourceColumn: NetSales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COGS
+		dataType: double
+		isHidden
+		lineageTag: 6953e75e-680e-4743-ac1a-5358172a6020
+		summarizeBy: sum
+		sourceColumn: COGS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Gross Margin'
+		dataType: double
+		isHidden
+		lineageTag: 9ceff436-382a-4cb3-b6eb-a4525deec82f
+		summarizeBy: sum
+		sourceColumn: GrossMargin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Type'
+		dataType: string
+		lineageTag: ae575049-9afb-4703-a0f7-97958fe1d69b
+		summarizeBy: none
+		sourceColumn: OrderType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Payment Term Days'
+		dataType: int64
+		lineageTag: a31a3d6d-860f-42a3-8711-67ee45e6a1cf
+		summarizeBy: sum
+		sourceColumn: PaymentTermDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceFile
+		dataType: string
+		lineageTag: 62cd06db-f885-41a4-9927-80b2ebe5efb3
+		summarizeBy: none
+		sourceColumn: SourceFile
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: string
+		lineageTag: 3b0b791b-2e5d-4ae2-b052-f95a71bdb68d
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		dataType: string
+		lineageTag: a6b8ff22-9452-4e99-b272-0756f621a2f4
+		summarizeBy: none
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: string
+		lineageTag: 78285dff-2d6a-47ee-8afb-5d67e4eaeba9
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\fact_sales.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    Table.TransformColumnTypes(
+				        Promoted,
+				        {
+				        {"Date", type date},
+				        {"Qty", Int64.Type},
+				        {"UnitListPrice", type number},
+				        {"GrossSales", type number},
+				        {"DiscountPct", type number},
+				        {"DiscountAmount", type number},
+				        {"NetSales", type number},
+				        {"COGS", type number},
+				        {"GrossMargin", type number},
+				        {"PaymentTermDays", Int64.Type}
+				        },
+				        "en-US"
+				    )
+

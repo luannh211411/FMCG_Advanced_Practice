@@ -1,0 +1,40 @@
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+# Python virtual environment
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# VS Code local settings
+.vscode/
+
+# Environment / secrets
+.env
+.env.*
+
+# Local databases
+database/
+
+# OS files
+.DS_Store
+Thumbs.db
+# Local tools / executables
+duckdb.exe
+# Power BI development / test versions
+Power BI Project.Report/
+Power BI Project.SemanticModel/
+Power BI Project.pbip
+
+Power BI Project1.Report/
+Power BI Project1.SemanticModel/
+
+Test_Report.pbip
+
+# Power BI backups
+*.backup-*/
+# Raw / local data
+data/

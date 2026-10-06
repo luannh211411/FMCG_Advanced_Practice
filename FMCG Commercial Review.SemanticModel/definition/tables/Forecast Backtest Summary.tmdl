@@ -1,0 +1,100 @@
+/// Validated forecast model-comparison results from the rolling-origin backtest. Disconnected audit table; its WAPE and Bias measures summarize the selected trailing 3-month-average method across all evaluated horizons, not the future Oct–Dec 2026 forecast accuracy.
+table 'Forecast Backtest Summary'
+	lineageTag: 8fcf8d52-a0a9-4a1f-b6e5-eb6b2ac89875
+
+	/// Stable method identifier from the validated rolling-origin backtest.
+	column 'Forecast Method Key'
+		dataType: string
+		isHidden
+		lineageTag: ed43a094-3985-4301-93f0-3d011440d3ed
+		summarizeBy: none
+		sourceColumn: ForecastMethod
+
+	/// Readable model-comparison method label.
+	column 'Forecast Method Label'
+		dataType: string
+		lineageTag: 6668069d-2625-46f7-9c06-afe218634079
+		summarizeBy: none
+		sourceColumn: MethodLabel
+
+	/// Horizon in months; zero denotes pooled results across horizons 1–3.
+	column 'Backtest Horizon'
+		dataType: int64
+		formatString: 0
+		lineageTag: 294b9e4c-7392-40cf-8380-b1be384597c8
+		summarizeBy: none
+		sourceColumn: ForecastHorizon
+
+	/// Number of rolling-origin training cutoffs in the comparison.
+	column 'Backtest Cutoffs'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: b889199b-2d94-4998-893d-56e4d3557f3e
+		summarizeBy: none
+		sourceColumn: BacktestCutoffs
+
+	/// Number of time-ordered backtest forecast observations.
+	column 'Evaluated Forecasts'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 25715678-8a78-41d0-b50e-e48387ec3854
+		summarizeBy: none
+		sourceColumn: evaluated_forecasts
+
+	/// Number of forecast series eligible for this method/horizon comparison.
+	column 'Eligible Series'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: a95d3126-ea9d-4839-8878-80fc1b704efc
+		summarizeBy: none
+		sourceColumn: EligibleSeries
+
+	/// Share of supported series covered by the method.
+	column 'Series Coverage %'
+		dataType: double
+		formatString: 0.00%
+		lineageTag: 9afca979-5afd-4daf-9733-be9505e71e7b
+		summarizeBy: none
+		sourceColumn: SeriesCoveragePct
+
+	/// Backtest weighted absolute percentage error; blank in source where aggregate actual sales are zero.
+	column WAPE
+		dataType: double
+		formatString: 0.00%
+		lineageTag: 1e5f711a-6bc6-4892-846a-65ff3f9786b4
+		summarizeBy: none
+		sourceColumn: wape
+
+	/// Backtest aggregate relative forecast bias; positive indicates net over-forecasting.
+	column Bias
+		dataType: double
+		formatString: 0.00%;-0.00%;-
+		lineageTag: f878852e-6f00-49fc-af90-d2675a2d4260
+		summarizeBy: none
+		sourceColumn: bias
+
+	/// Backtest mean absolute error in sales value.
+	column MAE
+		dataType: double
+		formatString: $#,##0.00
+		lineageTag: 71307391-9602-4092-b6fc-4c9fd841aa32
+		summarizeBy: none
+		sourceColumn: mae
+
+	/// Status from the source forecast comparison; the current selected method remains the simple trailing-average baseline.
+	column 'Selection Status'
+		dataType: string
+		lineageTag: 075ceb79-8892-495d-8547-5c237b2f8a92
+		summarizeBy: none
+		sourceColumn: SelectionStatus
+
+	partition 'Forecast Backtest Summary' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\predictive\forecast_model_comparison.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Selected = Table.SelectColumns(Promoted, {"ForecastMethod", "MethodLabel", "ForecastHorizon", "BacktestCutoffs", "evaluated_forecasts", "EligibleSeries", "SeriesCoveragePct", "wape", "bias", "mae", "SelectionStatus"})
+				in
+				    Table.TransformColumnTypes(Selected, {{"ForecastMethod", type text}, {"MethodLabel", type text}, {"ForecastHorizon", Int64.Type}, {"BacktestCutoffs", Int64.Type}, {"evaluated_forecasts", Int64.Type}, {"EligibleSeries", Int64.Type}, {"SeriesCoveragePct", type number}, {"wape", type number}, {"bias", type number}, {"mae", type number}, {"SelectionStatus", type text}}, "en-US")
+

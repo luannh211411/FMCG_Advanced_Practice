@@ -1,0 +1,131 @@
+/// At most one deterministic attributed promotion per sales transaction, with overlap transparency.
+table 'Promotion Attribution'
+	lineageTag: 0995ec22-efa3-4dcd-9cb1-689618f7c031
+
+	/// Net sales for transactions with an attributed promotion.
+	measure 'Promotion-Attributed Sales' = CALCULATE([Total Net Sales], TREATAS(VALUES('Promotion Attribution'[Transaction ID]), 'Sales'[Transaction ID]))
+		formatString: $#,##0.00
+		displayFolder: Promotions
+		lineageTag: f27144be-997d-4a46-9e67-29b09be8de20
+
+	/// Attributed transactions where more than one promotion matched; the deterministic rule remains transparent.
+	measure 'Promotion Overlap Sales Count' = CALCULATE(DISTINCTCOUNT('Promotion Attribution'[Transaction ID]), 'Promotion Attribution'[Has Promotion Overlap] = TRUE())
+		formatString: #,##0
+		displayFolder: Promotions
+		lineageTag: c883bb21-95ce-45df-bb6a-c201a945ff8c
+
+	column 'Transaction ID'
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: f79f6fd8-c031-4aa3-b4d2-9efd7c08c353
+		summarizeBy: none
+		sourceColumn: TransactionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promotion ID'
+		dataType: string
+		isHidden
+		lineageTag: fd2c028d-37fc-42df-b61b-be5a67cbdc09
+		summarizeBy: none
+		sourceColumn: PromotionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promotion Type'
+		dataType: string
+		lineageTag: 2c6e44e7-01c7-4f2b-8de5-1dfbe0070d5d
+		summarizeBy: none
+		sourceColumn: PromotionType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promo Discount %'
+		dataType: double
+		lineageTag: 24e1a498-91e2-4bfc-9563-0234f95cb116
+		summarizeBy: sum
+		sourceColumn: PromoDiscountPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Budget
+		dataType: double
+		lineageTag: 9a99ed48-7805-474a-8714-769256e1189b
+		summarizeBy: sum
+		sourceColumn: Budget
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Promotion Start Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: eee3186f-7230-4834-82c9-724160d35782
+		summarizeBy: none
+		sourceColumn: PromotionStartDate
+
+		variation Variation
+			isDefault
+			relationship: cf1feb83-8fa5-41fe-99b6-c99a41708fe7
+			defaultHierarchy: LocalDateTable_7ceece10-7627-480a-816a-2e3307cd18c4.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promotion End Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 274d85d1-b691-4b43-8b80-ea57fab63f4e
+		summarizeBy: none
+		sourceColumn: PromotionEndDate
+
+		variation Variation
+			isDefault
+			relationship: f5bd32f8-7e8a-4c80-8b23-7a314caa31ab
+			defaultHierarchy: LocalDateTable_a2967ada-95df-4ebf-8363-6d02e801e2ca.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Matching Promotion Count'
+		dataType: int64
+		lineageTag: e7afffd0-7c83-4b5c-a681-22f1bb3e0c37
+		summarizeBy: sum
+		sourceColumn: MatchingPromotionCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Has Promotion Overlap'
+		dataType: boolean
+		lineageTag: 965b0bae-9183-4282-8327-5604046c2ce0
+		summarizeBy: none
+		sourceColumn: HasPromotionOverlap
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Promotion Attribution' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\fact_promotion_attribution.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    Table.TransformColumnTypes(
+				        Promoted,
+				        {
+				        {"PromoDiscountPct", type number},
+				        {"Budget", type number},
+				        {"PromotionStartDate", type date},
+				        {"PromotionEndDate", type date},
+				        {"MatchingPromotionCount", Int64.Type},
+				        {"HasPromotionOverlap", type logical}
+				        },
+				        "en-US"
+				    )
+

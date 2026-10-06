@@ -1,0 +1,421 @@
+/// Validated current-state and demand-history screening fields at Snapshot Date × Distributor × Product × Model/Rule Version grain. Inventory quantities are semi-additive and must be read at the latest selected snapshot, not summed across snapshot dates. Coverage-pressure and excess/slow-moving fields are screening signals, not stockout or expiry predictions.
+table 'Inventory Intelligence'
+	lineageTag: fefa801d-72d4-486e-93ab-f05597e28b13
+
+	/// On-hand units at the latest Snapshot Date in the current context. Inventory is semi-additive; this measure never sums across snapshots.
+	measure 'Predictive Latest On Hand Quantity' = VAR _LatestSnapshotDate = MAX('Inventory Intelligence'[Snapshot Date]) RETURN CALCULATE(SUM('Inventory Intelligence'[On Hand Quantity]), KEEPFILTERS('Inventory Intelligence'[Snapshot Date] = _LatestSnapshotDate))
+		formatString: #,##0
+		displayFolder: Predictive Inventory
+		lineageTag: 5bdd62c0-33f1-477f-a59d-056914790a1a
+
+	/// In-transit units at the latest selected Snapshot Date, reported separately from on-hand units.
+	measure 'Predictive Latest In Transit Quantity' = VAR _LatestSnapshotDate = MAX('Inventory Intelligence'[Snapshot Date]) RETURN CALCULATE(SUM('Inventory Intelligence'[In Transit Quantity]), KEEPFILTERS('Inventory Intelligence'[Snapshot Date] = _LatestSnapshotDate))
+		formatString: #,##0
+		displayFolder: Predictive Inventory
+		lineageTag: 3f8f7ea1-68ca-4e0c-8cc7-5edf0e0585f0
+
+	/// On-hand plus in-transit units at the latest selected Snapshot Date; this does not mean the in-transit quantity is available now.
+	measure 'Predictive Latest Available Inventory Quantity' = VAR _LatestSnapshotDate = MAX('Inventory Intelligence'[Snapshot Date]) RETURN CALCULATE(SUM('Inventory Intelligence'[Available Inventory Quantity]), KEEPFILTERS('Inventory Intelligence'[Snapshot Date] = _LatestSnapshotDate))
+		formatString: #,##0
+		displayFolder: Predictive Inventory
+		lineageTag: afe6107c-5bfd-4187-985c-502ad9432fac
+
+	/// Units reported expired at the latest selected Snapshot Date; does not predict future expiry.
+	measure 'Predictive Latest Expired Quantity' = VAR _LatestSnapshotDate = MAX('Inventory Intelligence'[Snapshot Date]) RETURN CALCULATE(SUM('Inventory Intelligence'[Expired Quantity]), KEEPFILTERS('Inventory Intelligence'[Snapshot Date] = _LatestSnapshotDate))
+		formatString: #,##0
+		displayFolder: Predictive Inventory
+		lineageTag: afca94a8-7940-49b9-83c3-d9801c212468
+
+	/// Distinct distributor-product positions with a source-defined Medium/High coverage-pressure screening flag at the latest selected snapshot; not predicted stockouts.
+	measure 'Coverage Pressure Positions' = VAR _LatestSnapshotDate = MAX('Inventory Intelligence'[Snapshot Date]) VAR _Positions = CALCULATETABLE(SUMMARIZE('Inventory Intelligence', 'Inventory Intelligence'[Distributor ID], 'Inventory Intelligence'[Product ID]), KEEPFILTERS('Inventory Intelligence'[Snapshot Date] = _LatestSnapshotDate), KEEPFILTERS('Inventory Intelligence'[Low Coverage Pressure Flag] = TRUE())) RETURN COUNTROWS(_Positions)
+		formatString: #,##0
+		displayFolder: Predictive Inventory
+		lineageTag: 76259214-05b5-4083-9afd-f4b24c50d534
+
+	/// Distinct distributor-product positions in the relative High coverage-pressure screening tier at the latest selected snapshot; not a stockout prediction.
+	measure 'High Coverage Pressure Positions' = VAR _LatestSnapshotDate = MAX('Inventory Intelligence'[Snapshot Date]) VAR _Positions = CALCULATETABLE(SUMMARIZE('Inventory Intelligence', 'Inventory Intelligence'[Distributor ID], 'Inventory Intelligence'[Product ID]), KEEPFILTERS('Inventory Intelligence'[Snapshot Date] = _LatestSnapshotDate), KEEPFILTERS('Inventory Intelligence'[Coverage Pressure Level] = "High")) RETURN COUNTROWS(_Positions)
+		formatString: #,##0
+		displayFolder: Predictive Inventory
+		lineageTag: ec21454f-bded-4d2f-9522-98337dee4215
+
+	/// Distinct distributor-product positions with a Medium/High excess/slow-moving screening flag at the latest selected snapshot; not future expiry or demand risk.
+	measure 'Excess / Slow-Moving Positions' = VAR _LatestSnapshotDate = MAX('Inventory Intelligence'[Snapshot Date]) VAR _Positions = CALCULATETABLE(SUMMARIZE('Inventory Intelligence', 'Inventory Intelligence'[Distributor ID], 'Inventory Intelligence'[Product ID]), KEEPFILTERS('Inventory Intelligence'[Snapshot Date] = _LatestSnapshotDate), KEEPFILTERS('Inventory Intelligence'[Excess / Slow-Moving Flag] = TRUE())) RETURN COUNTROWS(_Positions)
+		formatString: #,##0
+		displayFolder: Predictive Inventory
+		lineageTag: 37933dcd-449c-4c61-a8b7-f1777ec0a4da
+
+	/// Distinct current positions with On Hand below the source reorder point at the latest selected snapshot; a current execution exception, not a stockout prediction.
+	measure 'Reorder Exception Positions' = VAR _LatestSnapshotDate = MAX('Inventory Intelligence'[Snapshot Date]) VAR _Positions = CALCULATETABLE(SUMMARIZE('Inventory Intelligence', 'Inventory Intelligence'[Distributor ID], 'Inventory Intelligence'[Product ID]), KEEPFILTERS('Inventory Intelligence'[Snapshot Date] = _LatestSnapshotDate), KEEPFILTERS('Inventory Intelligence'[Reorder Exception Flag] = TRUE())) RETURN COUNTROWS(_Positions)
+		formatString: #,##0
+		displayFolder: Predictive Inventory
+		lineageTag: 6cec915a-aa15-46df-8d1a-0be7cc44e5fe
+
+	/// Distinct positions with source-reported expired quantity at the latest selected snapshot; lot-level expiry dates are unavailable.
+	measure 'Expired Inventory Positions' = VAR _LatestSnapshotDate = MAX('Inventory Intelligence'[Snapshot Date]) VAR _Positions = CALCULATETABLE(SUMMARIZE('Inventory Intelligence', 'Inventory Intelligence'[Distributor ID], 'Inventory Intelligence'[Product ID]), KEEPFILTERS('Inventory Intelligence'[Snapshot Date] = _LatestSnapshotDate), KEEPFILTERS('Inventory Intelligence'[Expired Inventory Flag] = TRUE())) RETURN COUNTROWS(_Positions)
+		formatString: #,##0
+		displayFolder: Predictive Inventory
+		lineageTag: f9d8f674-c9e0-4730-9cf0-081c2733631e
+
+	/// Distinct zero-On-Hand positions with supported recent sales demand at the latest selected snapshot; not an estimate of lost sales.
+	measure 'Zero On-Hand with Recent Demand Positions' = VAR _LatestSnapshotDate = MAX('Inventory Intelligence'[Snapshot Date]) VAR _Positions = CALCULATETABLE(SUMMARIZE('Inventory Intelligence', 'Inventory Intelligence'[Distributor ID], 'Inventory Intelligence'[Product ID]), KEEPFILTERS('Inventory Intelligence'[Snapshot Date] = _LatestSnapshotDate), KEEPFILTERS('Inventory Intelligence'[Zero On-Hand with Recent Demand Flag] = TRUE())) RETURN COUNTROWS(_Positions)
+		formatString: #,##0
+		displayFolder: Predictive Inventory
+		lineageTag: 6ea6ac89-14eb-4d6b-88b1-6a8f4867a99c
+
+	/// Distinct source-flagged positions with no recent demand at the latest selected snapshot; interpret with available demand-history flags.
+	measure 'No Recent Demand Positions' = VAR _LatestSnapshotDate = MAX('Inventory Intelligence'[Snapshot Date]) VAR _Positions = CALCULATETABLE(SUMMARIZE('Inventory Intelligence', 'Inventory Intelligence'[Distributor ID], 'Inventory Intelligence'[Product ID]), KEEPFILTERS('Inventory Intelligence'[Snapshot Date] = _LatestSnapshotDate), KEEPFILTERS('Inventory Intelligence'[No Recent Demand Flag] = TRUE())) RETURN COUNTROWS(_Positions)
+		formatString: #,##0
+		displayFolder: Predictive Inventory
+		lineageTag: 10719235-727b-4e5b-9c84-ae3a4cab1037
+
+	/// Inventory position date; relates to the shared Date dimension.
+	column 'Snapshot Date'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: 137cbc8c-20ea-4cb1-b671-2939c7878def
+		summarizeBy: none
+		sourceColumn: SnapshotDate
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Date used as the cutoff for the current-state inventory analysis.
+	column 'As Of Date'
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: 3bd356cd-d911-438d-860b-95708c88cf41
+		summarizeBy: none
+		sourceColumn: AsOfDate
+
+		variation Variation
+			isDefault
+			relationship: 5ecde924-c635-4c8f-83c0-4fdd6c00c904
+			defaultHierarchy: LocalDateTable_06803696-a2d4-4186-8ce5-469ba3660458.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	/// Distributor foreign key; use the shared Distributor dimension.
+	column 'Distributor ID'
+		dataType: string
+		isHidden
+		lineageTag: 66cab52d-89c0-4bff-b709-035ed2725ba8
+		summarizeBy: none
+		sourceColumn: DistributorID
+
+	/// Product foreign key; use the shared Product dimension.
+	column 'Product ID'
+		dataType: string
+		isHidden
+		lineageTag: 753552df-0285-4f1c-8860-8cc90e9a812b
+		summarizeBy: none
+		sourceColumn: ProductID
+
+	/// Current on-hand units at this snapshot position. Do not sum this raw column across snapshots; use inventory-specific latest-snapshot measures when aggregating.
+	column 'On Hand Quantity'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: b53f9558-c24f-4069-9cdc-de78d689eaf0
+		summarizeBy: sum
+		sourceColumn: OnHandQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Current in-transit units, separate from on-hand inventory. Do not sum this raw column across snapshots.
+	column 'In Transit Quantity'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 473950bc-087b-46b5-a79f-905e06a9fe3c
+		summarizeBy: sum
+		sourceColumn: InTransitQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	/// On-hand plus in-transit units at this snapshot; not equivalent to on-hand stock.
+	column 'Available Inventory Quantity'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 8f468801-8b7d-4462-8e50-2902492a264b
+		summarizeBy: sum
+		sourceColumn: AvailableInventoryQty
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Source reorder-point threshold; a current execution exception indicator is not a stockout prediction.
+	column 'Reorder Point'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 48a4001c-ab59-4026-87e6-4fb6d1f6be9a
+		summarizeBy: sum
+		sourceColumn: ReorderPoint
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Units recorded as expired at the snapshot. No lot/batch expiry dates are available.
+	column 'Expired Quantity'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: d1d069f2-5dc6-42ee-9e95-5cf087126770
+		summarizeBy: sum
+		sourceColumn: ExpiredQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Elapsed days between snapshot capture and analysis cutoff; not a replenishment lead time.
+	column 'Snapshot Freshness Days'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 86b0ed69-df84-426e-a03b-18c6dbaadbea
+		summarizeBy: sum
+		sourceColumn: SnapshotFreshnessDays
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Sales quantity over the three complete months preceding the snapshot; excludes the snapshot month.
+	column 'Trailing 3-Month Sales Quantity'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 72d057f1-a867-4684-9d44-94958276eb62
+		summarizeBy: sum
+		sourceColumn: Trailing3CompleteMonthsSalesQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Sales quantity in the three complete months before the recent demand window.
+	column 'Prior 3-Month Sales Quantity'
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 1d402bd4-b0b5-4f25-8114-5439f9fc62d8
+		summarizeBy: sum
+		sourceColumn: Prior3CompleteMonthsSalesQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Whether the source defines enough prior history for demand features.
+	column 'Demand History Available'
+		dataType: boolean
+		lineageTag: de985794-ee53-432d-9ac0-17f9c4ff2d7e
+		summarizeBy: none
+		sourceColumn: DemandHistoryAvailableFlag
+
+	/// Whether the source defines enough data to compare recent and prior demand windows.
+	column 'Demand Trend History Available'
+		dataType: boolean
+		lineageTag: 31b4aa70-d46f-4c0b-a743-1efbb1b0ec15
+		summarizeBy: none
+		sourceColumn: DemandTrendHistoryAvailableFlag
+
+	/// Average daily sales quantity over the supported recent complete-month window.
+	column 'Recent Daily Sales Velocity'
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: e1180a37-df91-4c2c-ae62-21a531da2dc7
+		summarizeBy: sum
+		sourceColumn: RecentDailySalesVelocity
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Average daily sales quantity over the preceding supported complete-month window.
+	column 'Prior Daily Sales Velocity'
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 450e2630-0d08-4765-bbc9-0186e5a4daf1
+		summarizeBy: sum
+		sourceColumn: PriorDailySalesVelocity
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Relative recent-versus-prior velocity change; unavailable when comparison history or denominator is invalid.
+	column 'Demand Trend %'
+		dataType: double
+		formatString: 0.00%
+		lineageTag: f138fa1e-b189-411b-a8ca-6fd64c5ff2d3
+		summarizeBy: sum
+		sourceColumn: DemandTrendPct
+
+		annotation SummarizationSetBy = Automatic
+
+	/// On-hand units divided by supported recent daily sales velocity. This descriptive coverage proxy is blank when the denominator is unavailable or invalid.
+	column 'On-Hand Coverage Days'
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 8c346e68-f3d1-43a0-bf86-2317a7d6319c
+		summarizeBy: sum
+		sourceColumn: OnHandCoverageDays
+
+		annotation SummarizationSetBy = Automatic
+
+	/// On-hand plus in-transit units divided by supported recent daily sales velocity; distinct from on-hand coverage.
+	column 'Available Coverage Days'
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 8b9ce6f0-98b9-464a-82a7-0242b4e08148
+		summarizeBy: sum
+		sourceColumn: AvailableCoverageDays
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Current condition where on-hand quantity is below the source reorder point; not a forecasted stockout.
+	column 'Reorder Exception Flag'
+		dataType: boolean
+		lineageTag: 06b5e6e3-9ecc-4be2-b272-e9ea6be9fc1f
+		summarizeBy: none
+		sourceColumn: ReorderExceptionFlag
+
+	/// Current expired-quantity condition from the source snapshot; without lot-level dates this does not predict future expiry.
+	column 'Expired Inventory Flag'
+		dataType: boolean
+		lineageTag: afe33bfd-fcfa-4a04-8627-d11b40a868a4
+		summarizeBy: none
+		sourceColumn: ExpiredInventoryFlag
+
+	/// Current snapshot has zero on-hand quantity.
+	column 'Zero On-Hand Flag'
+		dataType: boolean
+		lineageTag: 7dda2e75-a461-4c58-a708-e4d3d023ca40
+		summarizeBy: none
+		sourceColumn: ZeroOnHandFlag
+
+	/// Current snapshot has positive in-transit quantity; it does not imply the quantity is available now.
+	column 'Positive In-Transit Flag'
+		dataType: boolean
+		lineageTag: 9e15c347-7df2-4259-a3c6-134f8084ff40
+		summarizeBy: none
+		sourceColumn: PositiveInTransitFlag
+
+	/// Source-defined screening condition for no recent demand; only use with the feature's maturity and history flags.
+	column 'No Recent Demand Flag'
+		dataType: boolean
+		lineageTag: 75375e1e-ad7a-41c9-8dda-7847e0770f05
+		summarizeBy: none
+		sourceColumn: NoRecentDemandFlag
+
+	/// Current zero on-hand condition combined with supported recent sales demand; not a lost-sales estimate.
+	column 'Zero On-Hand with Recent Demand Flag'
+		dataType: boolean
+		lineageTag: 37286a4c-59ac-4151-91bf-afd1f38db7cf
+		summarizeBy: none
+		sourceColumn: ZeroOnHandWithRecentDemandFlag
+
+	/// Relative current coverage screening flag, not a service-level breach.
+	column 'Low On-Hand Coverage Flag'
+		dataType: boolean
+		lineageTag: e2c17ac4-5b6b-4997-8a50-574994579b3b
+		summarizeBy: none
+		sourceColumn: LowOnHandCoverageFlag
+
+	/// More severe relative coverage screening flag, not a predicted stockout.
+	column 'Very Low On-Hand Coverage Flag'
+		dataType: boolean
+		lineageTag: 2eff88a4-8102-435b-80ca-7b06449e3127
+		summarizeBy: none
+		sourceColumn: VeryLowOnHandCoverageFlag
+
+	/// Relative coverage screening using on-hand plus in-transit quantities.
+	column 'Low Available Coverage Flag'
+		dataType: boolean
+		lineageTag: 7c182ac1-9346-42ca-ac4c-6776bc1a92c3
+		summarizeBy: none
+		sourceColumn: LowAvailableCoverageFlag
+
+	/// Supported descriptive demand trend tier; not causal evidence.
+	column 'Demand Increasing Flag'
+		dataType: boolean
+		lineageTag: 8eb93a83-9e2c-49c1-91fb-d983af1a0338
+		summarizeBy: none
+		sourceColumn: DemandIncreasingFlag
+
+	/// Supported descriptive demand trend tier; not a future-demand forecast.
+	column 'Demand Declining Flag'
+		dataType: boolean
+		lineageTag: 5253154e-9a93-4503-8fdb-25220e805255
+		summarizeBy: none
+		sourceColumn: DemandDecliningFlag
+
+	/// Rule-based screening score based on supported current inventory and demand features; not a probability.
+	column 'Coverage Pressure Score'
+		dataType: int64
+		formatString: 0
+		lineageTag: cd12e7aa-962d-41d7-8deb-1a65d5a51b72
+		summarizeBy: sum
+		sourceColumn: CoveragePressureScore
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Low/Medium/High relative current coverage-pressure screening category.
+	column 'Coverage Pressure Level'
+		dataType: string
+		lineageTag: 807199be-cd64-4ef4-bbac-99d99be57d66
+		summarizeBy: none
+		sourceColumn: CoveragePressureLevel
+
+	/// Indicates a Medium or High coverage-pressure screening result; not a stockout prediction.
+	column 'Low Coverage Pressure Flag'
+		dataType: boolean
+		lineageTag: ec05c0b7-5912-4068-bde3-a554a0a0da96
+		summarizeBy: none
+		sourceColumn: LowCoveragePressureFlag
+
+	/// Rule-based excess/slow-moving screening score; not an expiry or future-demand probability.
+	column 'Excess / Slow-Moving Score'
+		dataType: int64
+		formatString: 0
+		lineageTag: ef3581ea-c794-4a90-94d2-be5193207aea
+		summarizeBy: sum
+		sourceColumn: ExcessSlowMovingScore
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Low/Medium/High relative excess/slow-moving screening category.
+	column 'Excess / Slow-Moving Level'
+		dataType: string
+		lineageTag: b68038fc-3fcb-4a2f-8996-55ce096e0fcf
+		summarizeBy: none
+		sourceColumn: ExcessSlowMovingLevel
+
+	/// Indicates a Medium or High excess/slow-moving screening result.
+	column 'Excess / Slow-Moving Flag'
+		dataType: boolean
+		lineageTag: 3036b892-5e27-4ce0-819a-1deefc8082a8
+		summarizeBy: none
+		sourceColumn: ExcessSlowMovingFlag
+
+	/// Source-selected primary descriptive driver of current coverage pressure, not a predicted cause of a future event.
+	column 'Primary Inventory Risk Driver'
+		dataType: string
+		lineageTag: 389961f0-160b-4c45-8038-1cfd6f224ced
+		summarizeBy: none
+		sourceColumn: PrimaryInventoryRiskDriver
+
+	/// Version identifier for inventory feature thresholds and screening rules.
+	column 'Model Or Rule Version'
+		dataType: string
+		lineageTag: e619336d-b374-444d-baf6-b3086b356c45
+		summarizeBy: none
+		sourceColumn: ModelOrRuleVersion
+
+	/// Date this inventory intelligence output was generated.
+	column 'Run Date'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: edd49b2c-d03d-48e2-a641-0848b67258c4
+		summarizeBy: none
+		sourceColumn: RunDate
+
+		variation Variation
+			isDefault
+			relationship: cc24fcde-10cf-4986-bd91-bd73d9983bd8
+			defaultHierarchy: LocalDateTable_ff88d653-d72b-4f55-b8a2-5ea29169f5b8.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'Inventory Intelligence' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\predictive\fact_inventory_risk.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Selected = Table.SelectColumns(Promoted, {"SnapshotDate", "AsOfDate", "DistributorID", "ProductID", "OnHandQuantity", "InTransitQuantity", "AvailableInventoryQty", "ReorderPoint", "ExpiredQuantity", "SnapshotFreshnessDays", "Trailing3CompleteMonthsSalesQuantity", "Prior3CompleteMonthsSalesQuantity", "DemandHistoryAvailableFlag", "DemandTrendHistoryAvailableFlag", "RecentDailySalesVelocity", "PriorDailySalesVelocity", "DemandTrendPct", "OnHandCoverageDays", "AvailableCoverageDays", "ReorderExceptionFlag", "ExpiredInventoryFlag", "ZeroOnHandFlag", "PositiveInTransitFlag", "NoRecentDemandFlag", "ZeroOnHandWithRecentDemandFlag", "LowOnHandCoverageFlag", "VeryLowOnHandCoverageFlag", "LowAvailableCoverageFlag", "DemandIncreasingFlag", "DemandDecliningFlag", "CoveragePressureScore", "CoveragePressureLevel", "LowCoveragePressureFlag", "ExcessSlowMovingScore", "ExcessSlowMovingLevel", "ExcessSlowMovingFlag", "PrimaryInventoryRiskDriver", "ModelOrRuleVersion", "RunDate"})
+				in
+				    Table.TransformColumnTypes(Selected, {{"SnapshotDate", type date}, {"AsOfDate", type date}, {"DistributorID", type text}, {"ProductID", type text}, {"OnHandQuantity", Int64.Type}, {"InTransitQuantity", Int64.Type}, {"AvailableInventoryQty", Int64.Type}, {"ReorderPoint", Int64.Type}, {"ExpiredQuantity", Int64.Type}, {"SnapshotFreshnessDays", Int64.Type}, {"Trailing3CompleteMonthsSalesQuantity", Int64.Type}, {"Prior3CompleteMonthsSalesQuantity", Int64.Type}, {"DemandHistoryAvailableFlag", type logical}, {"DemandTrendHistoryAvailableFlag", type logical}, {"RecentDailySalesVelocity", type number}, {"PriorDailySalesVelocity", type number}, {"DemandTrendPct", type number}, {"OnHandCoverageDays", type number}, {"AvailableCoverageDays", type number}, {"ReorderExceptionFlag", type logical}, {"ExpiredInventoryFlag", type logical}, {"ZeroOnHandFlag", type logical}, {"PositiveInTransitFlag", type logical}, {"NoRecentDemandFlag", type logical}, {"ZeroOnHandWithRecentDemandFlag", type logical}, {"LowOnHandCoverageFlag", type logical}, {"VeryLowOnHandCoverageFlag", type logical}, {"LowAvailableCoverageFlag", type logical}, {"DemandIncreasingFlag", type logical}, {"DemandDecliningFlag", type logical}, {"CoveragePressureScore", Int64.Type}, {"CoveragePressureLevel", type text}, {"LowCoveragePressureFlag", type logical}, {"ExcessSlowMovingScore", Int64.Type}, {"ExcessSlowMovingLevel", type text}, {"ExcessSlowMovingFlag", type logical}, {"PrimaryInventoryRiskDriver", type text}, {"ModelOrRuleVersion", type text}, {"RunDate", type date}}, "en-US")
+

@@ -1,0 +1,21 @@
+/// Conformed product category dimension shared by Product and Targets.
+table Category
+	lineageTag: 00e13ecf-9e3e-4d3e-9769-e56f7084532b
+
+	column Category
+		dataType: string
+		isKey
+		lineageTag: 1c240c91-bf95-4943-a8f7-ae45fb962d22
+		sourceColumn: Category
+
+	partition Category = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\dim_product.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Selected = Table.SelectColumns(Promoted, {"Category"}),
+				    DistinctCategories = Table.Distinct(Selected)
+				in
+				    DistinctCategories
+

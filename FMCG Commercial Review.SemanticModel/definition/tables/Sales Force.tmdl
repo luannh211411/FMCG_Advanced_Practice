@@ -1,0 +1,52 @@
+/// Sales representative dimension.
+table 'Sales Force'
+	lineageTag: 51d7c2b6-6d79-4d34-a75a-322460c5a745
+
+	column 'Sales Rep ID'
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: 72a78827-c01c-4458-820f-eff9a636b5e6
+		sourceColumn: SalesRepID
+
+	column 'Sales Rep Name'
+		dataType: string
+		lineageTag: a2302d28-5d21-4435-870f-f660e3a8a8bc
+		sourceColumn: SalesRepName
+
+	column Team
+		dataType: string
+		lineageTag: fdd8741a-1905-4266-9d99-d8df41b1b2fa
+		sourceColumn: Team
+
+	column Manager
+		dataType: string
+		lineageTag: 74ff7c5f-0624-4575-b7f1-e4669aa95320
+		sourceColumn: Manager
+
+	column 'Tenure Months'
+		dataType: int64
+		lineageTag: feee5178-ceeb-4f82-af97-52e6715e4583
+		sourceColumn: TenureMonths
+
+	column 'Monthly Visit Target'
+		dataType: int64
+		lineageTag: e5ac5161-545c-4193-8157-11688bcbcd73
+		sourceColumn: MonthlyVisitTarget
+
+	partition 'Sales Force' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\dim_salesforce.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    Table.TransformColumnTypes(
+				        Promoted,
+				        {
+				        {"TenureMonths", Int64.Type},
+				        {"MonthlyVisitTarget", Int64.Type}
+				        },
+				        "en-US"
+				    )
+

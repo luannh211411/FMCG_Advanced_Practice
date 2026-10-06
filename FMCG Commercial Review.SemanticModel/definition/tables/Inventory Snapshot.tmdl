@@ -1,0 +1,93 @@
+/// Periodic snapshot at SnapshotDate + DistributorID + ProductID grain; semi-additive across dates.
+table 'Inventory Snapshot'
+	lineageTag: 08db2a0d-bea5-43a0-9815-fd3869215b02
+
+	/// On-hand quantity at the latest snapshot in the current context; not additive across snapshot dates.
+	measure 'Latest On Hand Quantity' = VAR LatestDate = MAX('Inventory Snapshot'[Snapshot Date]) RETURN CALCULATE(SUM('Inventory Snapshot'[On Hand Quantity]), 'Inventory Snapshot'[Snapshot Date] = LatestDate)
+		formatString: #,##0
+		displayFolder: Inventory
+		lineageTag: 51925b97-8fdf-43a7-9abd-407da7088037
+
+	/// In-transit quantity at the latest snapshot in the current context.
+	measure 'Latest In Transit Quantity' = VAR LatestDate = MAX('Inventory Snapshot'[Snapshot Date]) RETURN CALCULATE(SUM('Inventory Snapshot'[In Transit Quantity]), 'Inventory Snapshot'[Snapshot Date] = LatestDate)
+		formatString: #,##0
+		displayFolder: Inventory
+		lineageTag: b024696c-478b-4bf9-b269-863dd3f103df
+
+	/// Expired quantity at the latest snapshot in the current context.
+	measure 'Latest Expired Quantity' = VAR LatestDate = MAX('Inventory Snapshot'[Snapshot Date]) RETURN CALCULATE(SUM('Inventory Snapshot'[Expired Quantity]), 'Inventory Snapshot'[Snapshot Date] = LatestDate)
+		formatString: #,##0
+		displayFolder: Inventory
+		lineageTag: 22cfacf3-8b13-4044-8b8d-f42fad00d970
+
+	/// Count of latest distributor-product snapshots below reorder point.
+	measure 'Reorder Exception Count' = VAR LatestDate = MAX('Inventory Snapshot'[Snapshot Date]) RETURN CALCULATE(COUNTROWS('Inventory Snapshot'), 'Inventory Snapshot'[Snapshot Date] = LatestDate, FILTER('Inventory Snapshot', 'Inventory Snapshot'[On Hand Quantity] < 'Inventory Snapshot'[Reorder Point]))
+		formatString: #,##0
+		displayFolder: Inventory
+		lineageTag: b057d643-aca7-4120-b0e3-43477115fb24
+
+	column 'Snapshot Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b3679639-4969-4e7a-b5ca-d3f23876bd5e
+		summarizeBy: none
+		sourceColumn: SnapshotDate
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distributor ID'
+		dataType: string
+		isHidden
+		lineageTag: e6bf3bff-b58c-4368-8710-2cb78022fbcb
+		sourceColumn: DistributorID
+
+	column 'Product ID'
+		dataType: string
+		isHidden
+		lineageTag: f802565a-ea82-4e0e-9f33-2f18656d9b4a
+		sourceColumn: ProductID
+
+	column 'On Hand Quantity'
+		dataType: int64
+		isHidden
+		lineageTag: ebfc5ec9-5c50-4345-b738-07ff08811282
+		sourceColumn: OnHandQty
+
+	column 'Reorder Point'
+		dataType: int64
+		lineageTag: 2b917271-29f9-4082-8b9c-1f1b0d17e000
+		sourceColumn: ReorderPoint
+
+	column 'In Transit Quantity'
+		dataType: int64
+		isHidden
+		lineageTag: 3b07a5f0-4317-4b43-8c71-62f5ce833ab6
+		sourceColumn: InTransitQty
+
+	column 'Expired Quantity'
+		dataType: int64
+		isHidden
+		lineageTag: f5c6d9f2-ae89-4013-a34f-9cf5f98ab0aa
+		sourceColumn: ExpiredQty
+
+	partition 'Inventory Snapshot' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\fact_inventory.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    Table.TransformColumnTypes(
+				        Promoted,
+				        {
+				        {"SnapshotDate", type date},
+				        {"OnHandQty", Int64.Type},
+				        {"ReorderPoint", Int64.Type},
+				        {"InTransitQty", Int64.Type},
+				        {"ExpiredQty", Int64.Type}
+				        },
+				        "en-US"
+				    )
+

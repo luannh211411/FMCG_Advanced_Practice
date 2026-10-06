@@ -1,0 +1,146 @@
+/// Customer and outlet dimension with geography, channel, distributor and sales-rep attributes.
+table Customer
+	lineageTag: 8c79d950-0aea-4905-919b-7a9442289614
+
+	column 'Customer ID'
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: 6ea9d57c-da09-4924-b911-a4e341db2d43
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: 23f93dcb-3957-4837-a0e1-070d9c31e409
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 17831d4a-7c31-415e-8d2f-5ddd67eec973
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Province
+		dataType: string
+		lineageTag: 839bec82-ab1a-447f-9953-0134731b6ff2
+		summarizeBy: none
+		sourceColumn: Province
+
+		annotation SummarizationSetBy = Automatic
+
+	column Channel
+		dataType: string
+		lineageTag: 6d49daba-42d4-4563-8b76-ec5e6ff777c3
+		summarizeBy: none
+		sourceColumn: Channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Channel'
+		dataType: string
+		lineageTag: 7ca3f85f-22b2-4829-bb57-d673ee88c9d2
+		summarizeBy: none
+		sourceColumn: SubChannel
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Segment'
+		dataType: string
+		lineageTag: 8b44edbd-124e-4cdd-8361-8e5a3b33beb2
+		summarizeBy: none
+		sourceColumn: CustomerSegment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distributor ID'
+		dataType: string
+		isHidden
+		lineageTag: c28e160a-b61c-41e4-ae92-daca7fee84cb
+		summarizeBy: none
+		sourceColumn: DistributorID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Rep ID'
+		dataType: string
+		isHidden
+		lineageTag: 11845b12-dc6d-4c53-ac4b-7770decbe347
+		summarizeBy: none
+		sourceColumn: SalesRepID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Credit Limit'
+		dataType: double
+		lineageTag: 3e034fd0-2400-40d1-b5b3-fefbc386cb66
+		summarizeBy: sum
+		sourceColumn: CreditLimit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Join Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c7ad4ead-54ae-4e60-b5d9-460fedad5eed
+		summarizeBy: none
+		sourceColumn: JoinDate
+
+		variation Variation
+			isDefault
+			relationship: 349ed49d-770f-4915-8ecd-fbd4972eb83e
+			defaultHierarchy: LocalDateTable_25d4ff52-69a5-4190-9cc3-ffa4989e3c07.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		lineageTag: 7243f35d-581b-4218-81cb-682e4cc2465f
+		dataCategory: Latitude
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		lineageTag: 5b092502-5889-404b-89aa-4cbe758a3e34
+		dataCategory: Longitude
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Customer = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\dim_customer.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    Table.TransformColumnTypes(
+				        Promoted,
+				        {
+				        {"CreditLimit", type number},
+				        {"JoinDate", type date},
+				        {"Latitude", type number},
+				        {"Longitude", type number}
+				        },
+				        "en-US"
+				    )
+

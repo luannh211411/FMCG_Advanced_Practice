@@ -1,0 +1,108 @@
+/// Monthly target fact at Month + Region + Channel + Category grain.
+/// Shared Month, Region, Channel and Category dimensions filter this fact.
+table Targets
+	lineageTag: 51a8cdd7-a71f-4635-b7b7-a704afff5b65
+
+	/// Target at the native Month + Region + Channel + Category grain.
+	/// Use shared Month, Region, Channel and Category fields;
+	/// do not join directly to transaction rows.
+	measure 'Sales Target' =
+			VAR SelectedMonths =
+				VALUES('Date'[Month Start])
+			RETURN
+				CALCULATE(
+					SUM('Targets'[Sales Target Value]),
+					TREATAS(
+						SelectedMonths,
+						'Targets'[Month]
+					),
+					TREATAS(
+						VALUES(Customer[Region]),
+						'Targets'[Region]
+					),
+					TREATAS(
+						VALUES(Customer[Channel]),
+						'Targets'[Channel]
+					),
+					TREATAS(
+						VALUES(Product[Category]),
+						'Targets'[Category]
+					)
+				)
+		formatString: $#,##0.00
+		displayFolder: Targets
+		lineageTag: dafb9571-6afc-459c-92ec-1418b621ee7d
+
+	/// Target variance as a proportion of the aligned sales target.
+	measure 'Target Variance %' = DIVIDE([Target Variance], [Sales Target])
+		formatString: 0.00%;-0.00%;-
+		displayFolder: Targets
+		lineageTag: 9da7c0d8-0d8b-49c8-a9fb-e78c31173db6
+
+	column Month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 45bf40ae-c417-42f2-be75-eb74868dc166
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 093ef044-50aa-4e4c-b41f-dfbf4f705411
+		sourceColumn: Region
+
+	column Channel
+		dataType: string
+		lineageTag: 1ac22da3-a114-41a5-a284-05cb405f0db5
+		sourceColumn: Channel
+
+	column Category
+		dataType: string
+		lineageTag: 79d3d285-3e93-4f31-b566-a3218e6645d5
+		sourceColumn: Category
+
+	/// Raw target value from fact_target.csv.
+	/// Hidden because report visuals should use the Sales Target measure.
+	column 'Sales Target Value'
+		dataType: double
+		isHidden
+		lineageTag: 7cd8b22d-327a-4a0e-a21c-c27263793404
+		summarizeBy: sum
+		sourceColumn: SalesTarget
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Targets = m
+		mode: import
+		source =
+				let
+				    Source =
+				        Csv.Document(
+				            File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\fact_target.csv"),
+				            [
+				                Delimiter=",",
+				                Encoding=65001,
+				                QuoteStyle=QuoteStyle.Csv
+				            ]
+				        ),
+				    Promoted =
+				        Table.PromoteHeaders(
+				            Source,
+				            [PromoteAllScalars=true]
+				        )
+				in
+				    Table.TransformColumnTypes(
+				        Promoted,
+				        {
+				        {"Month", type date},
+				        {"SalesTarget", type number}
+				        },
+				        "en-US"
+				    )
+

@@ -1,0 +1,19 @@
+/// Conformed distributor dimension derived from customer and inventory identifiers.
+table Distributor
+	lineageTag: 27996795-0c74-45ce-a6c7-3b11409019b9
+
+	column 'Distributor ID'
+		dataType: string
+		isKey
+		lineageTag: cbb1cb0c-0dce-4724-aed9-78c00ec6b4a5
+		sourceColumn: DistributorID
+
+	partition Distributor = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\dim_distributor.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    Promoted
+

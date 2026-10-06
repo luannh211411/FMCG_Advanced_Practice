@@ -1,0 +1,133 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "4ac09e8f254c2f9f6751",
+  "position": {
+    "x": 32,
+    "y": 1220,
+    "width": 1856,
+    "height": 96,
+    "z": 1000,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "Coverage Pressure Positions"
+                }
+              },
+              "queryRef": "Inventory Intelligence.Coverage Pressure Positions",
+              "nativeQueryRef": "Coverage Pressure Positions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "High Coverage Pressure Positions"
+                }
+              },
+              "queryRef": "Inventory Intelligence.High Coverage Pressure Positions",
+              "nativeQueryRef": "High Coverage Pressure Positions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "Reorder Exception Positions"
+                }
+              },
+              "queryRef": "Inventory Intelligence.Reorder Exception Positions",
+              "nativeQueryRef": "Reorder Exception Positions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "Excess / Slow-Moving Positions"
+                }
+              },
+              "queryRef": "Inventory Intelligence.Excess / Slow-Moving Positions",
+              "nativeQueryRef": "Excess / Slow-Moving Positions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Intelligence"
+                    }
+                  },
+                  "Property": "Expired Inventory Positions"
+                }
+              },
+              "queryRef": "Inventory Intelligence.Expired Inventory Positions",
+              "nativeQueryRef": "Expired Inventory Positions"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Current Conditions and Screening Signals | Not Calibrated Predictions'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "'0'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    }
+  }
+}

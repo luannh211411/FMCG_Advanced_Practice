@@ -1,0 +1,4 @@
+/// Validated FMCG commercial analytics semantic model sourced from database/fmcg_analytics_main.duckdb.
+database
+	compatibilityLevel: 1702
+

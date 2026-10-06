@@ -1,0 +1,77 @@
+/// Conformed calendar dimension covering sales, returns, inventory and target reporting horizons.
+table Date
+	lineageTag: 68a6c4eb-8290-4068-ba03-282fc89ca981
+	dataCategory: Time
+
+	/// Calendar date key.
+	column Date
+		dataType: dateTime
+		isUnique
+		isKey
+		formatString: Long Date
+		lineageTag: cf31b4c2-90da-43c4-912e-af0fedaa2f7f
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		lineageTag: f7a049ee-3425-46ee-8b27-ba249da15617
+		summarizeBy: none
+		sourceColumn: Year
+
+	column Quarter
+		dataType: int64
+		lineageTag: b826a639-cd09-40a2-92ca-6a4c4e8d2a52
+		summarizeBy: none
+		sourceColumn: Quarter
+
+	column 'Month Number'
+		dataType: int64
+		lineageTag: 2cd34446-1497-45f7-bfda-55f61552fd2e
+		summarizeBy: none
+		sourceColumn: MonthNumber
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 0566ecd1-fe41-4365-8a06-05b1e943b9cc
+		sourceColumn: MonthName
+		sortByColumn: 'Month Number'
+
+	column 'Year Month'
+		dataType: string
+		lineageTag: 48139e29-b0c4-4f0d-a7de-73eedb835028
+		sourceColumn: YearMonth
+		sortByColumn: 'Month Start'
+
+	column 'Month Start'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b6b36e9f-d567-4ab6-9e29-d744d1ad6e0b
+		summarizeBy: none
+		sourceColumn: MonthStart
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Date = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\dim_date.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    Table.TransformColumnTypes(
+				        Promoted,
+				        {
+				        {"Date", type date},
+				        {"Year", Int64.Type},
+				        {"Quarter", Int64.Type},
+				        {"MonthNumber", Int64.Type},
+				        {"MonthStart", type date}
+				        },
+				        "en-US"
+				    )
+

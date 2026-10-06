@@ -1,0 +1,75 @@
+/// Conformed monthly reporting dimension. Use for monthly target analysis and filters.
+table Month
+	lineageTag: 96594977-1a6b-4abf-9307-d174e1db1e50
+
+	column 'Month Start'
+		dataType: dateTime
+		isHidden
+		isKey
+		formatString: Long Date
+		lineageTag: 7f495968-3134-4d44-a2f4-5075a44a20ae
+		summarizeBy: none
+		sourceColumn: MonthStart
+
+		variation Variation
+			isDefault
+			relationship: e7552dfd-b2eb-4033-b3ec-7978ac3499be
+			defaultHierarchy: LocalDateTable_34812ca0-2d22-4f65-b030-e280059c6b0b.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		lineageTag: 065bb952-85d8-479e-9a05-3c64f43e8783
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		dataType: int64
+		lineageTag: a6b677ce-83db-4102-ab0a-3fbcd0555f38
+		summarizeBy: sum
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 9c341809-d6bf-4395-b119-6155f06a37b4
+		summarizeBy: none
+		sourceColumn: MonthName
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Month'
+		dataType: string
+		lineageTag: 1ac67f3a-c09c-40fa-ad1d-e09d2eb5638b
+		summarizeBy: none
+		sourceColumn: YearMonth
+		sortByColumn: 'Month Start'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Month = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\dim_date.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Selected = Table.SelectColumns(Promoted, {"MonthStart", "Year", "MonthNumber", "MonthName", "YearMonth"}),
+				    DistinctMonths = Table.Distinct(Selected)
+				in
+				    Table.TransformColumnTypes(
+				        DistinctMonths,
+				        {
+				        {"MonthStart", type date},
+				        {"Year", Int64.Type},
+				        {"MonthNumber", Int64.Type}
+				        },
+				        "en-US"
+				    )
+

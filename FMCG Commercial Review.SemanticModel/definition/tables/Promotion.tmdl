@@ -1,0 +1,108 @@
+/// Promotion applicability dimension. Applicability is date-range, category and channel based.
+table Promotion
+	lineageTag: 1162c18a-7e64-467b-8f8e-0cd50a590058
+
+	column 'Promotion ID'
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: 370ac0e4-f860-4801-9de0-91d25809a6fe
+		summarizeBy: none
+		sourceColumn: PromotionID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promotion Type'
+		dataType: string
+		lineageTag: 5cf08901-2853-493c-a9a7-874f6cf90213
+		summarizeBy: none
+		sourceColumn: PromotionType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 58529ee6-7411-4e44-9bf0-8fbe5fceee84
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Channel
+		dataType: string
+		lineageTag: 0e86ae2e-cba4-43e2-b7b5-51ee993df611
+		summarizeBy: none
+		sourceColumn: Channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f3932cca-45c1-4f17-bc7b-ff95bc92f55a
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		variation Variation
+			isDefault
+			relationship: bb94da3d-6655-4e20-9a19-9a160df3ec88
+			defaultHierarchy: LocalDateTable_9c717c2c-610a-42a0-85bb-9843a29e61c7.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'End Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7fcaa6eb-8f14-442c-93cd-cb8b6e17d5e9
+		summarizeBy: none
+		sourceColumn: EndDate
+
+		variation Variation
+			isDefault
+			relationship: 4162b40a-c44c-42d9-8cfe-7db8b7ef3250
+			defaultHierarchy: LocalDateTable_e58a7375-aa0b-459e-90ac-7887f61435b1.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Promo Discount %'
+		dataType: double
+		lineageTag: dd4a7494-1cec-41a9-ac88-ed7dedcce68c
+		summarizeBy: sum
+		sourceColumn: PromoDiscountPct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Budget
+		dataType: double
+		lineageTag: 4200a6cd-3b7f-4c83-89a5-0cc72f6d35ed
+		summarizeBy: sum
+		sourceColumn: Budget
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Promotion = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\dim_promotion.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+				in
+				    Table.TransformColumnTypes(
+				        Promoted,
+				        {
+				        {"StartDate", type date},
+				        {"EndDate", type date},
+				        {"PromoDiscountPct", type number},
+				        {"Budget", type number}
+				        },
+				        "en-US"
+				    )
+

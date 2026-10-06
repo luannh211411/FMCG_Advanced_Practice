@@ -1,0 +1,21 @@
+/// Conformed commercial region dimension shared by Customer and Targets.
+table Region
+	lineageTag: 319bf369-568b-4b43-9e0b-261821458489
+
+	column Region
+		dataType: string
+		isKey
+		lineageTag: d37c4c1c-a084-4f06-bc46-2dfc42c696f5
+		sourceColumn: Region
+
+	partition Region = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\dim_customer.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Selected = Table.SelectColumns(Promoted, {"Region"}),
+				    DistinctRegions = Table.Distinct(Selected)
+				in
+				    DistinctRegions
+

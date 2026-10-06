@@ -1,0 +1,65 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "5b979514bfd17ed64475",
+  "position": {
+    "x": 48,
+    "y": 168,
+    "z": 1000,
+    "height": 70,
+    "width": 850,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Returns"
+                    }
+                  },
+                  "Property": "Total Return Amount"
+                }
+              },
+              "queryRef": "Returns.Total Return Amount",
+              "nativeQueryRef": "Total Return Amount"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Returns"
+                    }
+                  },
+                  "Property": "Return Rate %"
+                }
+              },
+              "queryRef": "Returns.Return Rate %",
+              "nativeQueryRef": "Return Rate %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Returns"
+                    }
+                  },
+                  "Property": "Total Return Quantity"
+                }
+              },
+              "queryRef": "Returns.Total Return Quantity",
+              "nativeQueryRef": "Total Return Quantity"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+model 'FMCG Commercial Review Model'
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
+
+annotation PBI_QueryOrder = ["Date","Month","Region","Channel","Category","Customer","Product","Sales Force","Distributor","Promotion","Sales","Returns","Targets","Inventory Snapshot","Promotion Attribution","Sales Forecast","Customer Intelligence","Inventory Intelligence","Forecast Backtest Summary"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+ref table Date
+ref table Month
+ref table Region
+ref table Channel
+ref table Category
+ref table Customer
+ref table Product
+ref table 'Sales Force'
+ref table Distributor
+ref table Promotion
+ref table Sales
+ref table Returns
+ref table Targets
+ref table 'Inventory Snapshot'
+ref table 'Promotion Attribution'
+ref table DateTableTemplate_1aedc0ad-2cf5-413e-8ee3-c4e787160aac
+ref table LocalDateTable_34812ca0-2d22-4f65-b030-e280059c6b0b
+ref table LocalDateTable_25d4ff52-69a5-4190-9cc3-ffa4989e3c07
+ref table LocalDateTable_9c717c2c-610a-42a0-85bb-9843a29e61c7
+ref table LocalDateTable_e58a7375-aa0b-459e-90ac-7887f61435b1
+ref table LocalDateTable_7ceece10-7627-480a-816a-2e3307cd18c4
+ref table LocalDateTable_a2967ada-95df-4ebf-8363-6d02e801e2ca
+ref table 'Sales Forecast'
+ref table 'Customer Intelligence'
+ref table 'Inventory Intelligence'
+ref table 'Forecast Backtest Summary'
+ref table LocalDateTable_298d191b-3e3c-4ab1-8c71-1a23273bfa11
+ref table LocalDateTable_8b629664-a65d-4e42-b48e-afc79d2d33f1
+ref table LocalDateTable_b01f224b-8d24-4935-9687-4fd8c866fafc
+ref table LocalDateTable_4f7028bb-73ae-421a-96ac-97de44458c21
+ref table LocalDateTable_06803696-a2d4-4186-8ce5-469ba3660458
+ref table LocalDateTable_ff88d653-d72b-4f55-b8a2-5ea29169f5b8
+
