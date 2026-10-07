@@ -1,0 +1,7 @@
+CandidateRiskType,SupportClassification,Evidence,Boundary,ModelOrRuleVersion
+Current Reorder Exception,SUPPORTED,On Hand < Reorder Point is directly observable and reconciled to the fact.,Current execution status only; not a future stockout.,fmcg-inventory-intelligence-v1.0.0
+Low Coverage / Replenishment Pressure,PARTIALLY SUPPORTED,"Pre-snapshot sales velocity, On Hand, In Transit and reorder point support a relative pressure signal.","No lead time/order cadence; severity is analytical, not service-level policy.",fmcg-inventory-intelligence-v1.0.0
+Excess / Slow-Moving,PARTIALLY SUPPORTED,Positive On Hand combined with relatively high coverage and weak/no recent demand supports a screening signal.,"Not obsolescence, expiry, excess value, or write-off estimate.",fmcg-inventory-intelligence-v1.0.0
+Expired Inventory Condition,SUPPORTED,Expired quantity is recorded in the current inventory snapshot.,Current condition only; no future expiry inference.,fmcg-inventory-intelligence-v1.0.0
+Future Stockout Risk,NOT SUPPORTED,"No replenishment lead time, order cadence, or full future purchase-order feed.",No stockout probability or predicted stockout date.,fmcg-inventory-intelligence-v1.0.0
+Future Expiry Risk,NOT SUPPORTED,No lot/batch expiry dates or shelf-life details.,No future expiry prediction or estimated expired quantity.,fmcg-inventory-intelligence-v1.0.0

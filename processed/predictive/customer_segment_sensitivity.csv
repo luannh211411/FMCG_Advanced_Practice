@@ -1,0 +1,4 @@
+Scenario,Customers,ChangedFromBase,ChangedPct,SegmentCounts,ModelVersion
+Base,6500,0,0.0,"{""CORE / MAINTAIN"": 2753, ""INSUFFICIENT HISTORY"": 0, ""LOW PRIORITY / DORMANT"": 3060, ""POTENTIAL"": 213, ""RISK / DECLINING"": 474}",fmcg-customer-intelligence-v1.0.0
+Conservative boundaries (+5 points),6500,617,0.09492307692307693,"{""CORE / MAINTAIN"": 2629, ""INSUFFICIENT HISTORY"": 0, ""LOW PRIORITY / DORMANT"": 3481, ""POTENTIAL"": 105, ""RISK / DECLINING"": 285}",fmcg-customer-intelligence-v1.0.0
+Broader boundaries (-5 points),6500,758,0.11661538461538462,"{""CORE / MAINTAIN"": 2804, ""INSUFFICIENT HISTORY"": 0, ""LOW PRIORITY / DORMANT"": 2555, ""POTENTIAL"": 385, ""RISK / DECLINING"": 756}",fmcg-customer-intelligence-v1.0.0

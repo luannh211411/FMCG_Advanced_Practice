@@ -1,0 +1,91 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "a5baae0c830a0fde5c62",
+  "position": {
+    "x": 318,
+    "y": 621,
+    "width": 634,
+    "height": 72,
+    "z": 1000,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Core High Decline 12M Sales Exposure"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Core High Decline 12M Sales Exposure",
+              "nativeQueryRef": "Trailing 12M Sales Exposure"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Core High Decline Q4-Relevant Recent Sales"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Core High Decline Q4-Relevant Recent Sales",
+              "nativeQueryRef": "Mapped Recent Sales"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1000000000'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "FMCG Commercial Review"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "5d6f1a2b-7c84-4e91-9a35-2b6c8d0f4e17"
+  }
+}

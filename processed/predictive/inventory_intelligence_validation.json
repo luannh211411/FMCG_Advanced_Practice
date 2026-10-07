@@ -1,0 +1,878 @@
+{
+  "model_version": "fmcg-inventory-intelligence-v1.0.0",
+  "run_date": "2026-10-06",
+  "as_of_date": "2026-09-30",
+  "snapshot_count": 21,
+  "source_position_rows": 75600,
+  "output_rows": 75600,
+  "first_sales_month": "2025-01",
+  "last_sales_month": "2026-09",
+  "coverage_thresholds": {
+    "OnHandCoverageP10Days": 37.03891108891109,
+    "OnHandCoverageP25Days": 93.8548768939394,
+    "OnHandCoverageP75Days": 283.8401640768937,
+    "OnHandCoverageP90Days": 369.52507095553455,
+    "AvailableCoverageP25Days": 112.0550137720539,
+    "DemandTrendP25Pct": -0.19130434782608696,
+    "DemandTrendP75Pct": 0.253816868410777,
+    "CoveragePressureScoreP75": 35.0,
+    "CoveragePressureScoreP90": 80.0,
+    "ExcessSlowMovingScoreP75": 40.0,
+    "ExcessSlowMovingScoreP90": 65.0
+  },
+  "threshold_sample_sizes": {
+    "CoverageThresholdRows": 32400,
+    "DemandTrendThresholdRows": 21600,
+    "PressureScoreThresholdRows": 21600,
+    "ExcessScoreThresholdRows": 21585
+  },
+  "current_snapshot": {
+    "snapshot_date": "2026-09-30",
+    "positions": 3600,
+    "reorder_exceptions": 802,
+    "zero_on_hand_positions": 3,
+    "expired_inventory_positions": 3502,
+    "expired_quantity": 52189,
+    "no_recent_demand_positions": 0,
+    "low_coverage_pressure_positions": 998,
+    "medium_coverage_pressure_positions": 307,
+    "high_coverage_pressure_positions": 691,
+    "excess_slow_moving_positions": 905,
+    "medium_excess_slow_moving_positions": 534,
+    "high_excess_slow_moving_positions": 371,
+    "primary_drivers": [
+      {
+        "PrimaryInventoryRiskDriver": "Existing expired inventory",
+        "Positions": 2363,
+        "OnHandQty": 1091553,
+        "InTransitQty": 95132,
+        "ExpiredQty": 35026,
+        "Recent3MonthSalesQuantity": 480776.0
+      },
+      {
+        "PrimaryInventoryRiskDriver": "On Hand below Reorder Point with low coverage",
+        "Positions": 719,
+        "OnHandQty": 59981,
+        "InTransitQty": 28582,
+        "ExpiredQty": 10579,
+        "Recent3MonthSalesQuantity": 143550.0
+      },
+      {
+        "PrimaryInventoryRiskDriver": "High coverage with declining demand",
+        "Positions": 371,
+        "OnHandQty": 231318,
+        "InTransitQty": 14334,
+        "ExpiredQty": 5331,
+        "Recent3MonthSalesQuantity": 53594.0
+      },
+      {
+        "PrimaryInventoryRiskDriver": "On Hand below Reorder Point",
+        "Positions": 80,
+        "OnHandQty": 15426,
+        "InTransitQty": 3115,
+        "ExpiredQty": 1155,
+        "Recent3MonthSalesQuantity": 12548.0
+      },
+      {
+        "PrimaryInventoryRiskDriver": "No elevated analytical signal",
+        "Positions": 38,
+        "OnHandQty": 16382,
+        "InTransitQty": 1399,
+        "ExpiredQty": 0,
+        "Recent3MonthSalesQuantity": 7408.0
+      },
+      {
+        "PrimaryInventoryRiskDriver": "High relative On-Hand coverage",
+        "Positions": 20,
+        "OnHandQty": 12789,
+        "InTransitQty": 718,
+        "ExpiredQty": 0,
+        "Recent3MonthSalesQuantity": 3340.0
+      },
+      {
+        "PrimaryInventoryRiskDriver": "Relative coverage / demand pressure",
+        "Positions": 3,
+        "OnHandQty": 597,
+        "InTransitQty": 96,
+        "ExpiredQty": 0,
+        "Recent3MonthSalesQuantity": 670.0
+      },
+      {
+        "PrimaryInventoryRiskDriver": "Very low On-Hand coverage",
+        "Positions": 3,
+        "OnHandQty": 296,
+        "InTransitQty": 178,
+        "ExpiredQty": 43,
+        "Recent3MonthSalesQuantity": 823.0
+      },
+      {
+        "PrimaryInventoryRiskDriver": "Zero On Hand with recent demand",
+        "Positions": 3,
+        "OnHandQty": 0,
+        "InTransitQty": 133,
+        "ExpiredQty": 55,
+        "Recent3MonthSalesQuantity": 536.0
+      }
+    ]
+  },
+  "coverage_threshold_stability": [
+    {
+      "SnapshotDate": "2025-01-31T00:00:00",
+      "P10": null,
+      "P25": null,
+      "P50": null,
+      "P75": null,
+      "P90": null
+    },
+    {
+      "SnapshotDate": "2025-02-28T00:00:00",
+      "P10": null,
+      "P25": null,
+      "P50": null,
+      "P75": null,
+      "P90": null
+    },
+    {
+      "SnapshotDate": "2025-03-31T00:00:00",
+      "P10": null,
+      "P25": null,
+      "P50": null,
+      "P75": null,
+      "P90": null
+    },
+    {
+      "SnapshotDate": "2025-04-30T00:00:00",
+      "P10": 36.85925284512617,
+      "P25": 93.72843825307572,
+      "P50": 190.50072921730674,
+      "P75": 290.5895891793044,
+      "P90": 376.0081578947368
+    },
+    {
+      "SnapshotDate": "2025-05-31T00:00:00",
+      "P10": 36.885732637807536,
+      "P25": 89.63734432234432,
+      "P50": 184.30997175546938,
+      "P75": 280.84878985874013,
+      "P90": 367.74826807228914
+    },
+    {
+      "SnapshotDate": "2025-06-30T00:00:00",
+      "P10": 36.61128205128205,
+      "P25": 88.83077112589308,
+      "P50": 179.02090267607508,
+      "P75": 278.71258008153757,
+      "P90": 369.64275541795666
+    },
+    {
+      "SnapshotDate": "2025-07-31T00:00:00",
+      "P10": 37.74150337837839,
+      "P25": 93.74392439243925,
+      "P50": 185.74592592592592,
+      "P75": 282.7837108671053,
+      "P90": 364.5334676258993
+    },
+    {
+      "SnapshotDate": "2025-08-31T00:00:00",
+      "P10": 35.34477443609023,
+      "P25": 93.08554886521539,
+      "P50": 184.19742489270385,
+      "P75": 280.77631955836785,
+      "P90": 369.3990608781613
+    },
+    {
+      "SnapshotDate": "2025-09-30T00:00:00",
+      "P10": 39.420654044750435,
+      "P25": 96.77483617300132,
+      "P50": 189.01315878264393,
+      "P75": 286.838861249309,
+      "P90": 369.864393939394
+    },
+    {
+      "SnapshotDate": "2025-10-31T00:00:00",
+      "P10": 38.45187675070028,
+      "P25": 98.59292578204865,
+      "P50": 191.85212886136105,
+      "P75": 283.5215419501134,
+      "P90": 372.08428389290265
+    },
+    {
+      "SnapshotDate": "2025-11-30T00:00:00",
+      "P10": 35.993750000000006,
+      "P25": 94.04800619434766,
+      "P50": 188.60052812185074,
+      "P75": 285.580408910589,
+      "P90": 366.78582035928144
+    },
+    {
+      "SnapshotDate": "2025-12-31T00:00:00",
+      "P10": 38.48809523809524,
+      "P25": 96.48251748251748,
+      "P50": 190.40984429934707,
+      "P75": 284.53760248055494,
+      "P90": 365.0806650246305
+    },
+    {
+      "SnapshotDate": "2026-01-31T00:00:00",
+      "P10": 35.7108953613808,
+      "P25": 95.2879155404625,
+      "P50": 189.1593291404612,
+      "P75": 286.0063179547458,
+      "P90": 366.43453968253965
+    },
+    {
+      "SnapshotDate": "2026-02-28T00:00:00",
+      "P10": 38.06969911969518,
+      "P25": 92.0,
+      "P50": 188.75627098558166,
+      "P75": 288.0666163901458,
+      "P90": 371.33226342003314
+    },
+    {
+      "SnapshotDate": "2026-03-31T00:00:00",
+      "P10": 36.98588368153586,
+      "P25": 90.52988994078882,
+      "P50": 182.81653831092547,
+      "P75": 282.1844488467525,
+      "P90": 369.0050279329609
+    },
+    {
+      "SnapshotDate": "2026-04-30T00:00:00",
+      "P10": 38.09340659340659,
+      "P25": 93.16474238706884,
+      "P50": 186.90416141235815,
+      "P75": 288.3309612074672,
+      "P90": 371.3235597769977
+    },
+    {
+      "SnapshotDate": "2026-05-31T00:00:00",
+      "P10": 39.76357553860565,
+      "P25": 92.59973340760783,
+      "P50": 189.71672500640312,
+      "P75": 284.41642596533904,
+      "P90": 371.40483405483405
+    },
+    {
+      "SnapshotDate": "2026-06-30T00:00:00",
+      "P10": 40.739088881809494,
+      "P25": 95.78377504848093,
+      "P50": 188.30424076607386,
+      "P75": 281.57849293563584,
+      "P90": 368.04717948717945
+    },
+    {
+      "SnapshotDate": "2026-07-31T00:00:00",
+      "P10": 37.86741868082223,
+      "P25": 95.17413043478261,
+      "P50": 184.55145758270555,
+      "P75": 281.82693173293325,
+      "P90": 366.0496448405011
+    },
+    {
+      "SnapshotDate": "2026-08-31T00:00:00",
+      "P10": 39.41733821733822,
+      "P25": 96.0537078950872,
+      "P50": 188.24295587453483,
+      "P75": 282.57142857142856,
+      "P90": 367.08644532439837
+    },
+    {
+      "SnapshotDate": "2026-09-30T00:00:00",
+      "P10": 36.70045071916219,
+      "P25": 89.70569264231605,
+      "P50": 187.624684827647,
+      "P75": 284.7631381381381,
+      "P90": 369.52792041078305
+    }
+  ],
+  "snapshot_reconciliation": [
+    {
+      "SnapshotDate": "2025-01-31T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1454552.0,
+      "SourceOnHandQty": 1454552.0,
+      "OutputInTransitQty": 144808.0,
+      "SourceInTransitQty": 144808.0,
+      "OutputExpiredQty": 52891.0,
+      "SourceExpiredQty": 52891.0,
+      "OutputReorderPointTotal": 612003.0,
+      "SourceReorderPointTotal": 612003.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-02-28T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1440899.0,
+      "SourceOnHandQty": 1440899.0,
+      "OutputInTransitQty": 141111.0,
+      "SourceInTransitQty": 141111.0,
+      "OutputExpiredQty": 52439.0,
+      "SourceExpiredQty": 52439.0,
+      "OutputReorderPointTotal": 617687.0,
+      "SourceReorderPointTotal": 617687.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-03-31T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1421536.0,
+      "SourceOnHandQty": 1421536.0,
+      "OutputInTransitQty": 140586.0,
+      "SourceInTransitQty": 140586.0,
+      "OutputExpiredQty": 52928.0,
+      "SourceExpiredQty": 52928.0,
+      "OutputReorderPointTotal": 610549.0,
+      "SourceReorderPointTotal": 610549.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-04-30T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1452598.0,
+      "SourceOnHandQty": 1452598.0,
+      "OutputInTransitQty": 144944.0,
+      "SourceInTransitQty": 144944.0,
+      "OutputExpiredQty": 51957.0,
+      "SourceExpiredQty": 51957.0,
+      "OutputReorderPointTotal": 607698.0,
+      "SourceReorderPointTotal": 607698.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-05-31T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1413259.0,
+      "SourceOnHandQty": 1413259.0,
+      "OutputInTransitQty": 139372.0,
+      "SourceInTransitQty": 139372.0,
+      "OutputExpiredQty": 51921.0,
+      "SourceExpiredQty": 51921.0,
+      "OutputReorderPointTotal": 609635.0,
+      "SourceReorderPointTotal": 609635.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-06-30T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1408892.0,
+      "SourceOnHandQty": 1408892.0,
+      "OutputInTransitQty": 143658.0,
+      "SourceInTransitQty": 143658.0,
+      "OutputExpiredQty": 51663.0,
+      "SourceExpiredQty": 51663.0,
+      "OutputReorderPointTotal": 607861.0,
+      "SourceReorderPointTotal": 607861.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-07-31T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1431860.0,
+      "SourceOnHandQty": 1431860.0,
+      "OutputInTransitQty": 142737.0,
+      "SourceInTransitQty": 142737.0,
+      "OutputExpiredQty": 52771.0,
+      "SourceExpiredQty": 52771.0,
+      "OutputReorderPointTotal": 610836.0,
+      "SourceReorderPointTotal": 610836.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-08-31T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1420996.0,
+      "SourceOnHandQty": 1420996.0,
+      "OutputInTransitQty": 141063.0,
+      "SourceInTransitQty": 141063.0,
+      "OutputExpiredQty": 52770.0,
+      "SourceExpiredQty": 52770.0,
+      "OutputReorderPointTotal": 612801.0,
+      "SourceReorderPointTotal": 612801.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-09-30T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1448296.0,
+      "SourceOnHandQty": 1448296.0,
+      "OutputInTransitQty": 142730.0,
+      "SourceInTransitQty": 142730.0,
+      "OutputExpiredQty": 52602.0,
+      "SourceExpiredQty": 52602.0,
+      "OutputReorderPointTotal": 613825.0,
+      "SourceReorderPointTotal": 613825.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-10-31T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1459468.0,
+      "SourceOnHandQty": 1459468.0,
+      "OutputInTransitQty": 141071.0,
+      "SourceInTransitQty": 141071.0,
+      "OutputExpiredQty": 51470.0,
+      "SourceExpiredQty": 51470.0,
+      "OutputReorderPointTotal": 605432.0,
+      "SourceReorderPointTotal": 605432.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-11-30T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1439894.0,
+      "SourceOnHandQty": 1439894.0,
+      "OutputInTransitQty": 142849.0,
+      "SourceInTransitQty": 142849.0,
+      "OutputExpiredQty": 52843.0,
+      "SourceExpiredQty": 52843.0,
+      "OutputReorderPointTotal": 607311.0,
+      "SourceReorderPointTotal": 607311.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-12-31T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1450364.0,
+      "SourceOnHandQty": 1450364.0,
+      "OutputInTransitQty": 142629.0,
+      "SourceInTransitQty": 142629.0,
+      "OutputExpiredQty": 52491.0,
+      "SourceExpiredQty": 52491.0,
+      "OutputReorderPointTotal": 616749.0,
+      "SourceReorderPointTotal": 616749.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-01-31T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1437943.0,
+      "SourceOnHandQty": 1437943.0,
+      "OutputInTransitQty": 140005.0,
+      "SourceInTransitQty": 140005.0,
+      "OutputExpiredQty": 52568.0,
+      "SourceExpiredQty": 52568.0,
+      "OutputReorderPointTotal": 609584.0,
+      "SourceReorderPointTotal": 609584.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-02-28T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1445180.0,
+      "SourceOnHandQty": 1445180.0,
+      "OutputInTransitQty": 144013.0,
+      "SourceInTransitQty": 144013.0,
+      "OutputExpiredQty": 52090.0,
+      "SourceExpiredQty": 52090.0,
+      "OutputReorderPointTotal": 611955.0,
+      "SourceReorderPointTotal": 611955.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-03-31T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1422489.0,
+      "SourceOnHandQty": 1422489.0,
+      "OutputInTransitQty": 142468.0,
+      "SourceInTransitQty": 142468.0,
+      "OutputExpiredQty": 51659.0,
+      "SourceExpiredQty": 51659.0,
+      "OutputReorderPointTotal": 608742.0,
+      "SourceReorderPointTotal": 608742.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-04-30T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1449451.0,
+      "SourceOnHandQty": 1449451.0,
+      "OutputInTransitQty": 142131.0,
+      "SourceInTransitQty": 142131.0,
+      "OutputExpiredQty": 51853.0,
+      "SourceExpiredQty": 51853.0,
+      "OutputReorderPointTotal": 610169.0,
+      "SourceReorderPointTotal": 610169.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-05-31T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1451709.0,
+      "SourceOnHandQty": 1451709.0,
+      "OutputInTransitQty": 142403.0,
+      "SourceInTransitQty": 142403.0,
+      "OutputExpiredQty": 52799.0,
+      "SourceExpiredQty": 52799.0,
+      "OutputReorderPointTotal": 602277.0,
+      "SourceReorderPointTotal": 602277.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-06-30T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1441797.0,
+      "SourceOnHandQty": 1441797.0,
+      "OutputInTransitQty": 140420.0,
+      "SourceInTransitQty": 140420.0,
+      "OutputExpiredQty": 51485.0,
+      "SourceExpiredQty": 51485.0,
+      "OutputReorderPointTotal": 612028.0,
+      "SourceReorderPointTotal": 612028.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-07-31T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1427882.0,
+      "SourceOnHandQty": 1427882.0,
+      "OutputInTransitQty": 144488.0,
+      "SourceInTransitQty": 144488.0,
+      "OutputExpiredQty": 52395.0,
+      "SourceExpiredQty": 52395.0,
+      "OutputReorderPointTotal": 612059.0,
+      "SourceReorderPointTotal": 612059.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-08-31T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1444661.0,
+      "SourceOnHandQty": 1444661.0,
+      "OutputInTransitQty": 141199.0,
+      "SourceInTransitQty": 141199.0,
+      "OutputExpiredQty": 52965.0,
+      "SourceExpiredQty": 52965.0,
+      "OutputReorderPointTotal": 610518.0,
+      "SourceReorderPointTotal": 610518.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-09-30T00:00:00",
+      "OutputPositions": 3600,
+      "UniqueFactPositions": 3600,
+      "MissingSourceKeys": 0,
+      "OutputOnHandQty": 1428342.0,
+      "SourceOnHandQty": 1428342.0,
+      "OutputInTransitQty": 143687.0,
+      "SourceInTransitQty": 143687.0,
+      "OutputExpiredQty": 52189.0,
+      "SourceExpiredQty": 52189.0,
+      "OutputReorderPointTotal": 615794.0,
+      "SourceReorderPointTotal": 615794.0,
+      "MeasureMismatches": 0,
+      "ReorderFlagMismatches": 0
+    }
+  ],
+  "demand_feature_reconciliation": [
+    {
+      "SnapshotDate": "2025-01-31T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-02-28T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-03-31T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-04-30T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-05-31T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-06-30T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-07-31T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-08-31T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-09-30T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-10-31T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-11-30T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2025-12-31T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-01-31T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-02-28T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-03-31T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-04-30T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-05-31T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-06-30T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-07-31T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-08-31T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    },
+    {
+      "SnapshotDate": "2026-09-30T00:00:00",
+      "Positions": 3600,
+      "RecentDemandMismatches": 0,
+      "PriorDemandMismatches": 0
+    }
+  ],
+  "threshold_sensitivity": [
+    {
+      "Scenario": "Strict (P20 coverage / P80 trend)",
+      "CurrentPositions": 3600,
+      "CoveragePressurePositions": 881,
+      "HighCoveragePressurePositions": 609,
+      "ExcessSlowMovingPositions": 729,
+      "HighExcessSlowMovingPositions": 294,
+      "LowOnHandCoverageDaysThreshold": 74.5068838028169,
+      "LowAvailableCoverageDaysThreshold": 93.41866151866152,
+      "DemandTrendRisingThreshold": 0.3257019738671115,
+      "DemandTrendFallingThreshold": -0.23361421786425618,
+      "ModelOrRuleVersion": "fmcg-inventory-intelligence-v1.0.0"
+    },
+    {
+      "Scenario": "Base (P25 coverage / P75 and P25 trend)",
+      "CurrentPositions": 3600,
+      "CoveragePressurePositions": 998,
+      "HighCoveragePressurePositions": 691,
+      "ExcessSlowMovingPositions": 905,
+      "HighExcessSlowMovingPositions": 371,
+      "LowOnHandCoverageDaysThreshold": 93.8548768939394,
+      "LowAvailableCoverageDaysThreshold": 112.0550137720539,
+      "DemandTrendRisingThreshold": 0.253816868410777,
+      "DemandTrendFallingThreshold": -0.19130434782608696,
+      "ModelOrRuleVersion": "fmcg-inventory-intelligence-v1.0.0"
+    },
+    {
+      "Scenario": "Broad (P30 coverage / P70 and P30 trend)",
+      "CurrentPositions": 3600,
+      "CoveragePressurePositions": 1112,
+      "HighCoveragePressurePositions": 752,
+      "ExcessSlowMovingPositions": 1083,
+      "HighExcessSlowMovingPositions": 474,
+      "LowOnHandCoverageDaysThreshold": 112.3666804208789,
+      "LowAvailableCoverageDaysThreshold": 130.33333333333334,
+      "DemandTrendRisingThreshold": 0.19428571428571428,
+      "DemandTrendFallingThreshold": -0.1511111111111111,
+      "ModelOrRuleVersion": "fmcg-inventory-intelligence-v1.0.0"
+    }
+  ],
+  "future_demand_association": [
+    {
+      "Signal": "CoveragePressure",
+      "SignalLevel": "Low",
+      "SnapshotPositions": 31901,
+      "DistinctSnapshots": 12,
+      "MedianFutureToRecent3MonthDemandRatio": 1.0098039215686274,
+      "FutureDemandBelowRecentPositions": 15500,
+      "FutureDemandAboveRecentPositions": 16202,
+      "FutureZeroDemandPositions": 0,
+      "Interpretation": "Descriptive non-causal association only; overlapping three-month windows and current distributor mapping.",
+      "ModelOrRuleVersion": "fmcg-inventory-intelligence-v1.0.0"
+    },
+    {
+      "Signal": "CoveragePressure",
+      "SignalLevel": "Medium",
+      "SnapshotPositions": 3386,
+      "DistinctSnapshots": 12,
+      "MedianFutureToRecent3MonthDemandRatio": 0.9398701672213321,
+      "FutureDemandBelowRecentPositions": 1907,
+      "FutureDemandAboveRecentPositions": 1461,
+      "FutureZeroDemandPositions": 0,
+      "Interpretation": "Descriptive non-causal association only; overlapping three-month windows and current distributor mapping.",
+      "ModelOrRuleVersion": "fmcg-inventory-intelligence-v1.0.0"
+    },
+    {
+      "Signal": "CoveragePressure",
+      "SignalLevel": "High",
+      "SnapshotPositions": 7913,
+      "DistinctSnapshots": 12,
+      "MedianFutureToRecent3MonthDemandRatio": 0.9726775956284153,
+      "FutureDemandBelowRecentPositions": 4208,
+      "FutureDemandAboveRecentPositions": 3648,
+      "FutureZeroDemandPositions": 0,
+      "Interpretation": "Descriptive non-causal association only; overlapping three-month windows and current distributor mapping.",
+      "ModelOrRuleVersion": "fmcg-inventory-intelligence-v1.0.0"
+    },
+    {
+      "Signal": "ExcessSlowMoving",
+      "SignalLevel": "Low",
+      "SnapshotPositions": 32318,
+      "DistinctSnapshots": 12,
+      "MedianFutureToRecent3MonthDemandRatio": 0.9534883720930233,
+      "FutureDemandBelowRecentPositions": 18053,
+      "FutureDemandAboveRecentPositions": 14048,
+      "FutureZeroDemandPositions": 0,
+      "Interpretation": "Descriptive non-causal association only; overlapping three-month windows and current distributor mapping.",
+      "ModelOrRuleVersion": "fmcg-inventory-intelligence-v1.0.0"
+    },
+    {
+      "Signal": "ExcessSlowMoving",
+      "SignalLevel": "Medium",
+      "SnapshotPositions": 6401,
+      "DistinctSnapshots": 12,
+      "MedianFutureToRecent3MonthDemandRatio": 1.053191489361702,
+      "FutureDemandBelowRecentPositions": 2765,
+      "FutureDemandAboveRecentPositions": 3603,
+      "FutureZeroDemandPositions": 0,
+      "Interpretation": "Descriptive non-causal association only; overlapping three-month windows and current distributor mapping.",
+      "ModelOrRuleVersion": "fmcg-inventory-intelligence-v1.0.0"
+    },
+    {
+      "Signal": "ExcessSlowMoving",
+      "SignalLevel": "High",
+      "SnapshotPositions": 4481,
+      "DistinctSnapshots": 12,
+      "MedianFutureToRecent3MonthDemandRatio": 1.3270440251572326,
+      "FutureDemandBelowRecentPositions": 797,
+      "FutureDemandAboveRecentPositions": 3660,
+      "FutureZeroDemandPositions": 0,
+      "Interpretation": "Descriptive non-causal association only; overlapping three-month windows and current distributor mapping.",
+      "ModelOrRuleVersion": "fmcg-inventory-intelligence-v1.0.0"
+    }
+  ],
+  "limitations": [
+    "Coverage and pressure levels are relative analytical screening signals, not service-level or lead-time thresholds.",
+    "No stockout probability/date is estimated; lead time, order cadence and complete future purchase orders are unavailable.",
+    "No future expiry, shelf-life, lot-level expiry, lost-sales or write-off estimate is produced.",
+    "Expired quantity is a current snapshot condition; its high prevalence is preserved from source and does not imply future expiry.",
+    "No Recent Demand is set only when the complete prior three-month sales window is observable; earlier rows are marked history-unavailable.",
+    "Historical distributor-product demand uses the current customer-to-distributor mapping; mapping changes are not historized.",
+    "Future-demand comparisons are descriptive, non-causal, and use overlapping three-month windows."
+  ]
+}

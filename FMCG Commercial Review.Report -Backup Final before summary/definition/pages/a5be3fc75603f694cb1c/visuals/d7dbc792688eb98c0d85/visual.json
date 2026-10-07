@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "d7dbc792688eb98c0d85",
+  "position": {
+    "x": 48,
+    "y": 448,
+    "z": 1000,
+    "height": 70,
+    "width": 1824,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Snapshot"
+                    }
+                  },
+                  "Property": "Latest On Hand Quantity"
+                }
+              },
+              "queryRef": "Inventory Snapshot.Latest On Hand Quantity",
+              "nativeQueryRef": "Latest On Hand Quantity"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Snapshot"
+                    }
+                  },
+                  "Property": "Latest In Transit Quantity"
+                }
+              },
+              "queryRef": "Inventory Snapshot.Latest In Transit Quantity",
+              "nativeQueryRef": "Latest In Transit Quantity"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Snapshot"
+                    }
+                  },
+                  "Property": "Latest Expired Quantity"
+                }
+              },
+              "queryRef": "Inventory Snapshot.Latest Expired Quantity",
+              "nativeQueryRef": "Latest Expired Quantity"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inventory Snapshot"
+                    }
+                  },
+                  "Property": "Reorder Exception Count"
+                }
+              },
+              "queryRef": "Inventory Snapshot.Reorder Exception Count",
+              "nativeQueryRef": "Reorder Exception Count"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

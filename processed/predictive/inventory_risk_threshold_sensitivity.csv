@@ -1,0 +1,4 @@
+Scenario,CurrentPositions,CoveragePressurePositions,HighCoveragePressurePositions,ExcessSlowMovingPositions,HighExcessSlowMovingPositions,LowOnHandCoverageDaysThreshold,LowAvailableCoverageDaysThreshold,DemandTrendRisingThreshold,DemandTrendFallingThreshold,ModelOrRuleVersion
+Strict (P20 coverage / P80 trend),3600,881,609,729,294,74.5068838028169,93.41866151866152,0.3257019738671115,-0.23361421786425618,fmcg-inventory-intelligence-v1.0.0
+Base (P25 coverage / P75 and P25 trend),3600,998,691,905,371,93.8548768939394,112.0550137720539,0.253816868410777,-0.19130434782608696,fmcg-inventory-intelligence-v1.0.0
+Broad (P30 coverage / P70 and P30 trend),3600,1112,752,1083,474,112.3666804208789,130.33333333333334,0.19428571428571428,-0.1511111111111111,fmcg-inventory-intelligence-v1.0.0

@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "6da9362adf2af1723c4c",
+  "position": {
+    "x": 48,
+    "y": 140,
+    "z": 1000,
+    "height": 108,
+    "width": 1824,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Total Net Sales"
+                }
+              },
+              "queryRef": "Sales.Total Net Sales",
+              "nativeQueryRef": "Total Net Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "MoM Variance"
+                }
+              },
+              "queryRef": "Sales.MoM Variance",
+              "nativeQueryRef": "MoM Variance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "MoM Growth %"
+                }
+              },
+              "queryRef": "Sales.MoM Growth %",
+              "nativeQueryRef": "MoM Growth %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Active Customers"
+                }
+              },
+              "queryRef": "Sales.Active Customers",
+              "nativeQueryRef": "Active Customers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "MoM Active Customer Growth %"
+                }
+              },
+              "queryRef": "Sales.MoM Active Customer Growth %",
+              "nativeQueryRef": "MoM Active Customer Growth %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Average Sales per Active Customer"
+                }
+              },
+              "queryRef": "Sales.Average Sales per Active Customer",
+              "nativeQueryRef": "Average Sales per Active Customer"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Gross Margin %"
+                }
+              },
+              "queryRef": "Sales.Gross Margin %",
+              "nativeQueryRef": "Gross Margin %"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

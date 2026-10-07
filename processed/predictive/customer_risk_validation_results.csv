@@ -1,0 +1,5 @@
+RiskType,ValidationSplit,observations,customers,outcomes,overall_outcome_rate,high_risk_customers,high_risk_outcomes,high_risk_outcome_rate,high_risk_lift,high_risk_capture_recall,risk_level_counts,roc_auc,average_precision,ModelVersion
+Decline,Development,25916,6500,6479,0.25,5184,2221,0.42843364197530864,1.7137345679012346,0.34279981478623245,"{'Low': 12958, 'Medium': 7774, 'High': 5184}",0.6913543514956045,0.3889463763836045,fmcg-customer-intelligence-v1.0.0
+Decline,Temporal holdout,39000,6500,9751,0.250025641025641,7392,3127,0.4230248917748918,1.6919260362240571,0.3206850579427751,"{'Low': 20163, 'Medium': 11445, 'High': 7392}",0.6914280371499579,0.3823774792233598,fmcg-customer-intelligence-v1.0.0
+Inactivity,Development,25916,6500,0,0.0,5184,0,0.0,,,"{'Low': 13015, 'Medium': 7717, 'High': 5184}",,,fmcg-customer-intelligence-v1.0.0
+Inactivity,Temporal holdout,39000,6500,0,0.0,8438,0,0.0,,,"{'Low': 19200, 'Medium': 11362, 'High': 8438}",,,fmcg-customer-intelligence-v1.0.0

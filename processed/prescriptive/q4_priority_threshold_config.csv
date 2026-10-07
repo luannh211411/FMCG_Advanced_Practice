@@ -1,0 +1,5 @@
+PriorityLevel,MinimumScoreInclusive
+Critical,80.0
+High,65.0
+Medium,45.0
+Low,0.0

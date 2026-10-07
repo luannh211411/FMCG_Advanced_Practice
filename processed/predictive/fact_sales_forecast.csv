@@ -1,0 +1,217 @@
+ForecastMonth,Region,Channel,Category,ForecastSales,NegativeForecastClipped,ForecastHorizon,ForecastMethod,AsOfDate,RunDate,ModelVersion
+2026-10-01,Central,E-Commerce,Beverages,14537817.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,E-Commerce,Beverages,14537817.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,E-Commerce,Beverages,14537817.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,E-Commerce,Home Care,47488355.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,E-Commerce,Home Care,47488355.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,E-Commerce,Home Care,47488355.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,E-Commerce,Ice Cream,21287697.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,E-Commerce,Ice Cream,21287697.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,E-Commerce,Ice Cream,21287697.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,E-Commerce,Nutrition,148585469.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,E-Commerce,Nutrition,148585469.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,E-Commerce,Nutrition,148585469.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,E-Commerce,Personal Care,51213917.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,E-Commerce,Personal Care,51213917.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,E-Commerce,Personal Care,51213917.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,E-Commerce,Snacks,8439477.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,E-Commerce,Snacks,8439477.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,E-Commerce,Snacks,8439477.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,GT,Beverages,86826518.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,GT,Beverages,86826518.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,GT,Beverages,86826518.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,GT,Home Care,313725176.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,GT,Home Care,313725176.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,GT,Home Care,313725176.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,GT,Ice Cream,117605247.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,GT,Ice Cream,117605247.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,GT,Ice Cream,117605247.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,GT,Nutrition,888878134.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,GT,Nutrition,888878134.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,GT,Nutrition,888878134.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,GT,Personal Care,336121767.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,GT,Personal Care,336121767.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,GT,Personal Care,336121767.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,GT,Snacks,59801071.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,GT,Snacks,59801071.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,GT,Snacks,59801071.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,HORECA,Beverages,22176017.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,HORECA,Beverages,22176017.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,HORECA,Beverages,22176017.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,HORECA,Home Care,83290359.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,HORECA,Home Care,83290359.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,HORECA,Home Care,83290359.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,HORECA,Ice Cream,30421788.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,HORECA,Ice Cream,30421788.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,HORECA,Ice Cream,30421788.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,HORECA,Nutrition,251153415.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,HORECA,Nutrition,251153415.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,HORECA,Nutrition,251153415.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,HORECA,Personal Care,97251916.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,HORECA,Personal Care,97251916.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,HORECA,Personal Care,97251916.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,HORECA,Snacks,14856703.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,HORECA,Snacks,14856703.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,HORECA,Snacks,14856703.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,MT,Beverages,26064690.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,MT,Beverages,26064690.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,MT,Beverages,26064690.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,MT,Home Care,95840902.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,MT,Home Care,95840902.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,MT,Home Care,95840902.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,MT,Ice Cream,33788660.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,MT,Ice Cream,33788660.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,MT,Ice Cream,33788660.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,MT,Nutrition,297765882.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,MT,Nutrition,297765882.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,MT,Nutrition,297765882.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,MT,Personal Care,103846625.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,MT,Personal Care,103846625.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,MT,Personal Care,103846625.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,Central,MT,Snacks,15631907.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,Central,MT,Snacks,15631907.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,Central,MT,Snacks,15631907.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,E-Commerce,Beverages,23504619.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,E-Commerce,Beverages,23504619.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,E-Commerce,Beverages,23504619.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,E-Commerce,Home Care,83811789.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,E-Commerce,Home Care,83811789.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,E-Commerce,Home Care,83811789.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,E-Commerce,Ice Cream,35485865.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,E-Commerce,Ice Cream,35485865.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,E-Commerce,Ice Cream,35485865.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,E-Commerce,Nutrition,270148521.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,E-Commerce,Nutrition,270148521.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,E-Commerce,Nutrition,270148521.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,E-Commerce,Personal Care,87562887.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,E-Commerce,Personal Care,87562887.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,E-Commerce,Personal Care,87562887.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,E-Commerce,Snacks,16730316.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,E-Commerce,Snacks,16730316.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,E-Commerce,Snacks,16730316.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,GT,Beverages,126701871.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,GT,Beverages,126701871.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,GT,Beverages,126701871.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,GT,Home Care,455310566.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,GT,Home Care,455310566.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,GT,Home Care,455310566.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,GT,Ice Cream,184090556.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,GT,Ice Cream,184090556.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,GT,Ice Cream,184090556.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,GT,Nutrition,1384422616.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,GT,Nutrition,1384422616.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,GT,Nutrition,1384422616.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,GT,Personal Care,522669296.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,GT,Personal Care,522669296.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,GT,Personal Care,522669296.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,GT,Snacks,85742848.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,GT,Snacks,85742848.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,GT,Snacks,85742848.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,HORECA,Beverages,37809728.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,HORECA,Beverages,37809728.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,HORECA,Beverages,37809728.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,HORECA,Home Care,127581628.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,HORECA,Home Care,127581628.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,HORECA,Home Care,127581628.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,HORECA,Ice Cream,53027100.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,HORECA,Ice Cream,53027100.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,HORECA,Ice Cream,53027100.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,HORECA,Nutrition,402014540.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,HORECA,Nutrition,402014540.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,HORECA,Nutrition,402014540.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,HORECA,Personal Care,137297622.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,HORECA,Personal Care,137297622.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,HORECA,Personal Care,137297622.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,HORECA,Snacks,26690432.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,HORECA,Snacks,26690432.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,HORECA,Snacks,26690432.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,MT,Beverages,45075606.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,MT,Beverages,45075606.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,MT,Beverages,45075606.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,MT,Home Care,163408764.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,MT,Home Care,163408764.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,MT,Home Care,163408764.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,MT,Ice Cream,62584522.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,MT,Ice Cream,62584522.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,MT,Ice Cream,62584522.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,MT,Nutrition,436333970.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,MT,Nutrition,436333970.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,MT,Nutrition,436333970.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,MT,Personal Care,160788969.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,MT,Personal Care,160788969.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,MT,Personal Care,160788969.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,North,MT,Snacks,29906706.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,North,MT,Snacks,29906706.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,North,MT,Snacks,29906706.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,E-Commerce,Beverages,37677898.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,E-Commerce,Beverages,37677898.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,E-Commerce,Beverages,37677898.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,E-Commerce,Home Care,136905797.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,E-Commerce,Home Care,136905797.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,E-Commerce,Home Care,136905797.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,E-Commerce,Ice Cream,52005349.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,E-Commerce,Ice Cream,52005349.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,E-Commerce,Ice Cream,52005349.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,E-Commerce,Nutrition,383220181.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,E-Commerce,Nutrition,383220181.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,E-Commerce,Nutrition,383220181.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,E-Commerce,Personal Care,159709117.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,E-Commerce,Personal Care,159709117.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,E-Commerce,Personal Care,159709117.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,E-Commerce,Snacks,23412470.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,E-Commerce,Snacks,23412470.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,E-Commerce,Snacks,23412470.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,GT,Beverages,198312081.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,GT,Beverages,198312081.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,GT,Beverages,198312081.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,GT,Home Care,712003551.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,GT,Home Care,712003551.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,GT,Home Care,712003551.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,GT,Ice Cream,269848601.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,GT,Ice Cream,269848601.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,GT,Ice Cream,269848601.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,GT,Nutrition,2040175612.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,GT,Nutrition,2040175612.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,GT,Nutrition,2040175612.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,GT,Personal Care,783739499.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,GT,Personal Care,783739499.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,GT,Personal Care,783739499.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,GT,Snacks,118269869.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,GT,Snacks,118269869.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,GT,Snacks,118269869.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,HORECA,Beverages,53245428.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,HORECA,Beverages,53245428.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,HORECA,Beverages,53245428.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,HORECA,Home Care,176114310.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,HORECA,Home Care,176114310.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,HORECA,Home Care,176114310.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,HORECA,Ice Cream,66051368.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,HORECA,Ice Cream,66051368.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,HORECA,Ice Cream,66051368.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,HORECA,Nutrition,549758088.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,HORECA,Nutrition,549758088.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,HORECA,Nutrition,549758088.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,HORECA,Personal Care,174273498.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,HORECA,Personal Care,174273498.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,HORECA,Personal Care,174273498.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,HORECA,Snacks,30064643.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,HORECA,Snacks,30064643.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,HORECA,Snacks,30064643.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,MT,Beverages,67546655.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,MT,Beverages,67546655.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,MT,Beverages,67546655.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,MT,Home Care,237767691.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,MT,Home Care,237767691.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,MT,Home Care,237767691.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,MT,Ice Cream,99107492.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,MT,Ice Cream,99107492.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,MT,Ice Cream,99107492.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,MT,Nutrition,693632974.33,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,MT,Nutrition,693632974.33,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,MT,Nutrition,693632974.33,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,MT,Personal Care,272308237.0,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,MT,Personal Care,272308237.0,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,MT,Personal Care,272308237.0,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-10-01,South,MT,Snacks,40846797.67,false,1,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-11-01,South,MT,Snacks,40846797.67,false,2,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0
+2026-12-01,South,MT,Snacks,40846797.67,false,3,moving_average_3,2026-09-30,2026-10-06,fmcg-sales-forecast-v1.0.0

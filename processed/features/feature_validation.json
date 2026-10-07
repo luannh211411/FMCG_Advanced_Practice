@@ -1,0 +1,567 @@
+{
+  "built_at": "2026-10-06",
+  "as_of_date": "2026-10-06",
+  "source_database": "D:\\Projects\\FMCG_Advanced_Practice\\database\\fmcg_analytics_main.duckdb",
+  "feature_database": "D:\\Projects\\FMCG_Advanced_Practice\\database\\fmcg_predictive_features.duckdb",
+  "feature_tables": {
+    "feature_sales_monthly": {
+      "rows": 1512,
+      "columns": [
+        "MonthStart",
+        "Year",
+        "Quarter",
+        "MonthNumber",
+        "MonthName",
+        "TimeIndex",
+        "Region",
+        "Channel",
+        "Category",
+        "NetSales",
+        "Quantity",
+        "GrossMargin",
+        "GrossMarginPct",
+        "ActiveCustomers",
+        "TransactionCount",
+        "GrossSales",
+        "DiscountAmount",
+        "DiscountPct",
+        "ReturnAmount",
+        "ReturnQuantity",
+        "ReturnRate",
+        "SalesLag1Month",
+        "SalesLag3Months",
+        "SalesLag12Months",
+        "QuantityLag1Month",
+        "QuantityLag3Months",
+        "Trailing3MonthSalesAverage",
+        "Trailing3MonthQuantityAverage",
+        "RecentSalesTrendPct",
+        "RecentQuantityTrendPct"
+      ],
+      "nulls": {
+        "SalesLag1Month": {
+          "count": 72,
+          "percent": 0.047619047619047616
+        },
+        "SalesLag3Months": {
+          "count": 216,
+          "percent": 0.14285714285714285
+        },
+        "SalesLag12Months": {
+          "count": 864,
+          "percent": 0.5714285714285714
+        },
+        "QuantityLag1Month": {
+          "count": 72,
+          "percent": 0.047619047619047616
+        },
+        "QuantityLag3Months": {
+          "count": 216,
+          "percent": 0.14285714285714285
+        },
+        "RecentSalesTrendPct": {
+          "count": 216,
+          "percent": 0.14285714285714285
+        },
+        "RecentQuantityTrendPct": {
+          "count": 216,
+          "percent": 0.14285714285714285
+        }
+      }
+    },
+    "feature_customer_monthly": {
+      "rows": 136416,
+      "columns": [
+        "CustomerID",
+        "AsOfMonth",
+        "AsOfDate",
+        "NetSales",
+        "Quantity",
+        "GrossMargin",
+        "GrossMarginPct",
+        "TransactionCount",
+        "ActiveSalesDays",
+        "DiscountAmount",
+        "DiscountPct",
+        "ReturnAmount",
+        "ReturnQuantity",
+        "ReturnRate",
+        "ActiveMonth",
+        "LastPurchaseDate",
+        "DaysSinceLastPurchase",
+        "SalesLag1Month",
+        "SalesLag3Months",
+        "QuantityLag1Month",
+        "QuantityLag3Months",
+        "Trailing3MonthSalesAverage",
+        "Trailing3MonthQuantityAverage",
+        "RecentSalesTrendPct",
+        "RecentQuantityTrendPct",
+        "Trailing12MonthSales",
+        "ActiveMonthsTrailing3",
+        "ActiveMonthsTrailing6",
+        "ActiveMonthsTrailing12",
+        "PurchaseFrequencyTrailing3Months",
+        "PurchaseFrequencyTrailing12Months",
+        "ActiveMonthConsistencyTrailing12",
+        "PurchaseConsistencyTrailing6",
+        "SalesPerActiveMonthTrailing12",
+        "AveragePurchaseIntervalDaysTrailing12"
+      ],
+      "nulls": {
+        "GrossMarginPct": {
+          "count": 1442,
+          "percent": 0.010570607553366173
+        },
+        "DiscountPct": {
+          "count": 1442,
+          "percent": 0.010570607553366173
+        },
+        "ReturnRate": {
+          "count": 1442,
+          "percent": 0.010570607553366173
+        },
+        "SalesLag1Month": {
+          "count": 6500,
+          "percent": 0.04764836969270467
+        },
+        "SalesLag3Months": {
+          "count": 19500,
+          "percent": 0.142945109078114
+        },
+        "QuantityLag1Month": {
+          "count": 6500,
+          "percent": 0.04764836969270467
+        },
+        "QuantityLag3Months": {
+          "count": 19500,
+          "percent": 0.142945109078114
+        },
+        "RecentSalesTrendPct": {
+          "count": 19500,
+          "percent": 0.142945109078114
+        },
+        "RecentQuantityTrendPct": {
+          "count": 19500,
+          "percent": 0.142945109078114
+        },
+        "AveragePurchaseIntervalDaysTrailing12": {
+          "count": 317,
+          "percent": 0.0023237743373211352
+        }
+      }
+    },
+    "feature_inventory_risk": {
+      "rows": 75600,
+      "columns": [
+        "SnapshotDate",
+        "DistributorID",
+        "ProductID",
+        "OnHandQuantity",
+        "InTransitQuantity",
+        "ReorderPoint",
+        "ExpiredQuantity",
+        "AvailableInventoryQty",
+        "SnapshotFreshnessDays",
+        "CurrentReorderException",
+        "Trailing3CompleteMonthsSalesQuantity",
+        "Prior3CompleteMonthsSalesQuantity",
+        "SalesVelocityQuantityPerDay",
+        "DemandTrendPct",
+        "InventoryCoverageDaysProxy"
+      ],
+      "nulls": {
+        "DemandTrendPct": {
+          "count": 14401,
+          "percent": 0.190489417989418
+        },
+        "InventoryCoverageDaysProxy": {
+          "count": 3601,
+          "percent": 0.04763227513227513
+        }
+      }
+    }
+  },
+  "keys": {
+    "feature_sales_monthly": {
+      "null_key_rows": 0,
+      "duplicate_key_groups": 0
+    },
+    "feature_customer_monthly": {
+      "null_key_rows": 0,
+      "duplicate_key_groups": 0
+    },
+    "feature_inventory_risk": {
+      "null_key_rows": 0,
+      "duplicate_key_groups": 0
+    }
+  },
+  "sales_history": {
+    "first_fact_date": "2025-01-01",
+    "latest_fact_date": "2026-09-30",
+    "first_month": "2025-01-01",
+    "latest_month": "2026-09-01",
+    "calendar_complete_months": 21,
+    "month_completeness_basis": "One source file per month and source fact dates span the first through final calendar day; no independent ingestion manifest is available.",
+    "monthly_rows": [
+      {
+        "month": "2025-01-01",
+        "transactions": 30005,
+        "source_files": 1,
+        "first_fact_date": "2025-01-01",
+        "last_fact_date": "2025-01-31"
+      },
+      {
+        "month": "2025-02-01",
+        "transactions": 27355,
+        "source_files": 1,
+        "first_fact_date": "2025-02-01",
+        "last_fact_date": "2025-02-28"
+      },
+      {
+        "month": "2025-03-01",
+        "transactions": 30133,
+        "source_files": 1,
+        "first_fact_date": "2025-03-01",
+        "last_fact_date": "2025-03-31"
+      },
+      {
+        "month": "2025-04-01",
+        "transactions": 29283,
+        "source_files": 1,
+        "first_fact_date": "2025-04-01",
+        "last_fact_date": "2025-04-30"
+      },
+      {
+        "month": "2025-05-01",
+        "transactions": 30256,
+        "source_files": 1,
+        "first_fact_date": "2025-05-01",
+        "last_fact_date": "2025-05-31"
+      },
+      {
+        "month": "2025-06-01",
+        "transactions": 29122,
+        "source_files": 1,
+        "first_fact_date": "2025-06-01",
+        "last_fact_date": "2025-06-30"
+      },
+      {
+        "month": "2025-07-01",
+        "transactions": 29968,
+        "source_files": 1,
+        "first_fact_date": "2025-07-01",
+        "last_fact_date": "2025-07-31"
+      },
+      {
+        "month": "2025-08-01",
+        "transactions": 30014,
+        "source_files": 1,
+        "first_fact_date": "2025-08-01",
+        "last_fact_date": "2025-08-31"
+      },
+      {
+        "month": "2025-09-01",
+        "transactions": 29291,
+        "source_files": 1,
+        "first_fact_date": "2025-09-01",
+        "last_fact_date": "2025-09-30"
+      },
+      {
+        "month": "2025-10-01",
+        "transactions": 29933,
+        "source_files": 1,
+        "first_fact_date": "2025-10-01",
+        "last_fact_date": "2025-10-31"
+      },
+      {
+        "month": "2025-11-01",
+        "transactions": 29189,
+        "source_files": 1,
+        "first_fact_date": "2025-11-01",
+        "last_fact_date": "2025-11-30"
+      },
+      {
+        "month": "2025-12-01",
+        "transactions": 30247,
+        "source_files": 1,
+        "first_fact_date": "2025-12-01",
+        "last_fact_date": "2025-12-31"
+      },
+      {
+        "month": "2026-01-01",
+        "transactions": 30030,
+        "source_files": 1,
+        "first_fact_date": "2026-01-01",
+        "last_fact_date": "2026-01-31"
+      },
+      {
+        "month": "2026-02-01",
+        "transactions": 27409,
+        "source_files": 1,
+        "first_fact_date": "2026-02-01",
+        "last_fact_date": "2026-02-28"
+      },
+      {
+        "month": "2026-03-01",
+        "transactions": 30259,
+        "source_files": 1,
+        "first_fact_date": "2026-03-01",
+        "last_fact_date": "2026-03-31"
+      },
+      {
+        "month": "2026-04-01",
+        "transactions": 28925,
+        "source_files": 1,
+        "first_fact_date": "2026-04-01",
+        "last_fact_date": "2026-04-30"
+      },
+      {
+        "month": "2026-05-01",
+        "transactions": 30286,
+        "source_files": 1,
+        "first_fact_date": "2026-05-01",
+        "last_fact_date": "2026-05-31"
+      },
+      {
+        "month": "2026-06-01",
+        "transactions": 29013,
+        "source_files": 1,
+        "first_fact_date": "2026-06-01",
+        "last_fact_date": "2026-06-30"
+      },
+      {
+        "month": "2026-07-01",
+        "transactions": 30047,
+        "source_files": 1,
+        "first_fact_date": "2026-07-01",
+        "last_fact_date": "2026-07-31"
+      },
+      {
+        "month": "2026-08-01",
+        "transactions": 30032,
+        "source_files": 1,
+        "first_fact_date": "2026-08-01",
+        "last_fact_date": "2026-08-31"
+      },
+      {
+        "month": "2026-09-01",
+        "transactions": 29203,
+        "source_files": 1,
+        "first_fact_date": "2026-09-01",
+        "last_fact_date": "2026-09-30"
+      }
+    ],
+    "fact_sales_rows": 620000
+  },
+  "customer_history": {
+    "dimension_customers": 6500,
+    "customers_with_sales": 6500,
+    "customers_without_sales": 0,
+    "feature_first_asof_month": "2025-01-01",
+    "feature_latest_asof_month": "2026-09-01",
+    "feature_customer_count": 6500,
+    "min_days_since_last_purchase": 0,
+    "max_days_since_last_purchase": 87,
+    "sales_before_dimension_join_date_transactions": 52842,
+    "customers_with_sales_before_join_date": 1292,
+    "join_date_used_as_feature": false
+  },
+  "inventory_history": {
+    "first_snapshot": "2025-01-31",
+    "latest_snapshot": "2026-09-30",
+    "snapshot_count": 21,
+    "feature_rows": 75600,
+    "coverage_proxy_null_rows": 3601,
+    "freshness_as_of": "2026-10-06"
+  },
+  "null_patterns": {
+    "feature_sales_monthly": {
+      "SalesLag1Month": {
+        "count": 72,
+        "percent": 0.047619047619047616
+      },
+      "SalesLag3Months": {
+        "count": 216,
+        "percent": 0.14285714285714285
+      },
+      "SalesLag12Months": {
+        "count": 864,
+        "percent": 0.5714285714285714
+      },
+      "QuantityLag1Month": {
+        "count": 72,
+        "percent": 0.047619047619047616
+      },
+      "QuantityLag3Months": {
+        "count": 216,
+        "percent": 0.14285714285714285
+      },
+      "RecentSalesTrendPct": {
+        "count": 216,
+        "percent": 0.14285714285714285
+      },
+      "RecentQuantityTrendPct": {
+        "count": 216,
+        "percent": 0.14285714285714285
+      }
+    },
+    "feature_customer_monthly": {
+      "GrossMarginPct": {
+        "count": 1442,
+        "percent": 0.010570607553366173
+      },
+      "DiscountPct": {
+        "count": 1442,
+        "percent": 0.010570607553366173
+      },
+      "ReturnRate": {
+        "count": 1442,
+        "percent": 0.010570607553366173
+      },
+      "SalesLag1Month": {
+        "count": 6500,
+        "percent": 0.04764836969270467
+      },
+      "SalesLag3Months": {
+        "count": 19500,
+        "percent": 0.142945109078114
+      },
+      "QuantityLag1Month": {
+        "count": 6500,
+        "percent": 0.04764836969270467
+      },
+      "QuantityLag3Months": {
+        "count": 19500,
+        "percent": 0.142945109078114
+      },
+      "RecentSalesTrendPct": {
+        "count": 19500,
+        "percent": 0.142945109078114
+      },
+      "RecentQuantityTrendPct": {
+        "count": 19500,
+        "percent": 0.142945109078114
+      },
+      "AveragePurchaseIntervalDaysTrailing12": {
+        "count": 317,
+        "percent": 0.0023237743373211352
+      }
+    },
+    "feature_inventory_risk": {
+      "DemandTrendPct": {
+        "count": 14401,
+        "percent": 0.190489417989418
+      },
+      "InventoryCoverageDaysProxy": {
+        "count": 3601,
+        "percent": 0.04763227513227513
+      }
+    }
+  },
+  "invalid_values": {
+    "sales_negative_quantity": 0,
+    "sales_negative_transaction_count": 0,
+    "customer_negative_quantity": 0,
+    "customer_negative_days_since_purchase": 0,
+    "customer_invalid_active_month": 0,
+    "inventory_negative_quantities_or_points": 0,
+    "inventory_negative_freshness": 0,
+    "inventory_invalid_exception_flag": 0
+  },
+  "leakage_checks": {
+    "sales_lag_or_window_mismatches": {
+      "SalesLag1Month": 0,
+      "SalesLag3Months": 0,
+      "SalesLag12Months": 0,
+      "QuantityLag1Month": 0,
+      "QuantityLag3Months": 0
+    },
+    "sales_trailing_average_mismatches": 0,
+    "customer_lag_or_window_mismatches": 0,
+    "trend_and_asof_mismatches": {
+      "sales_trend_features": 0,
+      "customer_trend_and_asof_features": 0
+    },
+    "inventory_demand_window_mismatches": 0,
+    "customer_future_asof_rows": 0,
+    "target_source_referenced": false,
+    "promotion_features_included": false
+  },
+  "reconciliations": {
+    "sales_monthly_vs_fact_sales": {
+      "feature": [
+        327109162314.0,
+        4895862,
+        120055809705.0,
+        27258748686.0
+      ],
+      "source": [
+        327109162314.0,
+        4895862,
+        120055809705.0,
+        27258748686.0
+      ],
+      "absolute_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "customer_monthly_vs_fact_sales": {
+      "feature": [
+        327109162314.0,
+        4895862,
+        120055809705.0,
+        27258748686.0
+      ],
+      "source": [
+        327109162314.0,
+        4895862,
+        120055809705.0,
+        27258748686.0
+      ],
+      "absolute_differences": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "returns_through_latest_sales_month": {
+      "feature": [
+        3807688576.0,
+        56981
+      ],
+      "customer_feature": [
+        3807688576.0,
+        56981
+      ],
+      "source": [
+        3807688576.0,
+        56981
+      ],
+      "absolute_differences": [
+        0.0,
+        0.0
+      ],
+      "customer_feature_absolute_differences": [
+        0.0,
+        0.0
+      ],
+      "excluded_return_rows_after_cutoff": 528
+    },
+    "inventory_per_snapshot_vs_fact_inventory": {
+      "mismatched_snapshot_dates": 0,
+      "snapshot_dates": 21
+    }
+  },
+  "limitations": [
+    "JoinDate is excluded because fact sales precede it for some customers.",
+    "Return features stop at the latest complete sales month; later returns are not future information for those as-of rows.",
+    "Inventory coverage is a demand-based proxy, not a stockout prediction; lead time/order cadence and lot expiry are unavailable.",
+    "Distributor sales demand uses the current customer-to-distributor mapping because historical assignment data is unavailable.",
+    "Promotion features and targets are intentionally excluded from predictor features."
+  ]
+}

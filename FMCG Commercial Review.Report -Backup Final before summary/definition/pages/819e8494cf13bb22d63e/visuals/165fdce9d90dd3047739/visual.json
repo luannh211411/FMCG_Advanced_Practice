@@ -1,0 +1,73 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "165fdce9d90dd3047739",
+  "position": {
+    "x": 1148,
+    "y": 150,
+    "z": 1000,
+    "height": 104,
+    "width": 740,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Q4 Projected Target Achievement %"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Q4 Projected Target Achievement %",
+              "nativeQueryRef": "Q4 Projected Achievement"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Q4 Top 5 Gap Concentration %"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Q4 Top 5 Gap Concentration %",
+              "nativeQueryRef": "Top 5 Share of Gross Negative Gap"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

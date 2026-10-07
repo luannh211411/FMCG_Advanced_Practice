@@ -1,0 +1,2 @@
+AsOfDate,OutputRows,UniqueCustomerMonthVersionKeys,IncompleteSegments,EligibleDeclineScoresMissing,EligibleInactivityScoresMissing,ModelVersion
+2026-09-30,136416,136416,0,0,0,fmcg-customer-intelligence-v1.0.0

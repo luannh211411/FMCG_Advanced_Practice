@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "860dbc0c80041837c9b3",
+  "position": {
+    "x": 32,
+    "y": 621,
+    "z": 1000,
+    "height": 72,
+    "width": 275,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Core High Decline Customer Count"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Core High Decline Customer Count",
+              "nativeQueryRef": "Core + High Decline Customers"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

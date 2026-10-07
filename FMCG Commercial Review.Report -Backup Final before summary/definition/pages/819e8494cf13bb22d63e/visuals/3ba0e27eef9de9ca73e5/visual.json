@@ -1,0 +1,105 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "3ba0e27eef9de9ca73e5",
+  "position": {
+    "x": 1180,
+    "y": 621,
+    "width": 708,
+    "height": 72,
+    "z": 1000,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Potential 12M Sales Exposure"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Potential 12M Sales Exposure",
+              "nativeQueryRef": "Trailing 12M Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Potential Q4-Relevant Recent Sales"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Potential Q4-Relevant Recent Sales",
+              "nativeQueryRef": "Recent Jul-Sep Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Potential Recent 3-Month Sales"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Potential Recent 3-Month Sales",
+              "nativeQueryRef": "Recent Sales in Q4-Gap Areas"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1000000000'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    }
+  }
+}

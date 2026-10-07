@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "e487cbadf7a173a71a11",
+  "position": {
+    "x": 42.660944878220533,
+    "y": 630.71660125507378,
+    "z": 1000,
+    "height": 124,
+    "width": 1824,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Core High Decline Customer Count"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Core High Decline Customer Count",
+              "nativeQueryRef": "Core High Decline Customer Count"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Core High Decline 12M Sales Exposure"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Core High Decline 12M Sales Exposure",
+              "nativeQueryRef": "Core High Decline 12M Sales Exposure"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Potential Customer Count"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Potential Customer Count",
+              "nativeQueryRef": "Potential Customer Count"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Potential 12M Sales Exposure"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Potential 12M Sales Exposure",
+              "nativeQueryRef": "Potential 12M Sales Exposure"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "High Inventory Coverage Pressure Positions"
+                }
+              },
+              "queryRef": "Q4 Action Priority.High Inventory Coverage Pressure Positions",
+              "nativeQueryRef": "High Inventory Coverage Pressure Positions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Inventory Reorder Exceptions"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Inventory Reorder Exceptions",
+              "nativeQueryRef": "Inventory Reorder Exceptions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Q4 Top 5 Gap Concentration %"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Q4 Top 5 Gap Concentration %",
+              "nativeQueryRef": "Q4 Top 5 Gap Concentration %"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

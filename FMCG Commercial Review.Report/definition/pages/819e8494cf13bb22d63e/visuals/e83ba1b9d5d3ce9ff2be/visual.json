@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "e83ba1b9d5d3ce9ff2be",
+  "position": {
+    "x": 1239.7024594466566,
+    "y": 706.37868564917358,
+    "z": 1004,
+    "height": 239.13042364960887,
+    "width": 377.57435313096136,
+    "tabOrder": 1004
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Priority Level"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Priority Level",
+              "nativeQueryRef": "Priority Level"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Q4 Action Priority"
+                        }
+                      },
+                      "Property": "Priority Score"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Q4 Action Priority.Priority Score)",
+              "nativeQueryRef": "Sum of Priority Score"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Action Type"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Action Type",
+              "nativeQueryRef": "Action Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Primary Driver"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Primary Driver",
+              "nativeQueryRef": "Primary Driver"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Recommendation Template"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Recommendation Template",
+              "nativeQueryRef": "Recommendation Template"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Q4 Action Priority"
+                      }
+                    },
+                    "Property": "Priority Score"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,14 @@
+Validation,Value,Status,ModelOrRuleVersion
+OutputRows,75600,PASS,fmcg-inventory-intelligence-v1.0.0
+UniqueSnapshotDistributorProductKeys,75600,PASS,fmcg-inventory-intelligence-v1.0.0
+NullGrainKeys,0,PASS,fmcg-inventory-intelligence-v1.0.0
+CoverageFormulaMaxAbsoluteErrorDays,0.0,PASS,fmcg-inventory-intelligence-v1.0.0
+AllSnapshotKeysReconciled,1,PASS,fmcg-inventory-intelligence-v1.0.0
+SnapshotMeasureMismatches,0,PASS,fmcg-inventory-intelligence-v1.0.0
+RecentVelocityMismatches,0,PASS,fmcg-inventory-intelligence-v1.0.0
+PriorVelocityMismatches,0,PASS,fmcg-inventory-intelligence-v1.0.0
+DemandTrendMismatches,0,PASS,fmcg-inventory-intelligence-v1.0.0
+ReorderFlagMismatches,0,PASS,fmcg-inventory-intelligence-v1.0.0
+PreSnapshotDemandWindowMismatches,0,PASS,fmcg-inventory-intelligence-v1.0.0
+LatestSnapshotPositions,3600,PASS,fmcg-inventory-intelligence-v1.0.0
+SnapshotInventoryNotSummedAcrossDates,One reconciliation row per snapshot; quantities are date-specific,PASS,fmcg-inventory-intelligence-v1.0.0

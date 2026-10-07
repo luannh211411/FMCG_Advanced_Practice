@@ -8,7 +8,7 @@ model 'FMCG Commercial Review Model'
 
 annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
 
-annotation PBI_QueryOrder = ["Date","Month","Region","Channel","Category","Customer","Product","Sales Force","Distributor","Promotion","Sales","Returns","Targets","Inventory Snapshot","Promotion Attribution","Sales Forecast","Customer Intelligence","Inventory Intelligence","Forecast Backtest Summary"]
+annotation PBI_QueryOrder = ["Date","Month","Region","Channel","Category","Customer","Product","Sales Force","Distributor","Promotion","Sales","Returns","Targets","Inventory Snapshot","Promotion Attribution","Sales Forecast","Customer Intelligence","Inventory Intelligence","Forecast Backtest Summary","Q4 Action Priority"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -44,4 +44,11 @@ ref table LocalDateTable_b01f224b-8d24-4935-9687-4fd8c866fafc
 ref table LocalDateTable_4f7028bb-73ae-421a-96ac-97de44458c21
 ref table LocalDateTable_06803696-a2d4-4186-8ce5-469ba3660458
 ref table LocalDateTable_ff88d653-d72b-4f55-b8a2-5ea29169f5b8
+ref table 'Q4 Action Priority'
+ref table LocalDateTable_766a5018-ded4-455f-bc20-4b5ee84c817e
+ref table LocalDateTable_52a42313-4cd2-40fd-b47d-ffdd23acfebf
+ref table LocalDateTable_cfa7a843-0f8e-49c5-b5c4-386fc0e44862
+ref table LocalDateTable_d3c0c4de-38d2-4c7d-8b32-bec4cd0a11a1
+
+ref cultureInfo en-US
 

@@ -1,0 +1,9 @@
+Field,Table,ValidationRule
+TransactionID,fact_sales,"Unique, non-null"
+CustomerID,fact_sales,Must exist in dim_customer
+ProductID,fact_sales,Must exist in dim_product
+NetSales,fact_sales,GrossSales - DiscountAmount
+GrossMargin,fact_sales,NetSales - COGS
+SalesTarget,fact_target,Grain = Month + Region + Channel + Category
+ReturnAmount,sales_returns,Do not subtract twice when joining to sales
+Inventory,fact_inventory_snapshot,Snapshot fact; do not sum across dates without intent

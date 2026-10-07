@@ -1,0 +1,203 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "045e8098d42d1c000179",
+  "position": {
+    "x": 833.15052605417941,
+    "y": 705.74434595311072,
+    "z": 1003,
+    "height": 239.06552895369066,
+    "width": 377.92394996272054,
+    "tabOrder": 1003
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Priority Level"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Priority Level",
+              "nativeQueryRef": "Priority Level"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Q4 Action Priority"
+                        }
+                      },
+                      "Property": "Priority Score"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Q4 Action Priority.Priority Score)",
+              "nativeQueryRef": "Sum of Priority Score"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Distributor"
+                    }
+                  },
+                  "Property": "Distributor ID"
+                }
+              },
+              "queryRef": "Distributor.Distributor ID",
+              "nativeQueryRef": "Distributor ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Product ID"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Product ID",
+              "nativeQueryRef": "Product ID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Coverage Pressure Level"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Coverage Pressure Level",
+              "nativeQueryRef": "Coverage Pressure Level"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Inventory Reorder Exceptions"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Inventory Reorder Exceptions",
+              "nativeQueryRef": "Inventory Reorder Exceptions"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inventory Intelligence"
+                        }
+                      },
+                      "Property": "On Hand Quantity"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Inventory Intelligence.On Hand Quantity)",
+              "nativeQueryRef": "Sum of On Hand Quantity"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inventory Intelligence"
+                        }
+                      },
+                      "Property": "Reorder Point"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Inventory Intelligence.Reorder Point)",
+              "nativeQueryRef": "Sum of Reorder Point"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inventory Intelligence"
+                        }
+                      },
+                      "Property": "On-Hand Coverage Days"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Inventory Intelligence.On-Hand Coverage Days)",
+              "nativeQueryRef": "Sum of On-Hand Coverage Days"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inventory Intelligence"
+                        }
+                      },
+                      "Property": "Available Coverage Days"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Inventory Intelligence.Available Coverage Days)",
+              "nativeQueryRef": "Sum of Available Coverage Days"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Recommendation Template"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Recommendation Template",
+              "nativeQueryRef": "Recommendation Template"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

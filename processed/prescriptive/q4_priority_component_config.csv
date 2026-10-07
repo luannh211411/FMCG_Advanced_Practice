@@ -1,0 +1,6 @@
+Component,Weight,ScaleMin,ScaleMax
+CommercialImpact,0.3,0,100
+RiskOpportunitySeverity,0.25,0,100
+Q4Relevance,0.2,0,100
+EvidenceConfidence,0.15,0,100
+Actionability,0.1,0,100

@@ -1,0 +1,181 @@
+ProductID,Category,Brand,SKU,PackSize,PriceTier,ListPrice,StandardCost,ProductStatus
+P0001,Nutrition,NutriPlus,NUT-001,XL,Core,185000,102443.0,Active
+P0002,Home Care,SoftWash,SOF-002,L,Premium,88000,59702.0,Active
+P0003,Personal Care,PureSkin,PUR-003,XL,Premium,110000,63662.0,Active
+P0004,Nutrition,DailyFit,DAI-004,XL,Value,172000,92673.0,Active
+P0005,Nutrition,GrowWell,GRO-005,M,Premium,157000,107273.0,Active
+P0006,Personal Care,FreshCare,FRE-006,L,Core,91000,63529.0,Active
+P0007,Snacks,NutJoy,NUT-007,XL,Value,10000,7000.0,Active
+P0008,Beverages,AquaMax,AQU-008,L,Core,24000,16142.0,Active
+P0009,Nutrition,DailyFit,DAI-009,XL,Core,101000,52182.0,Active
+P0010,Ice Cream,Frosty,FRO-010,S,Core,34000,17952.0,Active
+P0011,Beverages,Spark,SPA-011,L,Premium,28000,16517.0,Discontinued
+P0012,Personal Care,Glow,GLO-012,S,Value,75000,40953.0,Active
+P0013,Home Care,CleanPro,CLE-013,S,Core,109000,56293.0,Discontinued
+P0014,Nutrition,NutriPlus,NUT-014,L,Value,196000,110113.0,Active
+P0015,Ice Cream,CreamJoy,CRE-015,XL,Premium,44000,23438.0,Active
+P0016,Beverages,Spark,SPA-016,XL,Premium,16000,9763.0,Discontinued
+P0017,Nutrition,GrowWell,GRO-017,XL,Premium,133000,73226.0,Active
+P0018,Nutrition,GrowWell,GRO-018,L,Value,151000,93596.0,Active
+P0019,Nutrition,GrowWell,GRO-019,XL,Core,191000,129608.0,Active
+P0020,Home Care,BrightHome,BRI-020,L,Value,87000,45977.0,Active
+P0021,Nutrition,GrowWell,GRO-021,S,Core,132000,69522.0,Active
+P0022,Ice Cream,Frosty,FRO-022,XL,Premium,30000,17372.0,Active
+P0023,Beverages,TeaGo,TEA-023,M,Value,27000,17134.0,Active
+P0024,Nutrition,NutriPlus,NUT-024,S,Value,125000,64875.0,Discontinued
+P0025,Personal Care,PureSkin,PUR-025,M,Value,105000,54053.0,Active
+P0026,Home Care,BrightHome,BRI-026,S,Core,65000,41267.0,Active
+P0027,Nutrition,NutriPlus,NUT-027,M,Core,189000,90900.0,Active
+P0028,Snacks,NutJoy,NUT-028,L,Value,26000,15666.0,Active
+P0029,Beverages,Spark,SPA-029,L,Core,11000,5516.0,Active
+P0030,Ice Cream,Frosty,FRO-030,L,Premium,42000,27229.0,Discontinued
+P0031,Personal Care,FreshCare,FRE-031,L,Core,52000,25246.0,Active
+P0032,Snacks,Crunchy,CRU-032,S,Core,21000,12520.0,Active
+P0033,Personal Care,FreshCare,FRE-033,L,Core,63000,37756.0,Active
+P0034,Ice Cream,CoolPop,COO-034,L,Value,43000,28640.0,Active
+P0035,Personal Care,Glow,GLO-035,L,Core,112000,73561.0,Active
+P0036,Home Care,CleanPro,CLE-036,M,Core,94000,63258.0,Active
+P0037,Beverages,TeaGo,TEA-037,XL,Core,25000,14313.0,Active
+P0038,Personal Care,Glow,GLO-038,L,Value,47000,27387.0,Active
+P0039,Snacks,Crunchy,CRU-039,S,Core,10000,6763.0,Active
+P0040,Home Care,CleanPro,CLE-040,L,Value,53000,27896.0,Active
+P0041,Beverages,AquaMax,AQU-041,L,Core,25000,16382.0,Discontinued
+P0042,Ice Cream,Frosty,FRO-042,L,Core,26000,16621.0,Active
+P0043,Ice Cream,CreamJoy,CRE-043,S,Value,39000,21748.0,Discontinued
+P0044,Snacks,BiteUp,BIT-044,M,Premium,15000,9270.0,Discontinued
+P0045,Nutrition,GrowWell,GRO-045,M,Premium,117000,68159.0,Discontinued
+P0046,Ice Cream,CoolPop,COO-046,L,Value,20000,10785.0,Discontinued
+P0047,Nutrition,GrowWell,GRO-047,M,Premium,198000,135373.0,Active
+P0048,Ice Cream,CoolPop,COO-048,S,Value,35000,19663.0,Active
+P0049,Beverages,TeaGo,TEA-049,S,Premium,28000,14814.0,Active
+P0050,Snacks,NutJoy,NUT-050,S,Value,19000,9742.0,Active
+P0051,Personal Care,FreshCare,FRE-051,M,Value,60000,40103.0,Active
+P0052,Beverages,AquaMax,AQU-052,M,Premium,31000,20444.0,Active
+P0053,Personal Care,PureSkin,PUR-053,S,Premium,71000,40321.0,Active
+P0054,Nutrition,NutriPlus,NUT-054,XL,Premium,148000,93979.0,Active
+P0055,Ice Cream,CoolPop,COO-055,XL,Premium,17000,10029.0,Active
+P0056,Snacks,NutJoy,NUT-056,XL,Core,25000,15486.0,Discontinued
+P0057,Ice Cream,CoolPop,COO-057,S,Core,22000,13045.0,Active
+P0058,Personal Care,FreshCare,FRE-058,XL,Core,101000,48867.0,Active
+P0059,Beverages,Spark,SPA-059,L,Value,19000,12896.0,Active
+P0060,Snacks,NutJoy,NUT-060,XL,Premium,22000,10638.0,Active
+P0061,Nutrition,NutriPlus,NUT-061,XL,Value,163000,100902.0,Active
+P0062,Nutrition,GrowWell,GRO-062,L,Core,114000,75219.0,Active
+P0063,Beverages,AquaMax,AQU-063,XL,Premium,29000,15681.0,Active
+P0064,Nutrition,DailyFit,DAI-064,L,Premium,175000,87209.0,Active
+P0065,Ice Cream,CreamJoy,CRE-065,S,Core,32000,18389.0,Active
+P0066,Home Care,SoftWash,SOF-066,L,Core,69000,33642.0,Discontinued
+P0067,Snacks,Crunchy,CRU-067,XL,Core,10000,6308.0,Active
+P0068,Beverages,AquaMax,AQU-068,S,Value,15000,8487.0,Active
+P0069,Nutrition,NutriPlus,NUT-069,S,Value,122000,70160.0,Active
+P0070,Beverages,AquaMax,AQU-070,L,Value,13000,7176.0,Active
+P0071,Beverages,Spark,SPA-071,M,Core,14000,8211.0,Active
+P0072,Snacks,Crunchy,CRU-072,S,Premium,25000,15887.0,Active
+P0073,Nutrition,GrowWell,GRO-073,L,Value,157000,87680.0,Discontinued
+P0074,Nutrition,DailyFit,DAI-074,XL,Core,117000,60894.0,Active
+P0075,Nutrition,GrowWell,GRO-075,M,Premium,189000,105468.0,Active
+P0076,Personal Care,PureSkin,PUR-076,L,Value,80000,49130.0,Active
+P0077,Nutrition,DailyFit,DAI-077,XL,Value,164000,102754.0,Discontinued
+P0078,Ice Cream,CreamJoy,CRE-078,L,Premium,31000,21021.0,Discontinued
+P0079,Snacks,BiteUp,BIT-079,L,Value,23000,12087.0,Active
+P0080,Personal Care,Glow,GLO-080,M,Premium,87000,47609.0,Discontinued
+P0081,Personal Care,Glow,GLO-081,S,Value,100000,60942.0,Active
+P0082,Home Care,SoftWash,SOF-082,M,Value,64000,33953.0,Active
+P0083,Home Care,BrightHome,BRI-083,XL,Core,130000,81261.0,Active
+P0084,Beverages,AquaMax,AQU-084,M,Core,15000,10033.0,Active
+P0085,Snacks,BiteUp,BIT-085,M,Core,11000,7322.0,Active
+P0086,Personal Care,PureSkin,PUR-086,XL,Premium,84000,48750.0,Active
+P0087,Personal Care,Glow,GLO-087,L,Core,104000,59265.0,Active
+P0088,Snacks,NutJoy,NUT-088,XL,Value,22000,12537.0,Active
+P0089,Personal Care,FreshCare,FRE-089,XL,Premium,111000,53730.0,Active
+P0090,Nutrition,GrowWell,GRO-090,S,Value,165000,106886.0,Active
+P0091,Home Care,BrightHome,BRI-091,XL,Value,68000,46154.0,Active
+P0092,Personal Care,FreshCare,FRE-092,L,Premium,83000,41487.0,Active
+P0093,Nutrition,GrowWell,GRO-093,L,Value,109000,72674.0,Active
+P0094,Beverages,Spark,SPA-094,L,Value,14000,6762.0,Active
+P0095,Ice Cream,CreamJoy,CRE-095,M,Core,39000,26653.0,Active
+P0096,Personal Care,PureSkin,PUR-096,S,Core,76000,44935.0,Active
+P0097,Snacks,BiteUp,BIT-097,M,Value,13000,7242.0,Active
+P0098,Ice Cream,CoolPop,COO-098,M,Value,22000,11570.0,Discontinued
+P0099,Nutrition,NutriPlus,NUT-099,M,Core,177000,101212.0,Active
+P0100,Personal Care,PureSkin,PUR-100,XL,Premium,85000,59266.0,Active
+P0101,Snacks,NutJoy,NUT-101,M,Value,14000,9338.0,Active
+P0102,Personal Care,FreshCare,FRE-102,L,Core,78000,49946.0,Active
+P0103,Personal Care,FreshCare,FRE-103,S,Premium,68000,41347.0,Active
+P0104,Nutrition,GrowWell,GRO-104,XL,Value,172000,88519.0,Discontinued
+P0105,Nutrition,NutriPlus,NUT-105,L,Premium,187000,125227.0,Active
+P0106,Nutrition,DailyFit,DAI-106,S,Core,170000,98316.0,Active
+P0107,Beverages,TeaGo,TEA-107,L,Premium,25000,15922.0,Discontinued
+P0108,Ice Cream,CreamJoy,CRE-108,S,Core,19000,11033.0,Active
+P0109,Home Care,CleanPro,CLE-109,M,Core,95000,50761.0,Active
+P0110,Personal Care,PureSkin,PUR-110,XL,Core,64000,35099.0,Active
+P0111,Snacks,NutJoy,NUT-111,L,Value,17000,9160.0,Active
+P0112,Beverages,AquaMax,AQU-112,M,Core,26000,13859.0,Discontinued
+P0113,Home Care,SoftWash,SOF-113,L,Premium,97000,64881.0,Active
+P0114,Personal Care,FreshCare,FRE-114,XL,Value,84000,40929.0,Active
+P0115,Ice Cream,CoolPop,COO-115,L,Value,41000,25761.0,Active
+P0116,Home Care,BrightHome,BRI-116,S,Premium,111000,62494.0,Active
+P0117,Ice Cream,CoolPop,COO-117,M,Premium,18000,11642.0,Active
+P0118,Nutrition,NutriPlus,NUT-118,M,Premium,126000,64035.0,Active
+P0119,Nutrition,NutriPlus,NUT-119,S,Core,191000,109214.0,Active
+P0120,Personal Care,Glow,GLO-120,XL,Value,94000,58974.0,Active
+P0121,Ice Cream,Frosty,FRO-121,S,Core,26000,15581.0,Discontinued
+P0122,Beverages,AquaMax,AQU-122,XL,Value,15000,8799.0,Active
+P0123,Beverages,Spark,SPA-123,L,Value,15000,8123.0,Active
+P0124,Nutrition,GrowWell,GRO-124,L,Value,111000,66337.0,Active
+P0125,Home Care,SoftWash,SOF-125,L,Core,120000,58740.0,Active
+P0126,Home Care,CleanPro,CLE-126,M,Premium,83000,57218.0,Active
+P0127,Snacks,NutJoy,NUT-127,S,Value,21000,11908.0,Discontinued
+P0128,Beverages,AquaMax,AQU-128,M,Core,25000,17159.0,Discontinued
+P0129,Personal Care,FreshCare,FRE-129,M,Core,70000,42945.0,Active
+P0130,Nutrition,NutriPlus,NUT-130,L,Premium,104000,51619.0,Active
+P0131,Home Care,BrightHome,BRI-131,L,Value,71000,46704.0,Active
+P0132,Nutrition,GrowWell,GRO-132,S,Core,139000,68059.0,Active
+P0133,Ice Cream,CreamJoy,CRE-133,L,Value,25000,17093.0,Discontinued
+P0134,Ice Cream,CreamJoy,CRE-134,S,Value,31000,19003.0,Active
+P0135,Beverages,AquaMax,AQU-135,L,Core,20000,10061.0,Active
+P0136,Snacks,BiteUp,BIT-136,S,Premium,12000,5835.0,Discontinued
+P0137,Snacks,Crunchy,CRU-137,XL,Value,25000,13954.0,Discontinued
+P0138,Nutrition,DailyFit,DAI-138,S,Value,166000,96916.0,Discontinued
+P0139,Personal Care,PureSkin,PUR-139,M,Value,85000,56987.0,Active
+P0140,Personal Care,Glow,GLO-140,M,Core,93000,49607.0,Active
+P0141,Nutrition,NutriPlus,NUT-141,M,Premium,128000,81852.0,Active
+P0142,Beverages,TeaGo,TEA-142,M,Core,25000,16334.0,Active
+P0143,Nutrition,DailyFit,DAI-143,S,Value,107000,72202.0,Active
+P0144,Personal Care,PureSkin,PUR-144,XL,Core,80000,51565.0,Discontinued
+P0145,Home Care,SoftWash,SOF-145,M,Value,72000,34780.0,Active
+P0146,Ice Cream,CoolPop,COO-146,S,Value,26000,15212.0,Discontinued
+P0147,Beverages,AquaMax,AQU-147,S,Premium,19000,12654.0,Active
+P0148,Ice Cream,CreamJoy,CRE-148,M,Core,36000,24722.0,Active
+P0149,Beverages,TeaGo,TEA-149,S,Premium,20000,10406.0,Active
+P0150,Ice Cream,CreamJoy,CRE-150,M,Value,21000,13435.0,Active
+P0151,Beverages,TeaGo,TEA-151,L,Core,16000,8509.0,Active
+P0152,Home Care,CleanPro,CLE-152,XL,Premium,133000,74895.0,Active
+P0153,Nutrition,GrowWell,GRO-153,L,Premium,189000,92436.0,Active
+P0154,Beverages,Spark,SPA-154,M,Value,22000,11243.0,Discontinued
+P0155,Nutrition,DailyFit,DAI-155,S,Premium,201000,103635.0,Active
+P0156,Snacks,Crunchy,CRU-156,L,Value,10000,6465.0,Discontinued
+P0157,Nutrition,DailyFit,DAI-157,M,Core,180000,115343.0,Active
+P0158,Home Care,BrightHome,BRI-158,S,Premium,78000,46756.0,Active
+P0159,Ice Cream,Frosty,FRO-159,XL,Value,31000,17299.0,Discontinued
+P0160,Beverages,AquaMax,AQU-160,M,Value,21000,12216.0,Discontinued
+P0161,Ice Cream,Frosty,FRO-161,L,Core,22000,14148.0,Active
+P0162,Snacks,Crunchy,CRU-162,XL,Value,19000,9969.0,Active
+P0163,Home Care,CleanPro,CLE-163,XL,Premium,90000,53222.0,Active
+P0164,Nutrition,NutriPlus,NUT-164,XL,Value,160000,87199.0,Active
+P0165,Snacks,NutJoy,NUT-165,S,Core,13000,8875.0,Active
+P0166,Beverages,TeaGo,TEA-166,L,Core,14000,7294.0,Active
+P0167,Personal Care,Glow,GLO-167,S,Core,45000,29352.0,Active
+P0168,Home Care,BrightHome,BRI-168,M,Value,92000,64296.0,Active
+P0169,Beverages,TeaGo,TEA-169,S,Core,21000,12408.0,Active
+P0170,Ice Cream,Frosty,FRO-170,S,Core,26000,16079.0,Active
+P0171,Home Care,SoftWash,SOF-171,M,Value,110000,71452.0,Active
+P0172,Ice Cream,CreamJoy,CRE-172,M,Value,18000,11693.0,Active
+P0173,Nutrition,GrowWell,GRO-173,S,Value,139000,67235.0,Discontinued
+P0174,Home Care,BrightHome,BRI-174,L,Value,141000,71740.0,Active
+P0175,Snacks,BiteUp,BIT-175,L,Premium,16000,10444.0,Active
+P0176,Home Care,BrightHome,BRI-176,L,Value,120000,77605.0,Active
+P0177,Nutrition,NutriPlus,NUT-177,XL,Core,91000,59871.0,Active
+P0178,Ice Cream,Frosty,FRO-178,XL,Value,16000,10801.0,Discontinued
+P0179,Snacks,Crunchy,CRU-179,XL,Value,19000,11089.0,Discontinued
+P0180,Ice Cream,CreamJoy,CRE-180,L,Value,26000,13075.0,Active

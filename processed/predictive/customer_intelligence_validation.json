@@ -1,0 +1,682 @@
+{
+  "model_version": "fmcg-customer-intelligence-v1.0.0",
+  "run_date": "2026-10-06",
+  "as_of_date": "2026-09-30",
+  "customer_feature_rows": 136416,
+  "output_rows": 136416,
+  "history_rule": "At least 6 consecutive observed customer-month rows since first observed purchase.",
+  "score_definitions": {
+    "ValueScore": "Mean within-month percentile rank of trailing-12-month sales, trailing-12-month gross margin, and trailing-12-month sales per active month.",
+    "MomentumScore": "Mean within-month percentile rank of recent sales trend, recent quantity trend, and the difference between active months in the latest 3 versus the preceding 3.",
+    "EngagementScore": "Mean within-month percentile rank of purchase frequency, active months, consistency, and inverse recency divided by historical average purchase interval.",
+    "CommercialQualityScore": "Mean within-month percentile rank of trailing-12-month gross margin percentage and inverse discount/return ratios; context only and not a segment gate.",
+    "DeclineRiskScore": "Composite of sales/quantity/activity trend ranks. Direction is set using development-period outcome association only; see the score-direction threshold/configuration record.",
+    "InactivityRiskScore": "Mean percentile rank of elevated recency-to-cadence ratio, lower recent purchase frequency, lower purchase consistency, and fewer active months."
+  },
+  "segment_definitions": {
+    "POTENTIAL": "At least 6 months; momentum at or above that month's 70th percentile and engagement at or above that month's median; candidate state must persist for 2 consecutive months.",
+    "CORE / MAINTAIN": "At least 6 months; value at or above that month's median, without the defined deterioration rule.",
+    "RISK / DECLINING": "At least 6 months; value at or above that month's median and momentum at/below its 30th percentile, or low engagement (30th percentile or below) together with negative active-month trend; candidate state must persist for 2 consecutive months.",
+    "LOW PRIORITY / DORMANT": "At least 6 months and not meeting Potential, Core, or Risk/Declining rules; low relative value without qualifying growth is not necessarily literal inactivity.",
+    "INSUFFICIENT HISTORY": "Fewer than 6 observed customer-months; no segment or risk score."
+  },
+  "current_snapshot": {
+    "as_of_date": "2026-09-30",
+    "customers": 6500,
+    "segment_counts": {
+      "POTENTIAL": 213,
+      "CORE / MAINTAIN": 2753,
+      "RISK / DECLINING": 474,
+      "LOW PRIORITY / DORMANT": 3060,
+      "INSUFFICIENT HISTORY": 0
+    },
+    "high_decline_risk_customers": 1268,
+    "high_inactivity_risk_customers": 1363,
+    "both_high_risk_customers": 171,
+    "high_decline_trailing_sales": 35803971365.0,
+    "high_decline_trailing_gross_margin": 13072380979.0,
+    "high_inactivity_trailing_sales": 36841864694.0,
+    "high_inactivity_trailing_gross_margin": 13533202500.0,
+    "segment_and_risk_groups": [
+      {
+        "CommercialSegment": "CORE / MAINTAIN",
+        "DeclineRiskLevel": "High",
+        "InactivityRiskLevel": "High",
+        "Customers": 65,
+        "TrailingSales": 2014143853.0,
+        "TrailingGrossMargin": 748342719.0,
+        "MeanDeclineRiskScore": 85.87384929247588,
+        "MeanInactivityRiskScore": 69.47757175174031
+      },
+      {
+        "CommercialSegment": "CORE / MAINTAIN",
+        "DeclineRiskLevel": "High",
+        "InactivityRiskLevel": "Low",
+        "Customers": 471,
+        "TrailingSales": 15567406832.0,
+        "TrailingGrossMargin": 5705194325.0,
+        "MeanDeclineRiskScore": 75.59576400744169,
+        "MeanInactivityRiskScore": 36.745904069667894
+      },
+      {
+        "CommercialSegment": "CORE / MAINTAIN",
+        "DeclineRiskLevel": "High",
+        "InactivityRiskLevel": "Medium",
+        "Customers": 81,
+        "TrailingSales": 2595455012.0,
+        "TrailingGrossMargin": 943907784.0,
+        "MeanDeclineRiskScore": 76.83731613235571,
+        "MeanInactivityRiskScore": 53.38815473704069
+      },
+      {
+        "CommercialSegment": "CORE / MAINTAIN",
+        "DeclineRiskLevel": "Low",
+        "InactivityRiskLevel": "High",
+        "Customers": 190,
+        "TrailingSales": 6103996970.0,
+        "TrailingGrossMargin": 2251022057.0,
+        "MeanDeclineRiskScore": 32.55164174437788,
+        "MeanInactivityRiskScore": 68.08274990832678
+      },
+      {
+        "CommercialSegment": "CORE / MAINTAIN",
+        "DeclineRiskLevel": "Low",
+        "InactivityRiskLevel": "Low",
+        "Customers": 533,
+        "TrailingSales": 17970244359.0,
+        "TrailingGrossMargin": 6598408962.0,
+        "MeanDeclineRiskScore": 40.435102655796385,
+        "MeanInactivityRiskScore": 40.91788656583428
+      },
+      {
+        "CommercialSegment": "CORE / MAINTAIN",
+        "DeclineRiskLevel": "Low",
+        "InactivityRiskLevel": "Medium",
+        "Customers": 362,
+        "TrailingSales": 11921244045.0,
+        "TrailingGrossMargin": 4382168711.0,
+        "MeanDeclineRiskScore": 37.44165584371624,
+        "MeanInactivityRiskScore": 54.07260185606777
+      },
+      {
+        "CommercialSegment": "CORE / MAINTAIN",
+        "DeclineRiskLevel": "Medium",
+        "InactivityRiskLevel": "High",
+        "Customers": 67,
+        "TrailingSales": 2112725240.0,
+        "TrailingGrossMargin": 780168307.0,
+        "MeanDeclineRiskScore": 58.589778502690365,
+        "MeanInactivityRiskScore": 66.53674028046763
+      },
+      {
+        "CommercialSegment": "CORE / MAINTAIN",
+        "DeclineRiskLevel": "Medium",
+        "InactivityRiskLevel": "Low",
+        "Customers": 746,
+        "TrailingSales": 24917515640.0,
+        "TrailingGrossMargin": 9132726740.0,
+        "MeanDeclineRiskScore": 60.1206339718741,
+        "MeanInactivityRiskScore": 38.370520665433325
+      },
+      {
+        "CommercialSegment": "CORE / MAINTAIN",
+        "DeclineRiskLevel": "Medium",
+        "InactivityRiskLevel": "Medium",
+        "Customers": 238,
+        "TrailingSales": 7714959655.0,
+        "TrailingGrossMargin": 2836122132.0,
+        "MeanDeclineRiskScore": 58.990375953299065,
+        "MeanInactivityRiskScore": 53.5439399016853
+      },
+      {
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "DeclineRiskLevel": "High",
+        "InactivityRiskLevel": "High",
+        "Customers": 106,
+        "TrailingSales": 2434536639.0,
+        "TrailingGrossMargin": 888990126.0,
+        "MeanDeclineRiskScore": 84.50206577107151,
+        "MeanInactivityRiskScore": 71.7610802030232
+      },
+      {
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "DeclineRiskLevel": "High",
+        "InactivityRiskLevel": "Low",
+        "Customers": 229,
+        "TrailingSales": 5551020256.0,
+        "TrailingGrossMargin": 2013201178.0,
+        "MeanDeclineRiskScore": 75.44570695970819,
+        "MeanInactivityRiskScore": 39.321113156393864
+      },
+      {
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "DeclineRiskLevel": "High",
+        "InactivityRiskLevel": "Medium",
+        "Customers": 152,
+        "TrailingSales": 3620102584.0,
+        "TrailingGrossMargin": 1314988174.0,
+        "MeanDeclineRiskScore": 75.98247897424574,
+        "MeanInactivityRiskScore": 53.542538184940874
+      },
+      {
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "DeclineRiskLevel": "Low",
+        "InactivityRiskLevel": "High",
+        "Customers": 596,
+        "TrailingSales": 14346406023.0,
+        "TrailingGrossMargin": 5245785381.0,
+        "MeanDeclineRiskScore": 28.0076122832992,
+        "MeanInactivityRiskScore": 69.38171566392938
+      },
+      {
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "DeclineRiskLevel": "Low",
+        "InactivityRiskLevel": "Low",
+        "Customers": 466,
+        "TrailingSales": 11735833057.0,
+        "TrailingGrossMargin": 4277249729.0,
+        "MeanDeclineRiskScore": 37.947661974806216,
+        "MeanInactivityRiskScore": 42.0865100249343
+      },
+      {
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "DeclineRiskLevel": "Low",
+        "InactivityRiskLevel": "Medium",
+        "Customers": 609,
+        "TrailingSales": 15107233518.0,
+        "TrailingGrossMargin": 5503932369.0,
+        "MeanDeclineRiskScore": 34.57642349038051,
+        "MeanInactivityRiskScore": 54.54241994339119
+      },
+      {
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "DeclineRiskLevel": "Medium",
+        "InactivityRiskLevel": "High",
+        "Customers": 142,
+        "TrailingSales": 3314501217.0,
+        "TrailingGrossMargin": 1213041931.0,
+        "MeanDeclineRiskScore": 59.047643799334494,
+        "MeanInactivityRiskScore": 68.8961415341427
+      },
+      {
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "DeclineRiskLevel": "Medium",
+        "InactivityRiskLevel": "Low",
+        "Customers": 466,
+        "TrailingSales": 11506712633.0,
+        "TrailingGrossMargin": 4166949616.0,
+        "MeanDeclineRiskScore": 59.3511150554583,
+        "MeanInactivityRiskScore": 40.065036538260436
+      },
+      {
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "DeclineRiskLevel": "Medium",
+        "InactivityRiskLevel": "Medium",
+        "Customers": 294,
+        "TrailingSales": 7091367451.0,
+        "TrailingGrossMargin": 2591171945.0,
+        "MeanDeclineRiskScore": 59.58542718831248,
+        "MeanInactivityRiskScore": 53.64414396190748
+      },
+      {
+        "CommercialSegment": "POTENTIAL",
+        "DeclineRiskLevel": "High",
+        "InactivityRiskLevel": "Low",
+        "Customers": 164,
+        "TrailingSales": 4021306189.0,
+        "TrailingGrossMargin": 1457756673.0,
+        "MeanDeclineRiskScore": 76.43383183634562,
+        "MeanInactivityRiskScore": 37.677852374197165
+      },
+      {
+        "CommercialSegment": "POTENTIAL",
+        "DeclineRiskLevel": "Low",
+        "InactivityRiskLevel": "Low",
+        "Customers": 1,
+        "TrailingSales": 31588621.0,
+        "TrailingGrossMargin": 11626455.0,
+        "MeanDeclineRiskScore": 29.01221499416195,
+        "MeanInactivityRiskScore": 42.34345529081181
+      },
+      {
+        "CommercialSegment": "POTENTIAL",
+        "DeclineRiskLevel": "Low",
+        "InactivityRiskLevel": "Medium",
+        "Customers": 2,
+        "TrailingSales": 59994924.0,
+        "TrailingGrossMargin": 22894262.0,
+        "MeanDeclineRiskScore": 36.3139458793641,
+        "MeanInactivityRiskScore": 55.30091612456215
+      },
+      {
+        "CommercialSegment": "POTENTIAL",
+        "DeclineRiskLevel": "Medium",
+        "InactivityRiskLevel": "Low",
+        "Customers": 46,
+        "TrailingSales": 1136809203.0,
+        "TrailingGrossMargin": 412710368.0,
+        "MeanDeclineRiskScore": 66.0465692468443,
+        "MeanInactivityRiskScore": 38.28609688092556
+      },
+      {
+        "CommercialSegment": "RISK / DECLINING",
+        "DeclineRiskLevel": "Low",
+        "InactivityRiskLevel": "High",
+        "Customers": 194,
+        "TrailingSales": 6405847497.0,
+        "TrailingGrossMargin": 2365083134.0,
+        "MeanDeclineRiskScore": 21.745716107736502,
+        "MeanInactivityRiskScore": 70.9895480112208
+      },
+      {
+        "CommercialSegment": "RISK / DECLINING",
+        "DeclineRiskLevel": "Low",
+        "InactivityRiskLevel": "Low",
+        "Customers": 122,
+        "TrailingSales": 4163216844.0,
+        "TrailingGrossMargin": 1530197970.0,
+        "MeanDeclineRiskScore": 29.65602918666758,
+        "MeanInactivityRiskScore": 42.03323467756744
+      },
+      {
+        "CommercialSegment": "RISK / DECLINING",
+        "DeclineRiskLevel": "Low",
+        "InactivityRiskLevel": "Medium",
+        "Customers": 153,
+        "TrailingSales": 5167276378.0,
+        "TrailingGrossMargin": 1903977928.0,
+        "MeanDeclineRiskScore": 26.49398781200938,
+        "MeanInactivityRiskScore": 53.931903300730326
+      },
+      {
+        "CommercialSegment": "RISK / DECLINING",
+        "DeclineRiskLevel": "Medium",
+        "InactivityRiskLevel": "High",
+        "Customers": 3,
+        "TrailingSales": 109707255.0,
+        "TrailingGrossMargin": 40768845.0,
+        "MeanDeclineRiskScore": 57.98786199109537,
+        "MeanInactivityRiskScore": 71.50611230865955
+      },
+      {
+        "CommercialSegment": "RISK / DECLINING",
+        "DeclineRiskLevel": "Medium",
+        "InactivityRiskLevel": "Low",
+        "Customers": 2,
+        "TrailingSales": 55033371.0,
+        "TrailingGrossMargin": 19903122.0,
+        "MeanDeclineRiskScore": 67.66386632793154,
+        "MeanInactivityRiskScore": 43.35954039801378
+      }
+    ],
+    "primary_risk_drivers": [
+      {
+        "PrimaryRiskDriver": "Reduced recent purchase frequency",
+        "Customers": 1660,
+        "TrailingSales": 45185841534.0,
+        "TrailingGrossMargin": 16578058149.0
+      },
+      {
+        "PrimaryRiskDriver": "Recency elevated vs purchase cadence",
+        "Customers": 1568,
+        "TrailingSales": 46512385283.0,
+        "TrailingGrossMargin": 17014917848.0
+      },
+      {
+        "PrimaryRiskDriver": "Recent quantity trend associated with below-baseline outcomes",
+        "Customers": 1455,
+        "TrailingSales": 42322170625.0,
+        "TrailingGrossMargin": 15468694205.0
+      },
+      {
+        "PrimaryRiskDriver": "Recent sales trend associated with below-baseline outcomes",
+        "Customers": 1233,
+        "TrailingSales": 35612074673.0,
+        "TrailingGrossMargin": 13013342924.0
+      },
+      {
+        "PrimaryRiskDriver": "Recent active-month change associated with below-baseline outcomes",
+        "Customers": 477,
+        "TrailingSales": 14196787896.0,
+        "TrailingGrossMargin": 5204573606.0
+      },
+      {
+        "PrimaryRiskDriver": "Lower purchase consistency",
+        "Customers": 107,
+        "TrailingSales": 2946925255.0,
+        "TrailingGrossMargin": 1078704211.0
+      }
+    ]
+  },
+  "thresholds": {
+    "decline_outcome_ratio_training_p25": 0.6852554361550937,
+    "decline_level_low": 50.62574579468031,
+    "decline_level_high": 69.15778128488394,
+    "decline_level_method": "training-score 80th percentile; fixed relative top-quintile tier, then assessed on temporal holdout",
+    "decline_training_direction_auc_before_orientation": 0.30864566041555513,
+    "decline_training_youden_j_diagnostic": 0.28960230488244076,
+    "inactivity_level_low": 48.69955059856037,
+    "inactivity_level_high": 59.95022421956196,
+    "inactivity_level_method": "provisional training-score 80th percentile; no positive inactivity outcomes were observed",
+    "inactivity_development_positive_outcomes": 0
+  },
+  "mature_outcome_windows": {
+    "all_months": 13,
+    "first_asof_month": "2025-06",
+    "last_asof_month": "2026-06",
+    "development_months": 4,
+    "holdout_months": 6,
+    "outcome_window_gap_months": [
+      "2025-10",
+      "2025-11",
+      "2025-12"
+    ]
+  },
+  "decline_validation": {
+    "outcome_definition": "Future 3-month sales divided by three times the as-of trailing 3-month monthly average is at/below the development-period 25th percentile, with at least 2 of 3 future months below the as-of trailing 3-month monthly average.",
+    "development_ratio_threshold": 0.6852554361550937,
+    "risk_score_threshold_method": "training-score 80th percentile; fixed relative top-quintile tier, then assessed on temporal holdout",
+    "development_youden_j": 0.28960230488244076,
+    "temporal_holdout": {
+      "RiskType": "Decline",
+      "ValidationSplit": "Temporal holdout",
+      "observations": 39000,
+      "customers": 6500,
+      "outcomes": 9751,
+      "overall_outcome_rate": 0.250025641025641,
+      "high_risk_customers": 7392,
+      "high_risk_outcomes": 3127,
+      "high_risk_outcome_rate": 0.4230248917748918,
+      "high_risk_lift": 1.6919260362240571,
+      "high_risk_capture_recall": 0.3206850579427751,
+      "risk_level_counts": {
+        "Low": 20163,
+        "Medium": 11445,
+        "High": 7392
+      },
+      "roc_auc": 0.6914280371499579,
+      "average_precision": 0.3823774792233598
+    }
+  },
+  "inactivity_validation": {
+    "outcome_definition": "Zero transactions in the next 3 complete months and the gap from last purchase to future-window end exceeds that customer's trailing-12-month average purchase interval as known at cutoff.",
+    "status": "Not empirically validated: no positive inactivity outcomes in the development or temporal-holdout periods.",
+    "temporal_holdout": {
+      "RiskType": "Inactivity",
+      "ValidationSplit": "Temporal holdout",
+      "observations": 39000,
+      "customers": 6500,
+      "outcomes": 0,
+      "overall_outcome_rate": 0.0,
+      "high_risk_customers": 8438,
+      "high_risk_outcomes": 0,
+      "high_risk_outcome_rate": 0.0,
+      "high_risk_lift": null,
+      "high_risk_capture_recall": null,
+      "risk_level_counts": {
+        "Low": 19200,
+        "Medium": 11362,
+        "High": 8438
+      },
+      "roc_auc": null,
+      "average_precision": null
+    }
+  },
+  "segment_validation": {
+    "summary": [
+      {
+        "CommercialSegment": "POTENTIAL",
+        "Customers": 213,
+        "TrailingSales": 5249698937.0,
+        "TrailingGrossMargin": 1904987758.0,
+        "MeanValueScore": 25.72271578187071,
+        "MeanMomentumScore": 73.54327675454437,
+        "MeanEngagementScore": 62.0878024557602,
+        "MeanCommercialQualityScore": 46.65990128807031,
+        "MedianTrailingSales": 24960472.0,
+        "MedianActiveMonths6": 6.0,
+        "MedianDaysSinceLastPurchase": 3.0,
+        "PopulationPct": 0.032769230769230766,
+        "SalesContributionPct": 0.02810689665560717,
+        "GrossMarginContributionPct": 0.027867691420027724
+      },
+      {
+        "CommercialSegment": "CORE / MAINTAIN",
+        "Customers": 2753,
+        "TrailingSales": 90917691606.0,
+        "TrailingGrossMargin": 33378061737.0,
+        "MeanValueScore": 74.18990937625155,
+        "MeanMomentumScore": 54.818864269281995,
+        "MeanEngagementScore": 54.14305023890022,
+        "MeanCommercialQualityScore": 51.23568880568517,
+        "MedianTrailingSales": 32295342.0,
+        "MedianActiveMonths6": 6.0,
+        "MedianDaysSinceLastPurchase": 4.0,
+        "PopulationPct": 0.42353846153846153,
+        "SalesContributionPct": 0.48677346887944123,
+        "GrossMarginContributionPct": 0.4882811035289344
+      },
+      {
+        "CommercialSegment": "RISK / DECLINING",
+        "Customers": 474,
+        "TrailingSales": 15901081345.0,
+        "TrailingGrossMargin": 5859930999.0,
+        "MeanValueScore": 77.10476035919073,
+        "MeanMomentumScore": 25.756891701828412,
+        "MeanEngagementScore": 42.05139970788705,
+        "MeanCommercialQualityScore": 53.92546792167045,
+        "MedianTrailingSales": 32815230.5,
+        "MedianActiveMonths6": 6.0,
+        "MedianDaysSinceLastPurchase": 5.0,
+        "PopulationPct": 0.07292307692307692,
+        "SalesContributionPct": 0.08513441540929988,
+        "GrossMarginContributionPct": 0.08572377861064806
+      },
+      {
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "Customers": 3060,
+        "TrailingSales": 74707713378.0,
+        "TrailingGrossMargin": 27215310449.0,
+        "MeanValueScore": 25.744635495223733,
+        "MeanMomentumScore": 47.79744511479806,
+        "MeanEngagementScore": 46.67062657114128,
+        "MeanCommercialQualityScore": 48.507271660801074,
+        "MedianTrailingSales": 24898783.0,
+        "MedianActiveMonths6": 6.0,
+        "MedianDaysSinceLastPurchase": 5.0,
+        "PopulationPct": 0.4707692307692308,
+        "SalesContributionPct": 0.3999852190556517,
+        "GrossMarginContributionPct": 0.39812742644038984
+      }
+    ],
+    "transition_observations": 129916,
+    "unchanged_segment_rate": 0.7868776748052588,
+    "mature_transition_observations": 97416,
+    "mature_unchanged_segment_rate": 0.7824997946949166,
+    "transition_matrix": [
+      {
+        "PreviousSegment": "CORE / MAINTAIN",
+        "CommercialSegment": "CORE / MAINTAIN",
+        "Transitions": 32891,
+        "TransitionPctOfOrigin": 0.8051061121582258,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "CORE / MAINTAIN",
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "Transitions": 4356,
+        "TransitionPctOfOrigin": 0.10662619636256823,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "CORE / MAINTAIN",
+        "CommercialSegment": "POTENTIAL",
+        "Transitions": 98,
+        "TransitionPctOfOrigin": 0.0023988446380926736,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "CORE / MAINTAIN",
+        "CommercialSegment": "RISK / DECLINING",
+        "Transitions": 3508,
+        "TransitionPctOfOrigin": 0.08586884684111326,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "INSUFFICIENT HISTORY",
+        "CommercialSegment": "CORE / MAINTAIN",
+        "Transitions": 2271,
+        "TransitionPctOfOrigin": 0.06987692307692307,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "INSUFFICIENT HISTORY",
+        "CommercialSegment": "INSUFFICIENT HISTORY",
+        "Transitions": 26000,
+        "TransitionPctOfOrigin": 0.8,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "INSUFFICIENT HISTORY",
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "Transitions": 2645,
+        "TransitionPctOfOrigin": 0.08138461538461539,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "INSUFFICIENT HISTORY",
+        "CommercialSegment": "POTENTIAL",
+        "Transitions": 621,
+        "TransitionPctOfOrigin": 0.019107692307692308,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "INSUFFICIENT HISTORY",
+        "CommercialSegment": "RISK / DECLINING",
+        "Transitions": 963,
+        "TransitionPctOfOrigin": 0.02963076923076923,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "LOW PRIORITY / DORMANT",
+        "CommercialSegment": "CORE / MAINTAIN",
+        "Transitions": 4633,
+        "TransitionPctOfOrigin": 0.10264306444823537,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "LOW PRIORITY / DORMANT",
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "Transitions": 38463,
+        "TransitionPctOfOrigin": 0.8521390433568913,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "LOW PRIORITY / DORMANT",
+        "CommercialSegment": "POTENTIAL",
+        "Transitions": 1880,
+        "TransitionPctOfOrigin": 0.041650973702284155,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "LOW PRIORITY / DORMANT",
+        "CommercialSegment": "RISK / DECLINING",
+        "Transitions": 161,
+        "TransitionPctOfOrigin": 0.003566918492589228,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "POTENTIAL",
+        "CommercialSegment": "CORE / MAINTAIN",
+        "Transitions": 483,
+        "TransitionPctOfOrigin": 0.1300134589502019,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "POTENTIAL",
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "Transitions": 1905,
+        "TransitionPctOfOrigin": 0.5127860026917901,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "POTENTIAL",
+        "CommercialSegment": "POTENTIAL",
+        "Transitions": 1324,
+        "TransitionPctOfOrigin": 0.356393001345895,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "POTENTIAL",
+        "CommercialSegment": "RISK / DECLINING",
+        "Transitions": 3,
+        "TransitionPctOfOrigin": 0.0008075370121130552,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "RISK / DECLINING",
+        "CommercialSegment": "CORE / MAINTAIN",
+        "Transitions": 3328,
+        "TransitionPctOfOrigin": 0.43159123330307353,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "RISK / DECLINING",
+        "CommercialSegment": "LOW PRIORITY / DORMANT",
+        "Transitions": 828,
+        "TransitionPctOfOrigin": 0.10737906886266373,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "RISK / DECLINING",
+        "CommercialSegment": "POTENTIAL",
+        "Transitions": 5,
+        "TransitionPctOfOrigin": 0.0006484243288808196,
+        "Intervals": 20
+      },
+      {
+        "PreviousSegment": "RISK / DECLINING",
+        "CommercialSegment": "RISK / DECLINING",
+        "Transitions": 3550,
+        "TransitionPctOfOrigin": 0.46038127350538194,
+        "Intervals": 20
+      }
+    ],
+    "sensitivity": [
+      {
+        "Scenario": "Base",
+        "Customers": 6500,
+        "ChangedFromBase": 0,
+        "ChangedPct": 0.0,
+        "SegmentCounts": "{\"CORE / MAINTAIN\": 2753, \"INSUFFICIENT HISTORY\": 0, \"LOW PRIORITY / DORMANT\": 3060, \"POTENTIAL\": 213, \"RISK / DECLINING\": 474}"
+      },
+      {
+        "Scenario": "Conservative boundaries (+5 points)",
+        "Customers": 6500,
+        "ChangedFromBase": 617,
+        "ChangedPct": 0.09492307692307693,
+        "SegmentCounts": "{\"CORE / MAINTAIN\": 2629, \"INSUFFICIENT HISTORY\": 0, \"LOW PRIORITY / DORMANT\": 3481, \"POTENTIAL\": 105, \"RISK / DECLINING\": 285}"
+      },
+      {
+        "Scenario": "Broader boundaries (-5 points)",
+        "Customers": 6500,
+        "ChangedFromBase": 758,
+        "ChangedPct": 0.11661538461538462,
+        "SegmentCounts": "{\"CORE / MAINTAIN\": 2804, \"INSUFFICIENT HISTORY\": 0, \"LOW PRIORITY / DORMANT\": 2555, \"POTENTIAL\": 385, \"RISK / DECLINING\": 756}"
+      }
+    ]
+  },
+  "risk_score_completeness": {
+    "decline_eligible_missing": 0,
+    "inactivity_eligible_missing": 0
+  },
+  "limitations": [
+    "Only 21 months of history; supervised outcome windows are available for 13 as-of months.",
+    "Customer observations within a three-month horizon overlap; outcomes are correlated across adjacent origins.",
+    "Decline labels are relative to a development-period percentile and are not calibrated probabilities.",
+    "No positive three-month inactivity outcomes were observed; inactivity score levels are provisional relative tiers and predictive performance is unvalidated.",
+    "Cross-sectional percentile scores describe relative position, not absolute commercial thresholds.",
+    "Customer dimensions are not historized; historic distributor/rep/customer assignments are unavailable.",
+    "Returns, margin and discount are descriptive context and do not cause segment/risk assignment except margin as a component of relative value/quality score."
+  ]
+}

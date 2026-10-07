@@ -1,0 +1,88 @@
+{
+  "fact_sales": [
+    "TransactionID",
+    "Date",
+    "CustomerID",
+    "ProductID",
+    "Qty",
+    "UnitListPrice",
+    "GrossSales",
+    "DiscountPct",
+    "DiscountAmount",
+    "NetSales",
+    "COGS",
+    "GrossMargin",
+    "OrderType",
+    "PaymentTermDays"
+  ],
+  "dim_customer": [
+    "CustomerID",
+    "CustomerName",
+    "Region",
+    "Province",
+    "Channel",
+    "SubChannel",
+    "CustomerSegment",
+    "DistributorID",
+    "SalesRepID",
+    "CreditLimit",
+    "JoinDate",
+    "Latitude",
+    "Longitude"
+  ],
+  "dim_product": [
+    "ProductID",
+    "Category",
+    "Brand",
+    "SKU",
+    "PackSize",
+    "PriceTier",
+    "ListPrice",
+    "StandardCost",
+    "ProductStatus"
+  ],
+  "fact_target": [
+    "Month",
+    "Region",
+    "Channel",
+    "Category",
+    "SalesTarget"
+  ],
+  "fact_inventory_snapshot": [
+    "SnapshotDate",
+    "DistributorID",
+    "ProductID",
+    "OnHandQty",
+    "ReorderPoint",
+    "InTransitQty",
+    "ExpiredQty"
+  ],
+  "fact_returns": [
+    "ReturnID",
+    "ReturnDate",
+    "TransactionID",
+    "CustomerID",
+    "ProductID",
+    "ReturnQty",
+    "ReturnAmount",
+    "ReturnReason"
+  ],
+  "dim_salesforce": [
+    "SalesRepID",
+    "SalesRepName",
+    "Team",
+    "Manager",
+    "TenureMonths",
+    "MonthlyVisitTarget"
+  ],
+  "dim_promotion": [
+    "PromotionID",
+    "PromotionType",
+    "Category",
+    "Channel",
+    "StartDate",
+    "EndDate",
+    "PromoDiscountPct",
+    "Budget"
+  ]
+}

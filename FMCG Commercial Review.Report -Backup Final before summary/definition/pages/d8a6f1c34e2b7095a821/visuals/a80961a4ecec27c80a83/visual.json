@@ -1,0 +1,267 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "a80961a4ecec27c80a83",
+  "position": {
+    "x": 843,
+    "y": 152,
+    "z": 1000,
+    "height": 96,
+    "width": 1045,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales Forecast"
+                    }
+                  },
+                  "Property": "Forecast Target Gap %"
+                }
+              },
+              "queryRef": "Sales Forecast.Forecast Target Gap %",
+              "nativeQueryRef": "Forecast Target Gap %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales Forecast"
+                    }
+                  },
+                  "Property": "Projected Target Achievement %"
+                }
+              },
+              "queryRef": "Sales Forecast.Projected Target Achievement %",
+              "nativeQueryRef": "Projected Target Achievement %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales Forecast"
+                    }
+                  },
+                  "Property": "Forecast Backtest WAPE"
+                }
+              },
+              "queryRef": "Sales Forecast.Forecast Backtest WAPE",
+              "nativeQueryRef": "Forecast Backtest WAPE"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales Forecast"
+                    }
+                  },
+                  "Property": "Forecast Backtest Bias"
+                }
+              },
+              "queryRef": "Sales Forecast.Forecast Backtest Bias",
+              "nativeQueryRef": "Forecast Backtest Bias"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "'0'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter67c8dbf90ecb14cd4b2a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Month"
+              }
+            },
+            "Property": "Year Month"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "ForecastMonthFilter",
+              "Entity": "Month",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "ForecastMonthFilter"
+                          }
+                        },
+                        "Property": "Year Month"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'2026-10'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'2026-11'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'2026-12'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "Filter7071d7127b8c284b49df",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Sales Forecast"
+              }
+            },
+            "Property": "Forecast Sales"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "Filter26c0d2b913b36d5796bc",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Targets"
+              }
+            },
+            "Property": "Sales Target"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "Filter53e6b0faad0be4bcdac8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Sales Forecast"
+              }
+            },
+            "Property": "Forecast Target Gap"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "Filter7d18c390dd091414dd59",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Sales Forecast"
+              }
+            },
+            "Property": "Forecast Target Gap %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "Filter93bcd786dfa51a43c854",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Sales Forecast"
+              }
+            },
+            "Property": "Projected Target Achievement %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "Filtera2c7263b9a9a0031abf0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Sales Forecast"
+              }
+            },
+            "Property": "Forecast Backtest WAPE"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "Filter5b1c173f04957482a521",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Sales Forecast"
+              }
+            },
+            "Property": "Forecast Backtest Bias"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

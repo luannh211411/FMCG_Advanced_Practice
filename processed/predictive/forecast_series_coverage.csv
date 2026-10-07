@@ -1,0 +1,73 @@
+Region,Channel,Category,HistoryMonths,NonzeroMonths,Latest3NonzeroMonths,Eligible,Reason
+Central,E-Commerce,Beverages,21,21,3,true,Eligible
+Central,E-Commerce,Home Care,21,21,3,true,Eligible
+Central,E-Commerce,Ice Cream,21,21,3,true,Eligible
+Central,E-Commerce,Nutrition,21,21,3,true,Eligible
+Central,E-Commerce,Personal Care,21,21,3,true,Eligible
+Central,E-Commerce,Snacks,21,21,3,true,Eligible
+Central,GT,Beverages,21,21,3,true,Eligible
+Central,GT,Home Care,21,21,3,true,Eligible
+Central,GT,Ice Cream,21,21,3,true,Eligible
+Central,GT,Nutrition,21,21,3,true,Eligible
+Central,GT,Personal Care,21,21,3,true,Eligible
+Central,GT,Snacks,21,21,3,true,Eligible
+Central,HORECA,Beverages,21,21,3,true,Eligible
+Central,HORECA,Home Care,21,21,3,true,Eligible
+Central,HORECA,Ice Cream,21,21,3,true,Eligible
+Central,HORECA,Nutrition,21,21,3,true,Eligible
+Central,HORECA,Personal Care,21,21,3,true,Eligible
+Central,HORECA,Snacks,21,21,3,true,Eligible
+Central,MT,Beverages,21,21,3,true,Eligible
+Central,MT,Home Care,21,21,3,true,Eligible
+Central,MT,Ice Cream,21,21,3,true,Eligible
+Central,MT,Nutrition,21,21,3,true,Eligible
+Central,MT,Personal Care,21,21,3,true,Eligible
+Central,MT,Snacks,21,21,3,true,Eligible
+North,E-Commerce,Beverages,21,21,3,true,Eligible
+North,E-Commerce,Home Care,21,21,3,true,Eligible
+North,E-Commerce,Ice Cream,21,21,3,true,Eligible
+North,E-Commerce,Nutrition,21,21,3,true,Eligible
+North,E-Commerce,Personal Care,21,21,3,true,Eligible
+North,E-Commerce,Snacks,21,21,3,true,Eligible
+North,GT,Beverages,21,21,3,true,Eligible
+North,GT,Home Care,21,21,3,true,Eligible
+North,GT,Ice Cream,21,21,3,true,Eligible
+North,GT,Nutrition,21,21,3,true,Eligible
+North,GT,Personal Care,21,21,3,true,Eligible
+North,GT,Snacks,21,21,3,true,Eligible
+North,HORECA,Beverages,21,21,3,true,Eligible
+North,HORECA,Home Care,21,21,3,true,Eligible
+North,HORECA,Ice Cream,21,21,3,true,Eligible
+North,HORECA,Nutrition,21,21,3,true,Eligible
+North,HORECA,Personal Care,21,21,3,true,Eligible
+North,HORECA,Snacks,21,21,3,true,Eligible
+North,MT,Beverages,21,21,3,true,Eligible
+North,MT,Home Care,21,21,3,true,Eligible
+North,MT,Ice Cream,21,21,3,true,Eligible
+North,MT,Nutrition,21,21,3,true,Eligible
+North,MT,Personal Care,21,21,3,true,Eligible
+North,MT,Snacks,21,21,3,true,Eligible
+South,E-Commerce,Beverages,21,21,3,true,Eligible
+South,E-Commerce,Home Care,21,21,3,true,Eligible
+South,E-Commerce,Ice Cream,21,21,3,true,Eligible
+South,E-Commerce,Nutrition,21,21,3,true,Eligible
+South,E-Commerce,Personal Care,21,21,3,true,Eligible
+South,E-Commerce,Snacks,21,21,3,true,Eligible
+South,GT,Beverages,21,21,3,true,Eligible
+South,GT,Home Care,21,21,3,true,Eligible
+South,GT,Ice Cream,21,21,3,true,Eligible
+South,GT,Nutrition,21,21,3,true,Eligible
+South,GT,Personal Care,21,21,3,true,Eligible
+South,GT,Snacks,21,21,3,true,Eligible
+South,HORECA,Beverages,21,21,3,true,Eligible
+South,HORECA,Home Care,21,21,3,true,Eligible
+South,HORECA,Ice Cream,21,21,3,true,Eligible
+South,HORECA,Nutrition,21,21,3,true,Eligible
+South,HORECA,Personal Care,21,21,3,true,Eligible
+South,HORECA,Snacks,21,21,3,true,Eligible
+South,MT,Beverages,21,21,3,true,Eligible
+South,MT,Home Care,21,21,3,true,Eligible
+South,MT,Ice Cream,21,21,3,true,Eligible
+South,MT,Nutrition,21,21,3,true,Eligible
+South,MT,Personal Care,21,21,3,true,Eligible
+South,MT,Snacks,21,21,3,true,Eligible

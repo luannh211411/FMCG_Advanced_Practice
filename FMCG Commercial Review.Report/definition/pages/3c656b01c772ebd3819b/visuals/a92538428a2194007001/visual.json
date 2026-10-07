@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "a92538428a2194007001",
+  "position": {
+    "x": 43.995664971833328,
+    "y": 165.71449927123905,
+    "z": 1000,
+    "height": 130,
+    "width": 1824,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Q4 Forecast Sales"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Q4 Forecast Sales",
+              "nativeQueryRef": "Q4 Forecast Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Q4 Sales Target"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Q4 Sales Target",
+              "nativeQueryRef": "Q4 Sales Target"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Q4 Forecast Target Gap"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Q4 Forecast Target Gap",
+              "nativeQueryRef": "Q4 Forecast Target Gap"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Q4 Projected Target Achievement %"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Q4 Projected Target Achievement %",
+              "nativeQueryRef": "Q4 Projected Target Achievement %"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

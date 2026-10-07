@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "d27d92afdb50e56ceb53",
+  "position": {
+    "x": 1356,
+    "y": 286,
+    "z": 1000,
+    "height": 330,
+    "width": 516,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales Force"
+                    }
+                  },
+                  "Property": "Team"
+                }
+              },
+              "queryRef": "Sales Force.Team",
+              "nativeQueryRef": "Team",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales Force"
+                    }
+                  },
+                  "Property": "Sales Rep Name"
+                }
+              },
+              "queryRef": "Sales Force.Sales Rep Name",
+              "nativeQueryRef": "Sales Rep Name",
+              "active": false
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "MoM Variance"
+                }
+              },
+              "queryRef": "Sales.MoM Variance",
+              "nativeQueryRef": "MoM Variance"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Total Net Sales"
+                }
+              },
+              "queryRef": "Sales.Total Net Sales",
+              "nativeQueryRef": "Total Net Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "MoM Growth %"
+                }
+              },
+              "queryRef": "Sales.MoM Growth %",
+              "nativeQueryRef": "MoM Growth %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales"
+                    }
+                  },
+                  "Property": "Active Customers"
+                }
+              },
+              "queryRef": "Sales.Active Customers",
+              "nativeQueryRef": "Active Customers"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Sales"
+                  }
+                },
+                "Property": "MoM Variance"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    }
+  }
+}

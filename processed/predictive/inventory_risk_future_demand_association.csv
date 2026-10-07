@@ -1,0 +1,7 @@
+Signal,SignalLevel,SnapshotPositions,DistinctSnapshots,MedianFutureToRecent3MonthDemandRatio,FutureDemandBelowRecentPositions,FutureDemandAboveRecentPositions,FutureZeroDemandPositions,Interpretation,ModelOrRuleVersion
+CoveragePressure,Low,31901,12,1.0098039215686274,15500,16202,0,Descriptive non-causal association only; overlapping three-month windows and current distributor mapping.,fmcg-inventory-intelligence-v1.0.0
+CoveragePressure,Medium,3386,12,0.9398701672213321,1907,1461,0,Descriptive non-causal association only; overlapping three-month windows and current distributor mapping.,fmcg-inventory-intelligence-v1.0.0
+CoveragePressure,High,7913,12,0.9726775956284153,4208,3648,0,Descriptive non-causal association only; overlapping three-month windows and current distributor mapping.,fmcg-inventory-intelligence-v1.0.0
+ExcessSlowMoving,Low,32318,12,0.9534883720930233,18053,14048,0,Descriptive non-causal association only; overlapping three-month windows and current distributor mapping.,fmcg-inventory-intelligence-v1.0.0
+ExcessSlowMoving,Medium,6401,12,1.053191489361702,2765,3603,0,Descriptive non-causal association only; overlapping three-month windows and current distributor mapping.,fmcg-inventory-intelligence-v1.0.0
+ExcessSlowMoving,High,4481,12,1.3270440251572326,797,3660,0,Descriptive non-causal association only; overlapping three-month windows and current distributor mapping.,fmcg-inventory-intelligence-v1.0.0

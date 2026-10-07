@@ -1,0 +1,11 @@
+Category,CoveragePressureLevel,Positions,ReorderExceptions,RecentDemandQuantity,Q4CategoryNegativeGap
+Beverages,High,112,112,23137,-7484313785.01
+Beverages,Medium,47,12,9461,-7484313785.01
+Home Care,High,85,85,16552,-1775193969.99
+Home Care,Medium,34,10,7054,-1775193969.99
+Ice Cream,High,118,118,24303,-2603245037.0099998
+Ice Cream,Medium,50,21,9352,-2603245037.0099998
+Personal Care,High,127,127,25341,-1242952885.02
+Personal Care,Medium,52,21,10058,-1242952885.02
+Snacks,High,83,83,16563,-6654188082.01
+Snacks,Medium,33,13,6870,-6654188082.01

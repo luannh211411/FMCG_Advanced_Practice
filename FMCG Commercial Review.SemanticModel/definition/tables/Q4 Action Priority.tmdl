@@ -1,0 +1,602 @@
+/// Deterministic mixed-grain Q4 2026 management action queue. Grain: one ActionID; commercial-gap rows are Forecast Month × Region × Channel × Category, customer rows are Customer, and inventory rows are Snapshot Date × Distributor × Product. Category is the only supported inventory-to-Q4 geography context. No relationship to Region, Channel, Month, Distributor or Product is created to avoid ambiguous paths and unsupported attribution.
+table 'Q4 Action Priority'
+	lineageTag: 432a996a-eac6-40ee-a84f-e6c7eebe9ef7
+
+	/// Distinct deterministic action candidates in the current filter context.
+	measure 'Action Candidates' = DISTINCTCOUNT('Q4 Action Priority'[Action ID])
+		formatString: #,0
+		lineageTag: 2a445acf-3908-42cc-b44e-42e6daa4c386
+
+	/// Validated forecast summed over fixed Q4 2026 months; reuses the existing Forecast Sales measure.
+	measure 'Q4 Forecast Sales' = CALCULATE([Forecast Sales], REMOVEFILTERS('Date'), 'Sales Forecast'[Forecast Month] >= DATE(2026, 10, 1), 'Sales Forecast'[Forecast Month] < DATE(2027, 1, 1))
+		formatString: $#,0;($#,0);-
+		lineageTag: 0c7cc056-f9ab-4572-8e8e-2b2493b9873c
+
+	/// Native target at Month × Region × Channel × Category, fixed to Q4 2026.
+	measure 'Q4 Sales Target' = CALCULATE([Sales Target], FILTER(ALL('Date'), 'Date'[Month Start] >= DATE(2026, 10, 1) && 'Date'[Month Start] < DATE(2027, 1, 1)))
+		formatString: $#,0;($#,0);-
+		lineageTag: c89cc815-304d-4eef-aa42-33de452bfe72
+
+	/// Q4 2026 net forecast-to-target gap, using the existing validated forecast and native-grain target measures.
+	measure 'Q4 Forecast Target Gap' = [Q4 Forecast Sales] - [Q4 Sales Target]
+		formatString: $#,0;($#,0);-
+		lineageTag: 12f09945-693f-4716-8167-db94bb93d4a2
+
+	/// Q4 forecast divided by the matching native-grain Q4 target; blank when target is zero.
+	measure 'Q4 Projected Target Achievement %' = DIVIDE([Q4 Forecast Sales], [Q4 Sales Target])
+		formatString: 0.0%;(0.0%);-
+		lineageTag: d6d6b2fa-c875-4288-be1a-01fe97f8db03
+
+	/// Positive magnitude of negative forecast-to-target gaps for the selected native-grain rows.
+	measure 'Q4 Gross Target Shortfall' = CALCULATE(-SUM('Q4 Action Priority'[Forecast Target Gap]), KEEPFILTERS('Q4 Action Priority'[Action Type] = "Q4_GAP_REVIEW"))
+		formatString: $#,0;($#,0);-
+		lineageTag: 207be012-2012-4175-909f-c120b2bd4e7f
+
+	/// Share of the selected gross Q4 shortfall represented by the current native-grain row.
+	measure 'Q4 Gap Contribution %' = DIVIDE([Q4 Gross Target Shortfall], CALCULATE([Q4 Gross Target Shortfall], REMOVEFILTERS('Q4 Action Priority'[Region]), REMOVEFILTERS('Q4 Action Priority'[Channel]), REMOVEFILTERS('Q4 Action Priority'[Category]), REMOVEFILTERS('Q4 Action Priority'[Forecast Month])))
+		formatString: 0.0%;(0.0%);-
+		lineageTag: a1d764a0-62dc-4da9-a5fd-8b8346bb1c65
+
+	/// Q4 shortfall share concentrated in the five largest Region × Channel × Category combinations.
+	measure 'Q4 Top 5 Gap Concentration %' = VAR _ByIntersection = SUMMARIZECOLUMNS('Q4 Action Priority'[Region], 'Q4 Action Priority'[Channel], 'Q4 Action Priority'[Category], "Shortfall", [Q4 Gross Target Shortfall]) VAR _TopFive = TOPN(5, _ByIntersection, [Shortfall], DESC) VAR _Selected = SUMX(_TopFive, [Shortfall]) VAR _Total = CALCULATE([Q4 Gross Target Shortfall], REMOVEFILTERS('Q4 Action Priority'[Region]), REMOVEFILTERS('Q4 Action Priority'[Channel]), REMOVEFILTERS('Q4 Action Priority'[Category]), REMOVEFILTERS('Q4 Action Priority'[Forecast Month])) RETURN DIVIDE(_Selected, _Total)
+		formatString: 0.0%;(0.0%);-
+		lineageTag: 287ad675-e8e5-403e-8bd4-5c78cf63822b
+
+	/// Distinct action candidates rated Critical or High.
+	measure 'Critical and High Actions' = CALCULATE([Action Candidates], KEEPFILTERS('Q4 Action Priority'[Priority Level] IN {"Critical", "High"}))
+		formatString: #,0
+		lineageTag: df79d24e-d93d-464c-96a3-e2558f93dc71
+
+	/// All Core/Maintain customers with validated High decline risk (617 overall; not probability-calibrated).
+	measure 'Core High Decline Customer Count' = CALCULATE(DISTINCTCOUNT('Q4 Action Priority'[Customer ID]), KEEPFILTERS('Q4 Action Priority'[Action Type] = "CORE_HIGH_DECLINE_REVIEW"))
+		formatString: #,0
+		lineageTag: 24d75d20-0b1a-4403-9b21-5afbf393d97f
+
+	/// Deduplicated trailing-12-month sales exposure for the full Core/Maintain + validated High-decline cohort; not estimated recovery.
+	measure 'Core High Decline 12M Sales Exposure' = VAR _Customers = CALCULATETABLE(VALUES('Q4 Action Priority'[Customer ID]), KEEPFILTERS('Q4 Action Priority'[Action Type] = "CORE_HIGH_DECLINE_REVIEW")) RETURN SUMX(_Customers, CALCULATE(MAX('Q4 Action Priority'[Trailing 12-Month Sales])))
+		formatString: $#,0;($#,0);-
+		lineageTag: 739c13ee-5f7e-4831-906e-a514c72a66b4
+
+	/// Recent sales weighted by the validated Q4-gap-relevant share for the full deduplicated cohort; exposure only, not incremental sales.
+	measure 'Core High Decline Q4-Relevant Recent Sales' = VAR _Customers = CALCULATETABLE(VALUES('Q4 Action Priority'[Customer ID]), KEEPFILTERS('Q4 Action Priority'[Action Type] = "CORE_HIGH_DECLINE_REVIEW")) RETURN SUMX(_Customers, CALCULATE(MAX('Q4 Action Priority'[Recent 3-Month Sales]) * MAX('Q4 Action Priority'[Q4-Gap-Relevant Sales Share])))
+		formatString: $#,0;($#,0);-
+		lineageTag: a2750d6e-d10d-4ada-aceb-f0f4bee36ee9
+
+	/// Distinct Potential customers queued for validation; not a causal uplift cohort.
+	measure 'Potential Customer Count' = CALCULATE(DISTINCTCOUNT('Q4 Action Priority'[Customer ID]), KEEPFILTERS('Q4 Action Priority'[Action Type] = "POTENTIAL_GROWTH_VALIDATION"))
+		formatString: #,0
+		lineageTag: f261de94-ccf3-455a-bfa5-0f63cebc9bdc
+
+	/// Deduplicated trailing-12-month sales context for Potential customers; not estimated growth or recovery.
+	measure 'Potential 12M Sales Exposure' = VAR _Customers = CALCULATETABLE(VALUES('Q4 Action Priority'[Customer ID]), KEEPFILTERS('Q4 Action Priority'[Action Type] = "POTENTIAL_GROWTH_VALIDATION")) RETURN SUMX(_Customers, CALCULATE(MAX('Q4 Action Priority'[Trailing 12-Month Sales])))
+		formatString: $#,0;($#,0);-
+		lineageTag: ab058cfb-200e-4b1e-980b-87c0d25f3d3b
+
+	/// Recent sales weighted by the validated Q4-gap-relevant share; used as context, not uplift.
+	measure 'Potential Q4-Relevant Recent Sales' = VAR _Customers = CALCULATETABLE(VALUES('Q4 Action Priority'[Customer ID]), KEEPFILTERS('Q4 Action Priority'[Action Type] = "POTENTIAL_GROWTH_VALIDATION")) RETURN SUMX(_Customers, CALCULATE(MAX('Q4 Action Priority'[Recent 3-Month Sales]) * MAX('Q4 Action Priority'[Q4-Gap-Relevant Sales Share])))
+		formatString: $#,0;($#,0);-
+		lineageTag: 508075a9-b33b-4290-bdbf-2122c5026677
+
+	/// Distinct inventory positions selected by Build 1 for execution or coverage review; not a stockout prediction.
+	measure 'Inventory Review Positions' = CALCULATE(DISTINCTCOUNT('Q4 Action Priority'[Action ID]), KEEPFILTERS('Q4 Action Priority'[Action Entity Type] = "Distributor-product inventory position"))
+		formatString: #,0
+		lineageTag: dd3cbc74-68b7-41c2-8499-7d72ef8a4049
+
+	/// Distinct inventory positions screened at High coverage pressure; lacks lead-time calibration.
+	measure 'High Inventory Coverage Pressure Positions' = CALCULATE(DISTINCTCOUNT('Q4 Action Priority'[Action ID]), KEEPFILTERS('Q4 Action Priority'[Action Entity Type] = "Distributor-product inventory position"), KEEPFILTERS('Q4 Action Priority'[Coverage Pressure Level] = "High"))
+		formatString: #,0
+		lineageTag: 69161e2f-211d-423d-9059-2a02c1cae623
+
+	/// Distinct current snapshot positions where On Hand is below the recorded Reorder Point.
+	measure 'Inventory Reorder Exceptions' = CALCULATE(DISTINCTCOUNT('Q4 Action Priority'[Action ID]), KEEPFILTERS('Q4 Action Priority'[Action Entity Type] = "Distributor-product inventory position"), KEEPFILTERS('Q4 Action Priority'[Reorder Exception Flag] = TRUE()))
+		formatString: #,0
+		lineageTag: d4036a0e-67cc-4a12-be6e-178010ed6206
+
+	/// Distinct action candidates at the Critical threshold.
+	measure 'Critical Actions' = CALCULATE([Action Candidates], KEEPFILTERS('Q4 Action Priority'[Priority Level] = "Critical"))
+		formatString: #,0
+		lineageTag: ed8c96ba-1e7c-4bf5-a98e-a15692be6428
+
+	/// Distinct action candidates at the High threshold.
+	measure 'High Priority Actions' = CALCULATE([Action Candidates], KEEPFILTERS('Q4 Action Priority'[Priority Level] = "High"))
+		formatString: #,0
+		lineageTag: 6273579b-eebc-4b6e-bd38-3e906ba2ba88
+
+	/// Negative Q4 forecast-to-target review candidates at native target grain.
+	measure 'Commercial Gap Actions' = CALCULATE([Action Candidates], KEEPFILTERS('Q4 Action Priority'[Action Type] = "Q4_GAP_REVIEW"))
+		formatString: #,0
+		lineageTag: ea3c50ea-014a-43d7-9450-5f359d7ae9d0
+
+	/// Customer revenue-protection review candidates; relative decline signal, not probability of churn.
+	measure 'Customer Protection Actions' = CALCULATE([Action Candidates], KEEPFILTERS('Q4 Action Priority'[Action Type] = "CORE_HIGH_DECLINE_REVIEW"))
+		formatString: #,0
+		lineageTag: af194d21-c757-4391-a3de-f17d9a458d3f
+
+	/// Potential customer validation candidates; no uplift is estimated.
+	measure 'Potential Growth Validation Actions' = CALCULATE([Action Candidates], KEEPFILTERS('Q4 Action Priority'[Action Type] = "POTENTIAL_GROWTH_VALIDATION"))
+		formatString: #,0
+		lineageTag: ba50db3c-4089-4d28-9d96-8a10fd088dcb
+
+	/// Core High Decline customer actions rated Critical or High for management focus.
+	measure 'Critical High Customer Actions' = CALCULATE([Action Candidates], KEEPFILTERS('Q4 Action Priority'[Action Type] = "CORE_HIGH_DECLINE_REVIEW"), KEEPFILTERS('Q4 Action Priority'[Priority Level] IN {"Critical", "High"}))
+		formatString: #,0
+		lineageTag: c6d55641-2f81-4d85-a8c5-731e76ff28ff
+
+	/// Inventory execution-review candidates rated Critical or High.
+	measure 'Critical High Inventory Actions' = CALCULATE([Action Candidates], KEEPFILTERS('Q4 Action Priority'[Action Entity Type] = "Distributor-product inventory position"), KEEPFILTERS('Q4 Action Priority'[Priority Level] IN {"Critical", "High"}))
+		formatString: #,0
+		lineageTag: 34c23419-6a0d-46dc-a156-194fbf686c38
+
+	/// Mean Build 1 priority score for Critical/High action candidates.
+	measure 'Top Priority Average Score' = CALCULATE(AVERAGE('Q4 Action Priority'[Priority Score]), KEEPFILTERS('Q4 Action Priority'[Priority Level] IN {"Critical", "High"}))
+		formatString: 0.0
+		lineageTag: 17624f51-d7d4-4407-9c6f-9ec6f485bb55
+
+	/// Signed negative-gap amount from Build 1 Q4 gap-review rows only; grouped at Region × Channel × Category.
+	measure 'Commercial Q4 Gap (Negative Rows)' = -[Q4 Gross Target Shortfall]
+		formatString: $#,##0.00;-$#,##0.00
+		lineageTag: 2af244cd-dfa6-4ea3-9c71-de959d08026e
+
+	/// Deduplicated total Jul-Sep 2026 sales for qualifying Potential customers, whether or not their transaction category intersects a negative Q4 gap.
+	measure 'Potential Recent 3-Month Sales' = VAR _Customers = CALCULATETABLE(VALUES('Q4 Action Priority'[Customer ID]), KEEPFILTERS('Q4 Action Priority'[Action Type] = "POTENTIAL_GROWTH_VALIDATION")) RETURN SUMX(_Customers, CALCULATE(MAX('Q4 Action Priority'[Recent 3-Month Sales])))
+		formatString: $#,##0.00
+		lineageTag: e7b67931-5ad1-4965-92d1-b76ed279c476
+
+	column 'Action ID'
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: 24fc523a-3ebc-4451-9520-2d90a5a186a0
+		summarizeBy: none
+		sourceColumn: Action ID
+
+	column 'Action Entity Type'
+		dataType: string
+		isHidden
+		lineageTag: 65461769-4342-4548-82a7-d3575dabb97f
+		summarizeBy: none
+		sourceColumn: Action Entity Type
+
+	column 'Entity Key'
+		dataType: string
+		isHidden
+		lineageTag: ac9c8bea-58ac-48e1-9940-3524e76d998d
+		summarizeBy: none
+		sourceColumn: Entity Key
+
+	column 'Action Type'
+		dataType: string
+		lineageTag: d6b93de7-d2d2-4ed7-bd68-8f88369f1e1a
+		summarizeBy: none
+		sourceColumn: Action Type
+
+	column 'Priority Level'
+		dataType: string
+		lineageTag: 42df5632-3794-4d3e-b137-3156e3728310
+		summarizeBy: none
+		sourceColumn: Priority Level
+
+	column 'Priority Score'
+		dataType: double
+		formatString: 0.0
+		lineageTag: 5d9cc806-4eb2-445a-b819-57079d8afaf4
+		summarizeBy: sum
+		sourceColumn: Priority Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commercial Impact'
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: 78e0463c-37c3-47c2-846f-a7e39bea4624
+		summarizeBy: sum
+		sourceColumn: Commercial Impact
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Risk / Opportunity Severity'
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: 1ad54808-9a7c-4b40-a890-703308cd1f2c
+		summarizeBy: sum
+		sourceColumn: Risk / Opportunity Severity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Q4 Relevance'
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: a9c3a5cc-7afe-498c-b792-2f2035cc7a47
+		summarizeBy: sum
+		sourceColumn: Q4 Relevance
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Evidence Confidence'
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: c20dac12-c5d4-4ea8-a4b1-ce61205f07d7
+		summarizeBy: sum
+		sourceColumn: Evidence Confidence
+
+		annotation SummarizationSetBy = Automatic
+
+	column Actionability
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: 3491578c-6187-4a71-b616-3d5e356d806a
+		summarizeBy: sum
+		sourceColumn: Actionability
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Forecast Month'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d0935434-5fb3-480e-a3c8-d3286fef3cfa
+		summarizeBy: none
+		sourceColumn: Forecast Month
+
+		variation Variation
+			isDefault
+			relationship: 3e75a319-04ab-4295-9301-5df08acdc690
+			defaultHierarchy: LocalDateTable_766a5018-ded4-455f-bc20-4b5ee84c817e.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Region
+		dataType: string
+		lineageTag: 7ef515e0-659a-4cea-826e-860591bcb89e
+		summarizeBy: none
+		sourceColumn: Region
+
+	column Channel
+		dataType: string
+		lineageTag: 9ae527e5-abdd-4be9-9a66-118b69cc9ab6
+		summarizeBy: none
+		sourceColumn: Channel
+
+	column Category
+		dataType: string
+		lineageTag: f3826e1d-6662-4941-ac59-21ec6bba7305
+		summarizeBy: none
+		sourceColumn: Category
+
+	column 'Forecast Sales'
+		dataType: double
+		isHidden
+		formatString: $#,##0;-$#,##0
+		lineageTag: 1b5f0ddd-b956-4d48-8995-a0319f3b8467
+		summarizeBy: sum
+		sourceColumn: Forecast Sales
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Target'
+		dataType: double
+		isHidden
+		formatString: $#,##0;-$#,##0
+		lineageTag: 70a5618f-f91f-43e2-af79-ff83908c9b7c
+		summarizeBy: sum
+		sourceColumn: Sales Target
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Forecast Target Gap'
+		dataType: double
+		isHidden
+		formatString: $#,##0;-$#,##0
+		lineageTag: 89c8e2cb-5fa8-4b3d-89ee-306336500100
+		summarizeBy: sum
+		sourceColumn: Forecast Target Gap
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Forecast Target Gap %'
+		dataType: double
+		isHidden
+		formatString: 0.0%;-0.0%
+		lineageTag: 9c3ef0d2-9945-451a-a646-20ea09eb2e33
+		summarizeBy: sum
+		sourceColumn: Forecast Target Gap %
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer ID'
+		dataType: string
+		isHidden
+		lineageTag: 850df0b8-ee23-4f22-a1c8-70d458273c94
+		summarizeBy: none
+		sourceColumn: Customer ID
+
+	column 'Commercial Segment'
+		dataType: string
+		lineageTag: fc359631-bd0e-414c-a919-33613b3d5108
+		summarizeBy: none
+		sourceColumn: Commercial Segment
+
+	column 'Decline Risk Level'
+		dataType: string
+		lineageTag: 3b08175c-6ede-4141-b151-1c9576db5800
+		summarizeBy: none
+		sourceColumn: Decline Risk Level
+
+	column 'Trailing 12-Month Sales'
+		dataType: double
+		isHidden
+		formatString: $#,##0;-$#,##0
+		lineageTag: 381b2c91-6260-4695-a288-8a9c3df68301
+		summarizeBy: sum
+		sourceColumn: Trailing 12-Month Sales
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trailing 12-Month Gross Margin'
+		dataType: double
+		isHidden
+		formatString: $#,##0;-$#,##0
+		lineageTag: 2fb016fc-3a6c-4dd4-ae37-9937d353a9c0
+		summarizeBy: sum
+		sourceColumn: Trailing 12-Month Gross Margin
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recent 3-Month Sales'
+		dataType: double
+		isHidden
+		formatString: $#,##0;-$#,##0
+		lineageTag: 2e13669a-7b11-48ea-bfa0-8615b79ec825
+		summarizeBy: sum
+		sourceColumn: Recent 3-Month Sales
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Q4-Gap-Relevant Sales Share'
+		dataType: double
+		isHidden
+		formatString: 0.0%
+		lineageTag: ca48e485-b7a4-4a75-93a2-296010644e70
+		summarizeBy: sum
+		sourceColumn: Q4-Gap-Relevant Sales Share
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Region'
+		dataType: string
+		lineageTag: 11876005-0649-4350-b606-42069c311173
+		summarizeBy: none
+		sourceColumn: Customer Region
+
+	column 'Customer Channel'
+		dataType: string
+		lineageTag: 2685e6c8-9be1-4b7c-a0c2-98a3f3ef6cd8
+		summarizeBy: none
+		sourceColumn: Customer Channel
+
+	column 'Momentum Score'
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: 33884cfa-29f4-421b-a13e-c2516f61de29
+		summarizeBy: sum
+		sourceColumn: Momentum Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Engagement Score'
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: 48a80b61-264a-413e-bdc8-ad681cee31b5
+		summarizeBy: sum
+		sourceColumn: Engagement Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Distributor ID'
+		dataType: string
+		lineageTag: fe72242a-bc98-44b2-9fe0-edbcf4cb2c5c
+		summarizeBy: none
+		sourceColumn: Distributor ID
+
+	column 'Product ID'
+		dataType: string
+		lineageTag: 0e4ee1a0-0e29-45c0-9edf-04b59cf331e6
+		summarizeBy: none
+		sourceColumn: Product ID
+
+	column 'Inventory Category'
+		dataType: string
+		lineageTag: 2be958c4-6c44-4990-9f50-25318d6b7abf
+		summarizeBy: none
+		sourceColumn: Inventory Category
+
+	column 'On Hand Quantity'
+		dataType: int64
+		isHidden
+		lineageTag: 712bca5c-5817-4672-92b2-da1bb22b4b6e
+		summarizeBy: sum
+		sourceColumn: On Hand Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'In Transit Quantity'
+		dataType: int64
+		isHidden
+		lineageTag: 76de9354-60c4-4330-bfb4-05a85bfa32be
+		summarizeBy: sum
+		sourceColumn: In Transit Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reorder Point'
+		dataType: int64
+		isHidden
+		lineageTag: 2550c001-032b-44ad-a303-5f535883efc3
+		summarizeBy: sum
+		sourceColumn: Reorder Point
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trailing 3-Month Demand Quantity'
+		dataType: int64
+		isHidden
+		lineageTag: 62473e1a-5357-4f66-b8c2-a22a9082a033
+		summarizeBy: sum
+		sourceColumn: Trailing 3-Month Demand Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Coverage Pressure Level'
+		dataType: string
+		lineageTag: 4409a539-9e26-4202-9e52-e0128dbeb1cf
+		summarizeBy: none
+		sourceColumn: Coverage Pressure Level
+
+	column 'Coverage Pressure Score'
+		dataType: int64
+		isHidden
+		lineageTag: ac5d1ada-642c-4956-a206-3bb5ee6d1fbb
+		summarizeBy: sum
+		sourceColumn: Coverage Pressure Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reorder Exception Flag'
+		dataType: boolean
+		lineageTag: 51607f1d-4c16-4bae-8722-2ebf291531a6
+		summarizeBy: none
+		sourceColumn: Reorder Exception Flag
+
+	column 'On-Hand Coverage Days'
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: c603cc9b-f0f1-4952-b2d8-4dbe0b5dd425
+		summarizeBy: sum
+		sourceColumn: On-Hand Coverage Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Available Coverage Days'
+		dataType: double
+		isHidden
+		formatString: 0.0
+		lineageTag: 0446b16c-099a-4d30-9c10-e1d57c4c19a4
+		summarizeBy: sum
+		sourceColumn: Available Coverage Days
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recommendation Template'
+		dataType: string
+		lineageTag: 91e0a5ae-23c2-40c5-9b2f-d73f16e772f8
+		summarizeBy: none
+		sourceColumn: Recommendation Template
+
+	column 'Forecast Method'
+		dataType: string
+		isHidden
+		lineageTag: c78d150d-8dc5-4f53-a9d2-ac295ba8982f
+		summarizeBy: none
+		sourceColumn: Forecast Method
+
+	column 'Forecast Horizon'
+		dataType: int64
+		isHidden
+		lineageTag: 2cd05bcd-4888-407c-8441-9177cdc67ed9
+		summarizeBy: sum
+		sourceColumn: Forecast Horizon
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Forecast As-of Date'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 1c36e665-b4c6-4d47-b10b-d1c3fdc80c2a
+		summarizeBy: none
+		sourceColumn: Forecast As-of Date
+
+		variation Variation
+			isDefault
+			relationship: 78fd7796-1e29-45f8-9a89-3f011d688bf1
+			defaultHierarchy: LocalDateTable_52a42313-4cd2-40fd-b47d-ffdd23acfebf.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Forecast Model Version'
+		dataType: string
+		isHidden
+		lineageTag: 2ea5ff13-5bc6-472a-b2e7-ffde70b1e5f0
+		summarizeBy: none
+		sourceColumn: Forecast Model Version
+
+	column 'As Of Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 00a9326b-6722-48b0-946b-27a7dd103e41
+		summarizeBy: none
+		sourceColumn: As Of Date
+
+		variation Variation
+			isDefault
+			relationship: a53043ae-c0c5-40d3-968c-26464ff51592
+			defaultHierarchy: LocalDateTable_cfa7a843-0f8e-49c5-b5c4-386fc0e44862.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Run Date'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 1415305b-463a-4226-8d2e-235e0de27bbb
+		summarizeBy: none
+		sourceColumn: Run Date
+
+		variation Variation
+			isDefault
+			relationship: 38041a7c-4667-42f2-98f3-4c6575b751f0
+			defaultHierarchy: LocalDateTable_d3c0c4de-38d2-4c7d-8b32-bec4cd0a11a1.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Model Version'
+		dataType: string
+		isHidden
+		lineageTag: 7d1e2be9-3e85-4299-95a9-5adaf6972477
+		summarizeBy: none
+		sourceColumn: Model Version
+
+	column 'Evidence Type'
+		dataType: string
+		lineageTag: d746cc36-d588-4b88-a76f-c03523ecc70b
+		summarizeBy: none
+		sourceColumn: Evidence Type
+
+	column 'Primary Driver'
+		dataType: string
+		lineageTag: 225a2c4a-c272-454c-a208-de906b3a3a4c
+		summarizeBy: none
+		sourceColumn: Primary Driver
+
+	partition 'Q4 Action Priority' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("D:\Projects\FMCG_Advanced_Practice\processed\prescriptive\fact_q4_action_priority.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Selected = Table.SelectColumns(Promoted, {"ActionID", "ActionEntityType", "EntityKey", "ActionType", "PriorityLevel", "PriorityScore", "CommercialImpact", "RiskOpportunitySeverity", "Q4Relevance", "EvidenceConfidence", "Actionability", "ForecastMonth", "Region", "Channel", "Category", "ForecastSales", "SalesTarget", "ForecastTargetGap", "ForecastTargetGapPct", "CustomerID", "CommercialSegment", "DeclineRiskLevel", "Trailing12MonthSales", "Trailing12MonthGrossMargin", "Recent3MonthSales", "Q4GapRelevantSalesShare", "CustomerRegion", "CustomerChannel", "MomentumScore", "EngagementScore", "DistributorID", "ProductID", "InventoryCategory", "OnHandQuantity", "InTransitQuantity", "ReorderPoint", "Trailing3CompleteMonthsSalesQuantity", "CoveragePressureLevel", "CoveragePressureScore", "ReorderExceptionFlag", "OnHandCoverageDays", "AvailableCoverageDays", "RecommendationTemplate", "ForecastMethod", "ForecastHorizon", "ForecastAsOfDate", "ForecastModelVersion", "AsOfDate", "RunDate", "ModelOrRuleVersion"}),
+				    Renamed = Table.RenameColumns(Selected, {{"ActionID", "Action ID"}, {"ActionEntityType", "Action Entity Type"}, {"EntityKey", "Entity Key"}, {"ActionType", "Action Type"}, {"PriorityLevel", "Priority Level"}, {"PriorityScore", "Priority Score"}, {"CommercialImpact", "Commercial Impact"}, {"RiskOpportunitySeverity", "Risk / Opportunity Severity"}, {"Q4Relevance", "Q4 Relevance"}, {"EvidenceConfidence", "Evidence Confidence"}, {"Actionability", "Actionability"}, {"ForecastMonth", "Forecast Month"}, {"ForecastSales", "Forecast Sales"}, {"SalesTarget", "Sales Target"}, {"ForecastTargetGap", "Forecast Target Gap"}, {"ForecastTargetGapPct", "Forecast Target Gap %"}, {"CustomerID", "Customer ID"}, {"CommercialSegment", "Commercial Segment"}, {"DeclineRiskLevel", "Decline Risk Level"}, {"Trailing12MonthSales", "Trailing 12-Month Sales"}, {"Trailing12MonthGrossMargin", "Trailing 12-Month Gross Margin"}, {"Recent3MonthSales", "Recent 3-Month Sales"}, {"Q4GapRelevantSalesShare", "Q4-Gap-Relevant Sales Share"}, {"CustomerRegion", "Customer Region"}, {"CustomerChannel", "Customer Channel"}, {"MomentumScore", "Momentum Score"}, {"EngagementScore", "Engagement Score"}, {"DistributorID", "Distributor ID"}, {"ProductID", "Product ID"}, {"InventoryCategory", "Inventory Category"}, {"OnHandQuantity", "On Hand Quantity"}, {"InTransitQuantity", "In Transit Quantity"}, {"ReorderPoint", "Reorder Point"}, {"Trailing3CompleteMonthsSalesQuantity", "Trailing 3-Month Demand Quantity"}, {"CoveragePressureLevel", "Coverage Pressure Level"}, {"CoveragePressureScore", "Coverage Pressure Score"}, {"ReorderExceptionFlag", "Reorder Exception Flag"}, {"OnHandCoverageDays", "On-Hand Coverage Days"}, {"AvailableCoverageDays", "Available Coverage Days"}, {"RecommendationTemplate", "Recommendation Template"}, {"ForecastMethod", "Forecast Method"}, {"ForecastHorizon", "Forecast Horizon"}, {"ForecastAsOfDate", "Forecast As-of Date"}, {"ForecastModelVersion", "Forecast Model Version"}, {"AsOfDate", "As Of Date"}, {"RunDate", "Run Date"}, {"ModelOrRuleVersion", "Model Version"}}),
+				    NormalizedReorderFlag = Table.TransformColumns(Renamed, {{"Reorder Exception Flag", each if _ = null then false else if Text.Trim(Text.From(_)) = "" then false else Logical.FromText(Text.Trim(Text.From(_))), type logical}}),
+				    WithEvidenceType = Table.AddColumn(NormalizedReorderFlag, "Evidence Type", each if [Action Type] = "Q4_GAP_REVIEW" then "Forecast vs target benchmark" else if [Action Type] = "CORE_HIGH_DECLINE_REVIEW" then "Validated relative decline-risk signal" else if [Action Type] = "POTENTIAL_GROWTH_VALIDATION" then "Relative segment, momentum and engagement" else if [Reorder Exception Flag] then "Current reorder exception" else "Inventory coverage-pressure screening", type text),
+				    WithPrimaryDriver = Table.AddColumn(WithEvidenceType, "Primary Driver", each if [Action Type] = "Q4_GAP_REVIEW" then "Projected forecast below target" else if [Action Type] = "CORE_HIGH_DECLINE_REVIEW" then "Validated High decline-risk tier" else if [Action Type] = "POTENTIAL_GROWTH_VALIDATION" then "Momentum and engagement qualification" else if [Reorder Exception Flag] then "On Hand below Reorder Point" else "Coverage pressure with recent demand", type text),
+				    Typed = Table.TransformColumnTypes(WithPrimaryDriver, {{"Action ID", type text}, {"Action Entity Type", type text}, {"Entity Key", type text}, {"Action Type", type text}, {"Priority Level", type text}, {"Priority Score", type number}, {"Commercial Impact", type number}, {"Risk / Opportunity Severity", type number}, {"Q4 Relevance", type number}, {"Evidence Confidence", type number}, {"Actionability", type number}, {"Forecast Month", type date}, {"Region", type text}, {"Channel", type text}, {"Category", type text}, {"Forecast Sales", type number}, {"Sales Target", type number}, {"Forecast Target Gap", type number}, {"Forecast Target Gap %", type number}, {"Customer ID", type text}, {"Commercial Segment", type text}, {"Decline Risk Level", type text}, {"Trailing 12-Month Sales", type number}, {"Trailing 12-Month Gross Margin", type number}, {"Recent 3-Month Sales", type number}, {"Q4-Gap-Relevant Sales Share", type number}, {"Customer Region", type text}, {"Customer Channel", type text}, {"Momentum Score", type number}, {"Engagement Score", type number}, {"Distributor ID", type text}, {"Product ID", type text}, {"Inventory Category", type text}, {"On Hand Quantity", Int64.Type}, {"In Transit Quantity", Int64.Type}, {"Reorder Point", Int64.Type}, {"Trailing 3-Month Demand Quantity", Int64.Type}, {"Coverage Pressure Level", type text}, {"Coverage Pressure Score", Int64.Type}, {"On-Hand Coverage Days", type number}, {"Available Coverage Days", type number}, {"Recommendation Template", type text}, {"Forecast Method", type text}, {"Forecast Horizon", Int64.Type}, {"Forecast As-of Date", type date}, {"Forecast Model Version", type text}, {"As Of Date", type date}, {"Run Date", type date}, {"Model Version", type text}, {"Evidence Type", type text}, {"Primary Driver", type text}}, "en-US")
+				in
+				    Typed
+

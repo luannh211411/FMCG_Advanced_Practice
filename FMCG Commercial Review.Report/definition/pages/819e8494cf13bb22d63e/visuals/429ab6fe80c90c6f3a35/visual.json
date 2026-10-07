@@ -1,0 +1,87 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "429ab6fe80c90c6f3a35",
+  "position": {
+    "x": 1240,
+    "y": 966,
+    "z": 1000,
+    "height": 66,
+    "width": 648,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Inventory Review Positions"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Inventory Review Positions",
+              "nativeQueryRef": "Inventory Review Positions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "High Inventory Coverage Pressure Positions"
+                }
+              },
+              "queryRef": "Q4 Action Priority.High Inventory Coverage Pressure Positions",
+              "nativeQueryRef": "High Coverage Pressure"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Q4 Action Priority"
+                    }
+                  },
+                  "Property": "Inventory Reorder Exceptions"
+                }
+              },
+              "queryRef": "Q4 Action Priority.Inventory Reorder Exceptions",
+              "nativeQueryRef": "Reorder Exceptions"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

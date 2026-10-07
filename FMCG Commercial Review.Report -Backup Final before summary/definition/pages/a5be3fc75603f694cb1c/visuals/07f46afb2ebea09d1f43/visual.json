@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "07f46afb2ebea09d1f43",
+  "position": {
+    "x": 1070,
+    "y": 768,
+    "z": 1000,
+    "height": 135,
+    "width": 340,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promotion Attribution"
+                    }
+                  },
+                  "Property": "Promotion Type"
+                }
+              },
+              "queryRef": "Promotion Attribution.Promotion Type",
+              "nativeQueryRef": "Promotion Type",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promotion Attribution"
+                    }
+                  },
+                  "Property": "Promotion Overlap Sales Count"
+                }
+              },
+              "queryRef": "Promotion Attribution.Promotion Overlap Sales Count",
+              "nativeQueryRef": "Promotion Overlap Sales Count"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Promotion Attribution"
+                  }
+                },
+                "Property": "Promotion Overlap Sales Count"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    }
+  }
+}

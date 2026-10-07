@@ -1,0 +1,275 @@
+{
+  "model_or_rule_version": "fmcg-q4-action-priority-v1.0.0",
+  "as_of_date": "2026-09-30",
+  "run_date": "2026-10-07",
+  "source_counts": {
+    "target_rows": 216,
+    "customer_snapshot_rows": 6500,
+    "inventory_snapshot_rows": 3600,
+    "customer_dimension_rows": 6500,
+    "product_dimension_rows": 180
+  },
+  "q4_totals": {
+    "ForecastSales": 46503894218.94,
+    "SalesTarget": 48840683559.0,
+    "ForecastTargetGap": -2336789340.06,
+    "NegativeGapAmount": -19759893759.04,
+    "PositiveGapOffset": 17423104418.98,
+    "GapRows": 216,
+    "NegativeGapRows": 162,
+    "PositiveGapRows": 54,
+    "ZeroTargetRows": 0
+  },
+  "q4_gap_formula_max_abs_difference": 0.0,
+  "action_rows": 1673,
+  "unique_action_ids": 1673,
+  "duplicate_action_ids": 0,
+  "null_identity_rows": 0,
+  "priority_score_range": [
+    37.15,
+    93.2095
+  ],
+  "priority_level_distribution": {
+    "High": 719,
+    "Medium": 703,
+    "Critical": 219,
+    "Low": 32
+  },
+  "action_type_distribution": {
+    "INVENTORY_COVERAGE_PRESSURE_REVIEW": 741,
+    "CORE_HIGH_DECLINE_REVIEW": 617,
+    "Q4_GAP_REVIEW": 162,
+    "POTENTIAL_GROWTH_VALIDATION": 153
+  },
+  "customer_priority_summary": [
+    {
+      "CustomerGroup": "Core / Maintain + validated High Decline Risk",
+      "Customers": 617,
+      "Trailing12MonthSales": 20177005697.0,
+      "Trailing12MonthGrossMargin": 7397444828.0,
+      "Recent3MonthSales": 6716081003.0,
+      "Q4GapRelevantRecentSales": 1919359167.0
+    },
+    {
+      "CustomerGroup": "Potential with momentum >= 70 and engagement >= 50",
+      "Customers": 153,
+      "Trailing12MonthSales": 3764224095.0,
+      "Trailing12MonthGrossMargin": 1366562593.0,
+      "Recent3MonthSales": 1416273358.0,
+      "Q4GapRelevantRecentSales": 464640590.0
+    }
+  ],
+  "potential_growth_opportunity_summary": {
+    "CustomerGroup": "Potential with momentum >= 70 and engagement >= 50",
+    "Customers": 153,
+    "Trailing12MonthSales": 3764224095.0,
+    "Trailing12MonthGrossMargin": 1366562593.0,
+    "Recent3MonthSales": 1416273358.0,
+    "Q4GapRelevantRecentSales": 464640590.0
+  },
+  "inventory_priority_summary": [
+    {
+      "Category": "Beverages",
+      "CoveragePressureLevel": "High",
+      "Positions": 112,
+      "ReorderExceptions": 112,
+      "RecentDemandQuantity": 23137,
+      "Q4CategoryNegativeGap": -7484313785.01
+    },
+    {
+      "Category": "Beverages",
+      "CoveragePressureLevel": "Medium",
+      "Positions": 47,
+      "ReorderExceptions": 12,
+      "RecentDemandQuantity": 9461,
+      "Q4CategoryNegativeGap": -7484313785.01
+    },
+    {
+      "Category": "Home Care",
+      "CoveragePressureLevel": "High",
+      "Positions": 85,
+      "ReorderExceptions": 85,
+      "RecentDemandQuantity": 16552,
+      "Q4CategoryNegativeGap": -1775193969.99
+    },
+    {
+      "Category": "Home Care",
+      "CoveragePressureLevel": "Medium",
+      "Positions": 34,
+      "ReorderExceptions": 10,
+      "RecentDemandQuantity": 7054,
+      "Q4CategoryNegativeGap": -1775193969.99
+    },
+    {
+      "Category": "Ice Cream",
+      "CoveragePressureLevel": "High",
+      "Positions": 118,
+      "ReorderExceptions": 118,
+      "RecentDemandQuantity": 24303,
+      "Q4CategoryNegativeGap": -2603245037.0099998
+    },
+    {
+      "Category": "Ice Cream",
+      "CoveragePressureLevel": "Medium",
+      "Positions": 50,
+      "ReorderExceptions": 21,
+      "RecentDemandQuantity": 9352,
+      "Q4CategoryNegativeGap": -2603245037.0099998
+    },
+    {
+      "Category": "Personal Care",
+      "CoveragePressureLevel": "High",
+      "Positions": 127,
+      "ReorderExceptions": 127,
+      "RecentDemandQuantity": 25341,
+      "Q4CategoryNegativeGap": -1242952885.02
+    },
+    {
+      "Category": "Personal Care",
+      "CoveragePressureLevel": "Medium",
+      "Positions": 52,
+      "ReorderExceptions": 21,
+      "RecentDemandQuantity": 10058,
+      "Q4CategoryNegativeGap": -1242952885.02
+    },
+    {
+      "Category": "Snacks",
+      "CoveragePressureLevel": "High",
+      "Positions": 83,
+      "ReorderExceptions": 83,
+      "RecentDemandQuantity": 16563,
+      "Q4CategoryNegativeGap": -6654188082.01
+    },
+    {
+      "Category": "Snacks",
+      "CoveragePressureLevel": "Medium",
+      "Positions": 33,
+      "ReorderExceptions": 13,
+      "RecentDemandQuantity": 6870,
+      "Q4CategoryNegativeGap": -6654188082.01
+    }
+  ],
+  "inventory_geography_mapping": {
+    "distinct_region_channel_pairs_per_distributor": [
+      12
+    ],
+    "rule": "Join only Product Category for inventory-to-gap relevance; do not assign distributor inventory to a region or channel."
+  },
+  "validation_checks": {
+    "forecast_gap_native_grain_unique": true,
+    "forecast_months_complete_oct_dec_2026": true,
+    "forecast_targets_present": true,
+    "forecast_gap_formula_reconciles_within_one_cent": true,
+    "customer_snapshot_key_unique": true,
+    "inventory_snapshot_keys_unique": true,
+    "action_ids_unique": true,
+    "action_identity_non_null": true,
+    "priority_scores_within_0_100": true,
+    "recommendations_are_deterministic_templates": true,
+    "no_inactivity_trigger": true,
+    "no_sales_recovery_or_lost_sales_estimates": true,
+    "no_exact_inventory_quantity_prescribed": true
+  },
+  "weight_sensitivity": [
+    {
+      "Scenario": "CommercialImpact_minus_5pp",
+      "ChangedComponent": "CommercialImpact",
+      "WeightChangePoints": -5.0,
+      "Weights": "{\"Actionability\": 0.10714285714285716, \"CommercialImpact\": 0.25, \"EvidenceConfidence\": 0.1607142857142857, \"Q4Relevance\": 0.21428571428571433, \"RiskOpportunitySeverity\": 0.26785714285714285}",
+      "Top100OverlapCount": 95,
+      "Top100OverlapPct": 95.0,
+      "SpearmanRankCorrelation": 0.991947963079894,
+      "PriorityBandChangedCount": 154
+    },
+    {
+      "Scenario": "CommercialImpact_plus_5pp",
+      "ChangedComponent": "CommercialImpact",
+      "WeightChangePoints": 5.0,
+      "Weights": "{\"Actionability\": 0.09285714285714286, \"CommercialImpact\": 0.35, \"EvidenceConfidence\": 0.1392857142857143, \"Q4Relevance\": 0.18571428571428572, \"RiskOpportunitySeverity\": 0.23214285714285718}",
+      "Top100OverlapCount": 94,
+      "Top100OverlapPct": 94.0,
+      "SpearmanRankCorrelation": 0.9946054448766498,
+      "PriorityBandChangedCount": 129
+    },
+    {
+      "Scenario": "RiskOpportunitySeverity_minus_5pp",
+      "ChangedComponent": "RiskOpportunitySeverity",
+      "WeightChangePoints": -5.0,
+      "Weights": "{\"Actionability\": 0.10666666666666669, \"CommercialImpact\": 0.32, \"EvidenceConfidence\": 0.16, \"Q4Relevance\": 0.21333333333333337, \"RiskOpportunitySeverity\": 0.2}",
+      "Top100OverlapCount": 95,
+      "Top100OverlapPct": 95.0,
+      "SpearmanRankCorrelation": 0.9940939958583146,
+      "PriorityBandChangedCount": 121
+    },
+    {
+      "Scenario": "RiskOpportunitySeverity_plus_5pp",
+      "ChangedComponent": "RiskOpportunitySeverity",
+      "WeightChangePoints": 5.0,
+      "Weights": "{\"Actionability\": 0.09333333333333332, \"CommercialImpact\": 0.27999999999999997, \"EvidenceConfidence\": 0.13999999999999999, \"Q4Relevance\": 0.18666666666666665, \"RiskOpportunitySeverity\": 0.3}",
+      "Top100OverlapCount": 98,
+      "Top100OverlapPct": 98.0,
+      "SpearmanRankCorrelation": 0.9929064018832743,
+      "PriorityBandChangedCount": 143
+    },
+    {
+      "Scenario": "Q4Relevance_minus_5pp",
+      "ChangedComponent": "Q4Relevance",
+      "WeightChangePoints": -5.0,
+      "Weights": "{\"Actionability\": 0.10625, \"CommercialImpact\": 0.31875, \"EvidenceConfidence\": 0.159375, \"Q4Relevance\": 0.15000000000000002, \"RiskOpportunitySeverity\": 0.265625}",
+      "Top100OverlapCount": 88,
+      "Top100OverlapPct": 88.0,
+      "SpearmanRankCorrelation": 0.9854992293672739,
+      "PriorityBandChangedCount": 160
+    },
+    {
+      "Scenario": "Q4Relevance_plus_5pp",
+      "ChangedComponent": "Q4Relevance",
+      "WeightChangePoints": 5.0,
+      "Weights": "{\"Actionability\": 0.09375000000000001, \"CommercialImpact\": 0.28124999999999994, \"EvidenceConfidence\": 0.14062499999999997, \"Q4Relevance\": 0.25, \"RiskOpportunitySeverity\": 0.234375}",
+      "Top100OverlapCount": 92,
+      "Top100OverlapPct": 92.0,
+      "SpearmanRankCorrelation": 0.9849032935595218,
+      "PriorityBandChangedCount": 148
+    },
+    {
+      "Scenario": "EvidenceConfidence_minus_5pp",
+      "ChangedComponent": "EvidenceConfidence",
+      "WeightChangePoints": -5.0,
+      "Weights": "{\"Actionability\": 0.10588235294117648, \"CommercialImpact\": 0.31764705882352945, \"EvidenceConfidence\": 0.09999999999999999, \"Q4Relevance\": 0.21176470588235297, \"RiskOpportunitySeverity\": 0.2647058823529412}",
+      "Top100OverlapCount": 99,
+      "Top100OverlapPct": 99.0,
+      "SpearmanRankCorrelation": 0.9994654991561084,
+      "PriorityBandChangedCount": 59
+    },
+    {
+      "Scenario": "EvidenceConfidence_plus_5pp",
+      "ChangedComponent": "EvidenceConfidence",
+      "WeightChangePoints": 5.0,
+      "Weights": "{\"Actionability\": 0.09411764705882356, \"CommercialImpact\": 0.2823529411764706, \"EvidenceConfidence\": 0.2, \"Q4Relevance\": 0.1882352941176471, \"RiskOpportunitySeverity\": 0.23529411764705885}",
+      "Top100OverlapCount": 98,
+      "Top100OverlapPct": 98.0,
+      "SpearmanRankCorrelation": 0.9993446348306486,
+      "PriorityBandChangedCount": 64
+    },
+    {
+      "Scenario": "Actionability_minus_5pp",
+      "ChangedComponent": "Actionability",
+      "WeightChangePoints": -5.0,
+      "Weights": "{\"Actionability\": 0.05, \"CommercialImpact\": 0.31666666666666665, \"EvidenceConfidence\": 0.15833333333333333, \"Q4Relevance\": 0.2111111111111111, \"RiskOpportunitySeverity\": 0.2638888888888889}",
+      "Top100OverlapCount": 98,
+      "Top100OverlapPct": 98.0,
+      "SpearmanRankCorrelation": 0.9997922568031692,
+      "PriorityBandChangedCount": 54
+    },
+    {
+      "Scenario": "Actionability_plus_5pp",
+      "ChangedComponent": "Actionability",
+      "WeightChangePoints": 5.0,
+      "Weights": "{\"Actionability\": 0.15000000000000002, \"CommercialImpact\": 0.2833333333333333, \"EvidenceConfidence\": 0.14166666666666666, \"Q4Relevance\": 0.18888888888888888, \"RiskOpportunitySeverity\": 0.2361111111111111}",
+      "Top100OverlapCount": 98,
+      "Top100OverlapPct": 98.0,
+      "SpearmanRankCorrelation": 0.9997566536912158,
+      "PriorityBandChangedCount": 60
+    }
+  ]
+}

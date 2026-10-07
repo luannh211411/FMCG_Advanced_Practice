@@ -183,3 +183,31 @@ relationship cc24fcde-10cf-4986-bd91-bd73d9983bd8
 	fromColumn: 'Inventory Intelligence'.'Run Date'
 	toColumn: LocalDateTable_ff88d653-d72b-4f55-b8a2-5ea29169f5b8.Date
 
+relationship 'Q4 Action Priority to Customer'
+	fromColumn: 'Q4 Action Priority'.'Customer ID'
+	toColumn: Customer.'Customer ID'
+
+relationship 'Q4 Action Priority to Category'
+	fromColumn: 'Q4 Action Priority'.Category
+	toColumn: Category.Category
+
+relationship 3e75a319-04ab-4295-9301-5df08acdc690
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Q4 Action Priority'.'Forecast Month'
+	toColumn: LocalDateTable_766a5018-ded4-455f-bc20-4b5ee84c817e.Date
+
+relationship 78fd7796-1e29-45f8-9a89-3f011d688bf1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Q4 Action Priority'.'Forecast As-of Date'
+	toColumn: LocalDateTable_52a42313-4cd2-40fd-b47d-ffdd23acfebf.Date
+
+relationship a53043ae-c0c5-40d3-968c-26464ff51592
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Q4 Action Priority'.'As Of Date'
+	toColumn: LocalDateTable_cfa7a843-0f8e-49c5-b5c4-386fc0e44862.Date
+
+relationship 38041a7c-4667-42f2-98f3-4c6575b751f0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Q4 Action Priority'.'Run Date'
+	toColumn: LocalDateTable_d3c0c4de-38d2-4c7d-8b32-bec4cd0a11a1.Date
+
